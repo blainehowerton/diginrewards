@@ -8,7 +8,7 @@ default: &default
   adapter: mysql2
   pool: 5
   timeout: 5000
-  # password: Welltok1
+  password: zzS)_kI_b9Ug
 
 development:
   <<: *default
