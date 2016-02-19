@@ -11,32 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218190949) do
+ActiveRecord::Schema.define(version: 20160218172939) do
 
   create_table "causes", force: :cascade do |t|
     t.string   "name",          limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
     t.string   "paypalID",      limit: 255
+    t.string   "contact_email", limit: 255
     t.string   "address",       limit: 255
     t.string   "city",          limit: 255
-    t.string   "state",         limit: 255
-    t.string   "zip",           limit: 255
-    t.string   "phone",         limit: 255
-    t.string   "contact_email", limit: 255
+    t.string   "state",         limit: 2
+    t.string   "zip",           limit: 5
+    t.string   "phone",         limit: 10
+    t.decimal  "split",                     precision: 5, scale: 2, default: 0.03, null: false
+    t.decimal  "balance",                   precision: 5, scale: 2, default: 0.0,  null: false
   end
 
   create_table "retailers", force: :cascade do |t|
     t.string   "name",          limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
     t.string   "paypalID",      limit: 255
     t.string   "address",       limit: 255
     t.string   "city",          limit: 255
-    t.string   "state",         limit: 255
-    t.string   "zip",           limit: 255
-    t.string   "phone",         limit: 255
+    t.string   "state",         limit: 2
+    t.string   "zip",           limit: 5
+    t.string   "phone",         limit: 10
     t.string   "contact_email", limit: 255
+    t.decimal  "split",                     precision: 5, scale: 2, default: 0.03, null: false
+    t.decimal  "balance",                   precision: 5, scale: 2, default: 0.0,  null: false
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -52,15 +56,16 @@ ActiveRecord::Schema.define(version: 20160218190949) do
   create_table "users", force: :cascade do |t|
     t.string   "username",      limit: 255
     t.integer  "cause_id",      limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
     t.string   "paypalID",      limit: 255
     t.string   "address",       limit: 255
     t.string   "city",          limit: 255
-    t.string   "state",         limit: 255
-    t.string   "zip",           limit: 255
-    t.string   "phone",         limit: 255
+    t.string   "state",         limit: 2
+    t.string   "zip",           limit: 5
+    t.string   "phone",         limit: 10
     t.string   "contact_email", limit: 255
+    t.decimal  "balance",                   precision: 5, scale: 2, default: 0.0, null: false
   end
 
 end
