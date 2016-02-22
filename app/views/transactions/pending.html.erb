@@ -1,0 +1,39 @@
+
+<div class="jumbotron">
+      <div class="container">
+        <h1>Pending Transactions</h1>
+        <p>These are all of the pending transactions in the database. </p>
+      </div>
+    </div>
+
+<div class="container">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Member</th>
+      <th>Retailer</th>
+      <th>Cause ID</th>
+      <th>Approved</th>
+    </tr>
+  </thead>
+
+  <% @transactions.each do |transaction| %>
+      <tr>
+        <% if transaction.approved? %>
+        <% else %>
+        <td><%= transaction.transaction_date %></td>
+        <td><%= transaction.amount %></td>
+        <td><%= transaction.user.username %></td>
+        <td><%= transaction.retailer.name %></td>
+        <td><%= transaction.cause_id %></td>
+        <td><%= transaction.approved %></td>
+        <td><a href="/transactions/pending" class="btn btn-primary btn-xs" role="button">View Transaction</a>
+      <% end %>
+<% end %>
+
+  </tbody>
+</table>
+</div>
+
