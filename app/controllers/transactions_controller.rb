@@ -5,6 +5,9 @@ class TransactionsController < ApplicationController
   	#@transactions = Transaction.all
   end
 
+   def show
+  end
+
   def pending
   	@transactions = Transaction.all
   	render('pending')
