@@ -1,0 +1,18 @@
+<div class="jumbotron">
+      <div class="container">
+        <h1>Transaction Form</h1>
+        <p>Editing the current transaction. </p>
+      </div>
+    </div>
+
+<div class="container">
+
+<p>
+  <strong>Username:</strong>
+  <%= @transaction.user.username %>
+</p>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @transaction %> |
+<%= link_to 'Back', transactions_path %>
