@@ -6,13 +6,20 @@
     </div>
 
 <div class="container">
+<p>
+  	<strong>Username:</strong>
+  	<%= @transaction.user.username %>
+</p>
 
 <p>
-  <strong>Username:</strong>
-  <%= @transaction.user.username %>
+  <strong>Approved:</strong>
+  <%= @transaction.approved %>
 </p>
 
 <%= render 'form' %>
 
+<hr>
+<div class="container">
 <%= link_to 'Show', @transaction %> |
 <%= link_to 'Back', transactions_path %>
+</div>

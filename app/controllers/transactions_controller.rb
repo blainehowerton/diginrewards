@@ -8,14 +8,6 @@ class TransactionsController < ApplicationController
   def show
   end
 
-  def pending
-  	@transactions = Transaction.all
-  end
-
-  def list
-  	@transactions = Transaction.all
-  end
-
   def edit
   end
 
