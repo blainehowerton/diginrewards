@@ -14,6 +14,7 @@
   <%= @transaction.user.username %>
 </p>
 
+<p>
  <strong>Transaction Amount:</strong>
   <%= @transaction.amount %>
 </p>
@@ -22,6 +23,37 @@
   <strong>Date:</strong>
   <%= @transaction.transaction_date %>
 </p>
+
+<p>
+  <strong>Retailer:</strong>
+  <%= @transaction.retailer.name %>
+</p>
+
+<p>
+  <strong>Retailer Split:</strong>
+  <%= @transaction.retailer_split %>
+</p>
+
+<p>
+  <strong>Cause:</strong>
+  <%= @transaction.cause.name %>
+</p>
+
+<p>
+  <strong>Cause Split:</strong>
+  <%= @transaction.cause_split %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @transaction.transaction_date %>
+</p>
+
+<p>
+  <strong>Record Created At:</strong>
+  <%= @transaction.created_at %>
+</p>
+
 
 </div>
 
