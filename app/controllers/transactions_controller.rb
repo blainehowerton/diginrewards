@@ -13,7 +13,7 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-  end
+    end
 
   def create
     @transaction = Transaction.new(transaction_params)

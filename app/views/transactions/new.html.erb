@@ -1,3 +1,4 @@
+
 <div class="jumbotron">
       <div class="container">
         <h1>New Transaction</h1>
@@ -5,12 +6,68 @@
       </div>
     </div>
 
-<div class="container">
+<%= form_for(@transaction) do |f| %>
+  <% if @transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @transaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
+  <div class="container">
+
+  <p>
+  User Name
+  <%= f.select(:user_id) do %>
+  <%= options_from_collection_for_select(User.all, :id, :username) %>
+  <% end %>
+  </p>
+
+<br>
+
+  <p>
+  Transaction Date
+  <%= date_field(:transaction, :transaction_date) %>
+  </p>
+
+<br>
+
+  <p>
+  Transaction Amount
+  <%= text_field(:transaction, :amount) %>
+  </p>
+
+<br>
+
+  <p>
+  Cause Name
+  <%= f.select(:cause_id) do %>
+  <%= options_from_collection_for_select(Cause.all, :id, :name) %>
+  <% end %>
+  </p>
+
+<br>
+
+  <p>
+  Retailer Name
+  <%= f.select(:retailer_id) do %>
+  <%= options_from_collection_for_select(Retailer.all, :id, :name) %>
+  <% end %>
+  </p>
+
+<br>
+
+    <%= f.submit %>
+  
+  </div>
 <hr>
 
-<div class="container">
-<%= link_to 'Back', transactions_path %>
 </div>
+</div>
+
+<% end %>

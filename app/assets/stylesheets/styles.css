@@ -1,0 +1,6 @@
+.bgimage {
+	background-image: url('../images/low-reward-versus-high-reward.png');
+	background-position: center center;
+	background-size: cover;
+	height: 200px;
+}
