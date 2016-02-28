@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'test/index'
+
   resources :transactions
   get "transactions/index"
   get "transactions/list"

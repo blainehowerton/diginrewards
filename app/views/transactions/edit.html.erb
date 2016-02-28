@@ -7,7 +7,7 @@
 
 <div class="container">
 <p>
-  	<strong>Username:</strong>
+  	<strong>Editing Transaction for:  </strong>
   	<%= @transaction.user.username %>
 </p>
 
@@ -16,7 +16,98 @@
   <%= @transaction.approved %>
 </p>
 
-<%= render 'form' %>
+<%= form_for(@transaction) do |f| %>
+  <% if @transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+      <ul>
+      <% @transaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<p>User Name
+<%= f.select :user_id do %>
+<%= options_from_collection_for_select(User.all, :id, :username, params[:user_id]) %>
+<% end %></p>
+
+<br>
+
+<p>Transaction Amount
+<%= text_field(:transaction, :amount) %></p>
+
+<br>
+
+<p>Cause Name
+<%= f.select(:cause_id) do %>
+<%= options_from_collection_for_select(Cause.all, :id, :name) %>
+<% end %></p>
+
+<br>
+
+<p>Retailer Name
+<%= f.select(:retailer_id) do %>
+<%= options_from_collection_for_select(Retailer.all, :id, :name) %>
+<% end %></p>
+
+<br>
+        
+<%= f.submit %>
+
+<p></p>
+
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Calculate Splits
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Transaction details for <%= @transaction.user.username %> </h4>
+      </div>
+      <div class="modal-body">
+        <p>$<%= @transaction.amount * @transaction.retailer_split %> goes to the User.</p>
+        <p>$<%= @transaction.amount * @transaction.cause_split %> goes to the Cause.</p>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
+
+<h1> Splits </h1>
+
+<br>
+
+<p>Retailer Split
+<%= text_field(:transaction, :retailer_split) %></p>
+
+<br>
+
+<p>Cause Split
+<%= text_field(:transaction, :cause_split) %></p>
+
+<br>
+
+<p>User Split
+<%= text_field(:transaction, :user_split) %></p>
+
+</div>
+
+<br>
 
 <hr>
 <div class="container">
