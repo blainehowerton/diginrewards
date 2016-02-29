@@ -36,7 +36,7 @@ CREATE TABLE `causes` (
   `phone` varchar(10) DEFAULT NULL,
   `split` decimal(5,2) NOT NULL DEFAULT '0.03',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +102,7 @@ CREATE TABLE `schema_migrations` (
 
 LOCK TABLES `schema_migrations` WRITE;
 /*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
-INSERT INTO `schema_migrations` VALUES ('20160215215313'),('20160215215352'),('20160215215430'),('20160215215659'),('20160218172939'),('20160221200715');
+INSERT INTO `schema_migrations` VALUES ('20160215215313'),('20160215215352'),('20160215215430'),('20160215215659'),('20160218172939'),('20160221200715'),('20160229045303');
 /*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,8 +126,12 @@ CREATE TABLE `transactions` (
   `cause_split` decimal(5,2) NOT NULL DEFAULT '0.03',
   `retailer_split` decimal(5,2) NOT NULL DEFAULT '0.03',
   `cause_id` int(11) DEFAULT NULL,
+  `image_file_name` varchar(255) DEFAULT NULL,
+  `image_content_type` varchar(255) DEFAULT NULL,
+  `image_file_size` int(11) DEFAULT NULL,
+  `image_updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=185 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +140,7 @@ CREATE TABLE `transactions` (
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (1,56.77,1,2,'2016-02-23 05:08:00','2016-02-25 19:03:33',1,'2016-02-16',0.03,0.03,0.03,1),(2,43.55,1,1,'2016-02-23 05:09:40','2016-02-26 06:05:14',0,'2016-02-22',0.03,0.03,0.03,1),(3,67.54,1,3,'2016-02-23 05:11:16','2016-02-25 19:03:21',0,'2016-02-22',0.03,0.03,0.03,1),(8,2323.10,2,1,'2016-02-24 02:18:55','2016-02-26 05:48:22',0,'2016-02-24',0.03,0.03,0.03,1),(13,11.11,1,3,'2016-02-24 03:14:44','2016-02-25 19:03:10',0,'2016-02-24',0.03,0.03,0.03,1),(36,1234.00,1,2,'2016-02-26 04:10:21','2016-02-26 06:00:25',0,'2016-02-19',0.03,0.03,0.03,2),(37,321.10,2,3,'2016-02-26 05:48:45','2016-02-26 06:00:10',0,'2016-02-22',0.03,0.03,0.03,3),(38,54.43,1,4,'2016-02-26 05:49:29','2016-02-26 05:59:46',0,'2016-02-24',0.03,0.03,0.03,2);
+INSERT INTO `transactions` VALUES (1,56.77,1,2,'2016-02-23 05:08:00','2016-02-29 16:18:14',1,'2016-02-16',0.03,0.03,0.03,1,'Screen_Shot_2016-02-11_at_7.57.35_PM.png','image/png',35288,'2016-02-29 16:18:13'),(3,67.54,3,1,'2016-02-23 05:11:16','2016-02-29 16:18:31',0,'2016-02-22',0.03,0.03,0.03,1,'iphone5_ios7.jpg','image/jpeg',284279,'2016-02-29 16:18:31'),(36,1234.00,3,4,'2016-02-26 04:10:21','2016-02-29 16:20:12',0,'2016-02-19',0.03,0.03,0.03,2,'Screen_Shot_2016-02-11_at_7.57.35_PM.png','image/png',35288,'2016-02-29 16:20:12'),(37,321.10,2,1,'2016-02-26 05:48:45','2016-02-29 16:19:22',0,'2016-02-22',0.03,0.03,0.03,1,'Screen_Shot_2016-02-11_at_8.21.03_PM.png','image/png',24390,'2016-02-29 16:19:22'),(38,54.43,2,1,'2016-02-26 05:49:29','2016-02-29 16:19:43',0,'2016-02-24',0.03,0.03,0.03,1,'Screen_Shot_2016-02-11_at_7.57.31_PM.png','image/png',34356,'2016-02-29 16:19:43'),(49,345.00,1,1,'2016-02-27 08:11:13','2016-02-29 07:41:57',0,'2016-02-23',0.03,0.03,0.03,3,'IMG_1561.JPG','image/jpeg',128701,'2016-02-29 07:41:57'),(83,23.00,1,1,'2016-02-27 09:10:02','2016-02-29 07:42:20',0,NULL,0.03,0.03,0.03,3,'IMG_1561.JPG','image/jpeg',128701,'2016-02-29 07:42:20'),(138,12.00,3,4,'2016-02-29 05:33:26','2016-02-29 21:20:36',0,'2016-02-24',0.03,0.03,0.03,3,'image.jpg','image/jpeg',1704589,'2016-02-29 21:20:34'),(181,13.45,4,3,'2016-02-29 20:40:21','2016-02-29 20:40:21',NULL,'2016-02-29',0.03,0.03,0.03,3,'image.jpg','image/jpeg',1617085,'2016-02-29 20:40:20'),(184,12.00,3,2,'2016-02-29 21:22:58','2016-02-29 21:22:58',NULL,'2016-02-29',0.03,0.03,0.03,2,'IMG_1561.JPG','image/jpeg',128701,'2016-02-29 21:22:58');
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,7 +165,7 @@ CREATE TABLE `users` (
   `phone` varchar(10) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +174,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'blainehowerton',2,'2016-02-23 05:07:57','2016-02-26 05:52:05','bh@paypal.id.com','4187 s wolf st','denver','co','80113','2222222222','bhowerton@yghdtv.com'),(2,'nickarnold',1,'2016-02-23 05:08:53','2016-02-26 05:52:14','narnold@yghdtv.com','3853 S broadway','englewood','co','80113','5555555555','narnold@yghdtv.com'),(3,'jeffarnold',2,'2016-02-24 06:07:33','2016-02-26 05:52:05','lkja dlkfj ','lkj','l; k','lk','kj ;','3333333333','j@j.com');
+INSERT INTO `users` VALUES (1,'blainehowerton',2,'2016-02-23 05:07:57','2016-02-26 05:52:05','bh@paypal.id.com','4187 s wolf st','denver','co','80113','2222222222','bhowerton@yghdtv.com'),(2,'nickarnold',1,'2016-02-23 05:08:53','2016-02-26 05:52:14','narnold@yghdtv.com','3853 S broadway','englewood','co','80113','5555555555','narnold@yghdtv.com'),(3,'jeffarnold',2,'2016-02-24 06:07:33','2016-02-26 05:52:05','lkja dlkfj ','lkj','l; k','lk','kj ;','3333333333','j@j.com'),(4,'wheiwong',2,'2016-02-27 09:36:49','2016-02-27 09:36:49','wheiw@yahoo.com','1513 Teakwood Ct','Fort Collins','Co','80525','7203081640','wheiw@yahoo.com');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -183,4 +187,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-25 23:32:26
+-- Dump completed on 2016-02-29 14:49:10
