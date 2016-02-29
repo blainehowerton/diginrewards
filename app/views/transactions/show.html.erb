@@ -8,6 +8,11 @@
 <div class="container">
 <p id="notice"><%= notice %></p>
 
+<% if @transaction.image? %>
+<%= image_tag @transaction.image.url(:medium) %>
+<br />
+<%= link_to 'show original', @transaction.image.url %>
+<% end %>
 
 <p>
   <strong>User:</strong>

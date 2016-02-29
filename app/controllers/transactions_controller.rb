@@ -13,7 +13,7 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    end
+  end
 
   def create
     @transaction = Transaction.new(transaction_params)
@@ -57,6 +57,6 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:id, :amount, :user_id, :retailer_id, :created_at, :updated_at, :approved, :transaction_date, :user_split, :cause_split, :retailer_split, :cause_id)
+      params.require(:transaction).permit(:id, :amount, :user_id, :retailer_id, :created_at, :updated_at, :approved, :transaction_date, :user_split, :cause_split, :retailer_split, :cause_id, :image)
     end
 end

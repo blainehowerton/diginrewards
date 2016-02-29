@@ -1,14 +1,4 @@
 
-<div class="jumbotron">
-      <div class="container">
-        <h1>Transaction View</h1>
-        <p>Creating your transaction. </p>
-      </div>
-    </div>
-
-<div class="container">
-<p id="notice"><%= notice %></p>
-
 <%= form_for @transaction do |f| %>
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
@@ -74,5 +64,3 @@
     <%= f.submit "Create" %>
     </div>
 <% end %>
-
-<hr>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221200715) do
+ActiveRecord::Schema.define(version: 20160229045303) do
 
   create_table "causes", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -42,17 +42,21 @@ ActiveRecord::Schema.define(version: 20160221200715) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.decimal  "amount",                     precision: 10, scale: 2
-    t.integer  "user_id",          limit: 4
-    t.integer  "retailer_id",      limit: 4
-    t.datetime "created_at",                                                         null: false
-    t.datetime "updated_at",                                                         null: false
+    t.decimal  "amount",                         precision: 10, scale: 2
+    t.integer  "user_id",            limit: 4
+    t.integer  "retailer_id",        limit: 4
+    t.datetime "created_at",                                                             null: false
+    t.datetime "updated_at",                                                             null: false
     t.boolean  "approved"
     t.date     "transaction_date"
-    t.decimal  "user_split",                 precision: 5,  scale: 2, default: 0.03, null: false
-    t.decimal  "cause_split",                precision: 5,  scale: 2, default: 0.03, null: false
-    t.decimal  "retailer_split",             precision: 5,  scale: 2, default: 0.03, null: false
-    t.integer  "cause_id",         limit: 4
+    t.decimal  "user_split",                     precision: 5,  scale: 2, default: 0.03, null: false
+    t.decimal  "cause_split",                    precision: 5,  scale: 2, default: 0.03, null: false
+    t.decimal  "retailer_split",                 precision: 5,  scale: 2, default: 0.03, null: false
+    t.integer  "cause_id",           limit: 4
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
