@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
-  get 'test/index'
+  
 
   resources :transactions
-  get "transactions/index"
-  get "transactions/list"
-  get "transactions/pending"
+  resources :user_form
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # The priority is based upon order of creation: first created -> highest priority.

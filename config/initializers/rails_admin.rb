@@ -36,4 +36,19 @@ RailsAdmin.config do |config|
   end
 
   config.label_methods << :username
+
+  config.model 'Transaction' do
+    edit do
+      field :image
+      field :amount
+      field :transaction_date
+      field :user
+      field :retailer
+      field :cause
+      field :approved
+      field :user_split
+      field :retailer_split
+      field :cause_split
+    end
+  end
 end

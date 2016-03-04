@@ -11,6 +11,9 @@ class TransactionsController < ApplicationController
   def edit
   end
 
+  def approve
+  end
+
   def new
     @transaction = Transaction.new
   end

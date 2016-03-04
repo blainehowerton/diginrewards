@@ -1,12 +1,14 @@
 <div class="jumbotron">
       <div class="container">
         <h1>Transaction View</h1>
-        <p>Showing the current transaction. </p>
+        <p><p id="notice"><%= notice %></p><p>Showing the current transaction. </p>
+        <p><a class="btn btn-primary btn-lg btn-block" href="/user_form" role="button">Create another new transaction &raquo;</a></p>
+        
       </div>
     </div>
 
 <div class="container">
-<p id="notice"><%= notice %></p>
+
 
 <% if @transaction.image? %>
 <%= image_tag @transaction.image.url(:medium) %>
@@ -65,6 +67,13 @@
 <hr>
 
 <div class="container">
+
+Create another <%= link_to 'New', new_transaction_path(@transaction) %> transaction.
+
+<br>
+
+<!-- 
 <%= link_to 'Edit', edit_transaction_path(@transaction) %> |
 <%= link_to 'Back', transactions_path %>
+ -->
 </div>

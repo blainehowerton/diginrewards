@@ -76,7 +76,7 @@
   <p>
   User Name
   <%= f.select(:user_id) do %>
-  <%= options_from_collection_for_select(User.all, :id, :username) %>
+  <%= options_from_collection_for_select(User.all, :id, :username, @transaction.user_id) %>
   <% end %>
   </p>
 
@@ -99,7 +99,7 @@
   <p>
   Cause Name
   <%= f.select(:cause_id) do %>
-  <%= options_from_collection_for_select(Cause.all, :id, :name) %>
+  <%= options_from_collection_for_select(Cause.all, :id, :name, @transaction.cause_id) %>
   <% end %>
   </p>
 
@@ -108,7 +108,7 @@
   <p>
   Retailer Name
   <%= f.select(:retailer_id) do %>
-  <%= options_from_collection_for_select(Retailer.all, :id, :name) %>
+  <%= options_from_collection_for_select(Retailer.all, :id, :name, @transaction.retailer_id) %>
   <% end %>
   </p>
 
@@ -122,7 +122,7 @@
 <br>
 
     <div class="actions">
-    <%= f.submit "Create" %>
+    <%= f.submit "Submit Changes" %>
     </div>
 <% end %>
 
@@ -132,6 +132,7 @@
 <hr>
 
 <div class="container">
-<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
-<%= link_to 'Back', transactions_path %>
+  <%= link_to 'Transactions Lists', transactions_path %> |
+<%= link_to 'Edit', edit_transaction_path(@transaction) %>
+
 </div>
