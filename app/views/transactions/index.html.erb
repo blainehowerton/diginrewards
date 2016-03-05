@@ -8,34 +8,111 @@
 
 <div class="container">
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Transaction Amount</th>
-      <th>User ID</th>
-      <th>Cause Name</th>
-      <th>Processed</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Pending Transactions
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+                            <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Amount</th>
+                          <th>User ID</th>
+                          <th>Retailer</th>
+                          <th>Cause</th>
+                          <th colspan="3"></th>
+                        </tr>
+                      </thead>
 
-  <tbody>
-    <% @transactions.each do |transaction| %>
+                      <tbody>
+                        <% @transactions.each do |transaction| %>
+                          <tr>
+                            <% if transaction.approved? %>
+                            <% else %>
+                            <td><%= transaction.amount %></td>
+                            <td><%= transaction.user.username %></td>
+                            <td><%= transaction.retailer.name %></td>
+                            <td><%= transaction.cause.name %></td>
+                            <td><%= link_to 'View', transaction %></td>
+                            <td><%= link_to 'Approve', edit_transaction_path(transaction) %></td>
+                            <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                            <% end %>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Approved Transactions
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+          <table class="table">
+    <thead>
       <tr>
-      	<% if transaction.approved? %>
-        <% else %>
-        <td><%= transaction.amount %></td>
-        <td><%= transaction.user.username %></td>
-        <td><%= transaction.cause.name %></td>
-        <td><%= transaction.approved %></td>
-        <td><%= link_to 'Show', transaction %></td>
-        <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
-        <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <th>Amount</th>
+        <th>User ID</th>
+        <th>Retailer</th>
+        <th>Cause</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @transactions.each do |transaction| %>
+        <tr>
+          <% if transaction.approved? %>
+          <td><%= transaction.amount %></td>
+          <td><%= transaction.user.username %></td>
+          <td><%= transaction.retailer.name %></td>
+          <td><%= transaction.cause.name %></td>
+          <td><%= link_to 'View', transaction %></td>
+          <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+          <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+          
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Reports
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 
 <br>
 
