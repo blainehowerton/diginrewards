@@ -1,13 +1,10 @@
 source 'https://rubygems.org'
-#ruby '2.2.4'
+ruby '2.2.4'
 
-<<<<<<< HEAD
 gem 'rails_12factor'
 gem 'pg'
 gem 'puma'
-=======
 gem "paperclip", "~> 4.3"
->>>>>>> approvals
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use mysql2 as the database for Active Record
