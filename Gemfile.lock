@@ -88,18 +88,15 @@ GEM
     nested_form (0.3.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
-<<<<<<< HEAD
     pg (0.17.1)
     puma (2.9.1)
       rack (>= 1.1, < 2.0)
-=======
     paperclip (4.3.5)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
->>>>>>> approvals
     rack (1.6.4)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
@@ -196,13 +193,10 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
-<<<<<<< HEAD
   pg
   puma
-=======
   mysql2
   paperclip (~> 4.3)
->>>>>>> approvals
   rails (= 4.2.5)
   rails_12factor
   rails_admin
