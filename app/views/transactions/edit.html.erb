@@ -1,0 +1,138 @@
+<div class="jumbotron">
+      <div class="container">
+        <h1>Transaction View</h1>
+        <p>Editing the current transaction. </p>
+      </div>
+    </div>
+
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<% if @transaction.image? %>
+<%= image_tag @transaction.image.url(:medium) %>
+<br />
+<%= link_to 'show original', @transaction.image.url %>
+<% end %>
+
+<p>
+  <strong>User:</strong>
+  <%= @transaction.user.username %>
+</p>
+
+<p>
+ <strong>Transaction Amount:</strong>
+  <%= @transaction.amount %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @transaction.transaction_date %>
+</p>
+
+<p>
+  <strong>Retailer:</strong>
+  <%= @transaction.retailer.name %>
+</p>
+
+<p>
+  <strong>Retailer Split:</strong>
+  <%= @transaction.retailer_split %>
+</p>
+
+<p>
+  <strong>Cause:</strong>
+  <%= @transaction.cause.name %>
+</p>
+
+<p>
+  <strong>Cause Split:</strong>
+  <%= @transaction.cause_split %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @transaction.transaction_date %>
+</p>
+
+<p>
+  <strong>Record Created At:</strong>
+  <%= @transaction.created_at %>
+</p>
+
+<%= form_for @transaction do |f| %>
+  <% if @transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+      <ul>
+      <% @transaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+   <% end %>
+
+
+  <p>
+  User Name
+  <%= f.select(:user_id) do %>
+  <%= options_from_collection_for_select(User.all, :id, :username, @transaction.user_id) %>
+  <% end %>
+  </p>
+
+<br>
+
+<p>
+  Transaction Date
+  <%= f.date_select(:transaction_date) %>
+  </p>
+
+<br>
+
+  <p>
+  Transaction Amount
+  <%= text_field(:transaction, :amount) %>
+  </p>
+
+<br>
+
+  <p>
+  Cause Name
+  <%= f.select(:cause_id) do %>
+  <%= options_from_collection_for_select(Cause.all, :id, :name, @transaction.cause_id) %>
+  <% end %>
+  </p>
+
+<br>
+
+  <p>
+  Retailer Name
+  <%= f.select(:retailer_id) do %>
+  <%= options_from_collection_for_select(Retailer.all, :id, :name, @transaction.retailer_id) %>
+  <% end %>
+  </p>
+
+<br>
+
+  <p>
+  Upload Receipt Image
+  <%= f.file_field :image %>
+  </p>
+
+<br>
+
+    <div class="actions">
+    <%= f.submit "Submit Changes" %>
+    </div>
+<% end %>
+
+
+</div>
+
+<hr>
+
+<div class="container">
+  <%= link_to 'Transactions Lists', transactions_path %> |
+<%= link_to 'Edit', edit_transaction_path(@transaction) %>
+
+</div>
