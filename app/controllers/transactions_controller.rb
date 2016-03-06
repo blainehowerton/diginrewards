@@ -8,6 +8,9 @@ class TransactionsController < ApplicationController
   def show
   end
 
+  def show2
+  end
+
   def edit
   end
 
