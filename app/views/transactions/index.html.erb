@@ -19,34 +19,69 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
-                            <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Amount</th>
-                          <th>User ID</th>
-                          <th>Retailer</th>
-                          <th>Cause</th>
-                          <th colspan="3"></th>
-                        </tr>
-                      </thead>
+                          
 
-                      <tbody>
-                        <% @transactions.each do |transaction| %>
-                          <tr>
-                            <% if transaction.approved? %>
-                            <% else %>
-                            <td><%= transaction.amount %></td>
-                            <td><%= transaction.user.username %></td>
-                            <td><%= transaction.retailer.name %></td>
-                            <td><%= transaction.cause.name %></td>
-                            <td><%= link_to 'View', transaction %></td>
-                            <td><%= link_to 'Approve', edit_transaction_path(transaction) %></td>
-                            <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                            <% end %>
-                          </tr>
-                        <% end %>
-                      </tbody>
-                    </table>
+
+<!-- Button trigger modal -->
+<td><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  View All
+</button></td>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Your Current Pending Transactions</h4>
+      </div>
+      <div class="modal-body">
+
+      <% @transactions.each do |transaction| %>
+
+            <% if transaction.approved? %>
+            <% else %>
+              <%= image_tag transaction.image.url(:medium) %>
+              <br>
+              Transaction ID:  <%= transaction.id %>
+              <br>
+              Transaction Amount:  $<%= transaction.amount %>
+              <br>
+              User Name:  <%= transaction.user.username %>
+              <br>
+              Retailer:  <%= transaction.retailer.name %>
+              <br>
+              Cause:  <%= transaction.cause.name %>
+              <br>
+              Approved?  <%= transaction.approved %>
+              <br><br>
+              <td><button type="button" class="btn btn-primary btn-lg" data-toggle="" data-target="">
+              Edit </button></td>
+              <td><button type="button" class="btn btn-primary btn-lg" data-toggle="" data-target="">
+              Approve </button></td>
+              <td><button type="button" class="btn btn-primary btn-lg" data-toggle="" data-target="">
+              Delete </button></td>
+              <br>
+              <hr>
+              <br>
+            <% end %>
+
+      <% end %>
+            
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+                            
+                            
       </div>
     </div>
   </div>
