@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   
 
   resources :transactions
+  resources :transactions do
+    put :approve, on: :transactions
+  end  
  
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

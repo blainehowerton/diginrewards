@@ -84,9 +84,13 @@
 
 <br>
 
-<p>
+  <p>
   Transaction Date
   <%= f.date_select(:transaction_date) %>
+  </p>
+
+  <p>
+  <%= check_box_tag(@transaction.approved) %>
   </p>
 
 <br>

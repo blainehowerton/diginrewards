@@ -53,14 +53,17 @@
               <br>
               Cause:  <%= transaction.cause.name %>
               <br>
-              Approved?  <%= transaction.approved %>
+              Approved?  <%= transaction.approved %><br>
+              <%= link_to 'Approve', transaction.approved %> <br>
+              <%= link_to 'View', transaction %> <br>
+              <%= link_to 'Edit', edit_transaction_path(transaction) %><br>
+              <%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %>
               <br><br>
-              <td><button type="button" class="btn btn-primary btn-lg" data-toggle="" data-target="">
-              Edit </button></td>
-              <td><button type="button" class="btn btn-primary btn-lg" data-toggle="" data-target="">
-              Approve </button></td>
+              
+              <!-- <td><p><a class="btn btn-primary btn-lg btn-block" href="#" role="button">View, Edit and Approve &raquo;</a></p></td>
               <td><button type="button" class="btn btn-primary btn-lg" data-toggle="" data-target="">
               Delete </button></td>
+               -->
               <br>
               <hr>
               <br>
