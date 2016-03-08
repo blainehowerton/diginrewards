@@ -5,12 +5,6 @@ class TransactionsController < ApplicationController
   	@transactions = Transaction.all
   end
 
-  def approve
- @transaction = Transaction.find(params[:id])
- @transaction.update_attribute(:approved, 'true')
- redirect_to transaction_path
-end
-
   def show
   end
 
