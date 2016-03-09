@@ -8,13 +8,13 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
-  username:  blainehowerton
+  # username:  blainehowerton
   #password: zzS)_kI_b9Ug
 
 development:
   adapter: postgresql
   host:  localhost
-  username:  blainehowerton
+  # username:  blainehowerton
   database:  dig_development
 
 # Warning: The database defined as "test" will be erased and
