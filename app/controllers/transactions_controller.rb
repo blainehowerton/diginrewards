@@ -8,7 +8,11 @@ class TransactionsController < ApplicationController
   def show
   end
 
+<<<<<<< HEAD
   def view
+=======
+  def show2
+>>>>>>> master
   end
 
   def edit
