@@ -14,6 +14,9 @@ class TransactionsController < ApplicationController
   def show
   end
 
+  def show2
+  end
+
   def edit
   end
 
@@ -68,6 +71,6 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:id, :amount, :user_id, :retailer_id, :created_at, :updated_at, :approved, :transaction_date, :user_split, :cause_split, :retailer_split, :cause_id, :image)
+      params.require(:transaction).permit(:id, :amount, :retailer_id, :created_at, :updated_at, :approved, :transaction_date, :user_split, :cause_split, :retailer_split, :cause_id, :image)
     end
 end

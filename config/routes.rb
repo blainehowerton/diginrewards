@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'transactions/get_retailers', to: 'transactions#get_retailers'
-
   resources :transactions
   resources :user_form
 
