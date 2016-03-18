@@ -1,5 +1,11 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  # helper_method :get_retailers
+
+  def get_retailers
+    "Heya dudes"
+    # Retailer.where("name LIKE (?)", "%#{params[:retailer_name]}").pluck(:name)
+  end
 
   def index
   	@transactions = Transaction.all
@@ -19,6 +25,7 @@ class TransactionsController < ApplicationController
   end
 
   def create
+    params[:transaction][:retailer_id] = Retailer.find_by_name(params[:retailer_name])[:id]
     @transaction = Transaction.new(transaction_params)
 
     respond_to do |format|
