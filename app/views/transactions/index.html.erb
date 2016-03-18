@@ -7,8 +7,13 @@
 <div class="container">
 <!-- UPDATE NOTICE -->
   <p id="notice"><%= notice %></p>
+<!-- Login Menu -->
+<p><%= link_to 'Home', "/" %> | <%= link_to 'New Transaction', new_transaction_path %> | 
+  <%= render 'devise/menu/registration_items' %> | 
+  <%= render 'devise/menu/login_items' %></p>
+<%= yield %>
+<br>
 <!-- ACCORDION INITIALIZE -->
-<% if user_signed_in? %>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
 <!-- 1ST ACCORDION VIEW FOR PENDING TRANSACTIONS-->
@@ -181,12 +186,6 @@
   <!-- END OF FOURTH ACCORDION PANEL -->
 </div>
 <% else %>
-<br>
-You are not permitted to view this page.
-<br>
-If you are an administrator, <%= render 'devise/menu/login_items' %>
-<% end %>
-<br>
 <hr>
 <%= link_to 'Home', "/" %> | <%= link_to 'New Transaction', new_transaction_path %> | 
   <%= render 'devise/menu/registration_items' %> | 
