@@ -26,6 +26,7 @@ class TransactionsController < ApplicationController
 
   def create
     params[:transaction][:retailer_id] = Retailer.find_by_name(params[:retailer_name])[:id]
+    params[:transaction][:cause_id] = Cause.find_by_name(params[:cause_name])[:id]
     @transaction = Transaction.new(transaction_params)
 
     respond_to do |format|
