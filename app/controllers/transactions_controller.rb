@@ -16,6 +16,9 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
+    @transaction.user_id = current_user.id
+    if @transaction.save
+    end
   end
 
   def create

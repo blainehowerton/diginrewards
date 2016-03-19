@@ -9,7 +9,6 @@
 
 <div class="container">
 <p id="notice"><%= notice %></p>
-
 <%= form_for @transaction do |f| %>
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
@@ -23,12 +22,8 @@
     </div>
    <% end %>
 
-  <p>
-  User Name
-  <%= f.select(:user_id) do %>
-  <%= options_from_collection_for_select(User.all, :id, :username) %>
-  <% end %>
-  </p>
+ <!--  SAVE USERNAME TO TRANSACTION -->
+ <%= current_user.id %>
 
 <br>
 
