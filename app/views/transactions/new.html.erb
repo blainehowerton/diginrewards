@@ -23,8 +23,8 @@
    <% end %>
 
  <!--  SAVE USERNAME TO TRANSACTION -->
- <%= current_user.id %>
-
+You are logged in as:  <%= current_user.username %> (User ID:  <%= current_user.id %>)  | <%= render 'devise/menu/login_items' %>
+<br>
 <br>
 
 <p>
