@@ -1,7 +1,7 @@
 <div class="jumbotron">
       <div class="container">
         <h1>DigIn.club</h1>
-        <p id="notice"><%= notice %></p><br>
+        <p> Welcome <%= current_user.username %>. <%= notice %></p><br>
         <p><a class="btn btn-primary btn-lg btn-block" href="/admin" role="button">Database Administration &raquo;</a></p>
          <p><a class="btn btn-primary btn-lg btn-block" href="/transactions" role="button">Transaction Processing &raquo;</a></p>
          <p><a class="btn btn-primary btn-lg btn-block" href="/transactions/new" role="button">User Transaction Input Form &raquo;</a></p>

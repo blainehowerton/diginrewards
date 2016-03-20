@@ -6,7 +6,7 @@
     </div>
 <div class="container">
 <!-- UPDATE NOTICE -->
-  <p id="notice"><%= notice %></p>
+<p> Welcome <%= current_user.username %>. <%= notice %></p>
 <!-- Login Menu -->
 <p><%= link_to 'Home', "/" %> | <%= link_to 'New Transaction', new_transaction_path %> | 
   <%= render 'devise/menu/registration_items' %> | 

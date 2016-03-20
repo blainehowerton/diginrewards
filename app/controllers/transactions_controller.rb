@@ -16,13 +16,13 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    @transaction.user_id = current_user.id
-    if @transaction.save
-    end
   end
 
   def create
     @transaction = Transaction.new(transaction_params)
+    if @transaction.save
+    @transaction.user_id = current_user.id
+    end
 
     respond_to do |format|
       if @transaction.save
