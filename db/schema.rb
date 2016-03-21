@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(version: 20160321023225) do
 
   create_table "causes", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                                                      null: false
-    t.datetime "updated_at",                                                      null: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
     t.string   "paypalID"
-    t.string   "contact_email"
-    t.string   "address"
+    t.string   "email"
+    t.string   "street_address"
     t.string   "city"
     t.string   "state",         limit: 2
     t.string   "zip",           limit: 5
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20160321023225) do
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
     t.string   "paypalID"
-    t.string   "address"
+    t.string   "street_address"
     t.string   "city"
     t.string   "state",                  limit: 2
     t.string   "zip",                    limit: 5
