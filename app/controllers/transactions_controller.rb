@@ -6,12 +6,7 @@ class TransactionsController < ApplicationController
     return unless current_user.is_and_admin?
     sign_in(:user, User.find(params[:id]))
     redirect_to root_url # or user_root_url
-  # helper_method :get_retailers
-
-  def get_retailers
-    "Heya dudes"
-    # Retailer.where("name LIKE (?)", "%#{params[:retailer_name]}").pluck(:name)
-  end
+    end
 
   def index
   	@transactions = Transaction.all
