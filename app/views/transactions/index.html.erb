@@ -1,3 +1,5 @@
+<% if admin_signed_in? %>
+
 <div class="jumbotron">
       <div class="container">
         <h1>Transaction Processing</h1>
@@ -6,10 +8,9 @@
     </div>
 <div class="container">
 <!-- UPDATE NOTICE -->
-<p> Welcome <%= current_user.username %>. <%= notice %></p>
+<p> Welcome admin (<%= current_admin.email %>), and user (<%= current_user.username %>). <%= notice %></p>
 <!-- Login Menu -->
 <p><%= link_to 'Home', "/" %> | <%= link_to 'New Transaction', new_transaction_path %> | 
-  <%= render 'devise/menu/registration_items' %> | 
   <%= render 'devise/menu/login_items' %></p>
 <%= yield %>
 <br>
@@ -185,11 +186,28 @@
   </div> -->
   <!-- END OF FOURTH ACCORDION PANEL -->
 </div>
-<% else %>
+
 <hr>
 <%= link_to 'Home', "/" %> | <%= link_to 'New Transaction', new_transaction_path %> | 
-  <%= render 'devise/menu/registration_items' %> | 
   <%= render 'devise/menu/login_items' %>
 <br>
 <%= yield %>
 <br>
+
+<% else %>
+<div class="jumbotron">
+      <div class="container">
+        <h1>Transaction Processing</h1>
+        <p>Showing transactions and reports. </p>
+      </div>
+    </div>
+<div class="container">
+You are not authorized to view this page.  You must be logged in as an admin and a user to continue.
+<hr>
+<%= link_to 'Home', "/" %> | <%= link_to 'New Transaction', new_transaction_path %> 
+  <% end %>
+
+<br>
+<%= yield %>
+<br>
+

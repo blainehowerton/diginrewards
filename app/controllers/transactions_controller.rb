@@ -1,5 +1,12 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+
+  def become
+    return unless current_user.is_and_admin?
+    sign_in(:user, User.find(params[:id]))
+    redirect_to root_url # or user_root_url
+  end
 
   def index
   	@transactions = Transaction.all
