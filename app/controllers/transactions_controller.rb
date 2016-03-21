@@ -1,5 +1,11 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  # helper_method :get_retailers
+
+  def get_retailers
+    "Heya dudes"
+    # Retailer.where("name LIKE (?)", "%#{params[:retailer_name]}").pluck(:name)
+  end
 
   def index
   	@transactions = Transaction.all
@@ -19,6 +25,8 @@ class TransactionsController < ApplicationController
   end
 
   def create
+    params[:transaction][:retailer_id] = Retailer.find_by_name(params[:retailer_name])[:id]
+    params[:transaction][:cause_id] = Cause.find_by_name(params[:cause_name])[:id]
     @transaction = Transaction.new(transaction_params)
 
     respond_to do |format|
@@ -60,6 +68,6 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:id, :amount, :user_id, :retailer_id, :created_at, :updated_at, :approved, :transaction_date, :user_split, :cause_split, :retailer_split, :cause_id, :image)
+      params.require(:transaction).permit(:id, :amount, :retailer_id, :created_at, :updated_at, :approved, :transaction_date, :user_split, :cause_split, :retailer_split, :cause_id, :image)
     end
 end
