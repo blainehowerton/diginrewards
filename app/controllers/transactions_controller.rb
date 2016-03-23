@@ -1,20 +1,18 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
-  # helper_method :get_retailers
+  before_filter :authenticate_user!
 
-  def get_retailers
-    "Heya dudes"
-    # Retailer.where("name LIKE (?)", "%#{params[:retailer_name]}").pluck(:name)
-  end
+  def become
+    return unless current_user.is_and_admin?
+    sign_in(:user, User.find(params[:id]))
+    redirect_to root_url # or user_root_url
+    end
 
   def index
   	@transactions = Transaction.all
   end
 
   def show
-  end
-
-  def show2
   end
 
   def edit
@@ -31,6 +29,9 @@ class TransactionsController < ApplicationController
     params[:transaction][:retailer_id] = Retailer.find_by_name(params[:retailer_name])[:id]
     params[:transaction][:cause_id] = Cause.find_by_name(params[:cause_name])[:id]
     @transaction = Transaction.new(transaction_params)
+    if @transaction.save
+    @transaction.user_id = current_user.id
+    end
 
     respond_to do |format|
       if @transaction.save
@@ -46,7 +47,7 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to transactions_url, notice: 'Transaction was successfully updated.' }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit }
