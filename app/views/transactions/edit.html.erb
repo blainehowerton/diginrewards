@@ -1,70 +1,55 @@
-
+<!-- LARGE JUMBOTRON PAGE HEADER -->
 <div class="jumbotron">
       <div class="container">
         <h1>Transaction View</h1>
         <p>Editing the current transaction. </p>
       </div>
     </div>
-
+<!-- END OF LARGE JUMBOTRON -->
 <div class="container">
 <p id="notice"><%= notice %></p>
-
+<!-- TRANSACTION RECEIPT IMAGE -->
 <% if @transaction.image? %>
 <%= image_tag @transaction.image.url(:medium) %>
-<br />
-<%= link_to 'show original', @transaction.image.url %>
+<br>
+<%= link_to 'Show Full Size Image', @transaction.image.url %>
 <% end %>
-
-<p>
+<br><br>
+<!-- END OF TRANSACTION RECEIPT IMAGE -->
+<!-- TRANSACTION DETAILS -->
   <strong>User:</strong>
   <%= @transaction.user.username %>
-</p>
-
-<p>
+<br>
  <strong>Transaction Amount:</strong>
   <%= @transaction.amount %>
-</p>
-
-<p>
+<br>
   <strong>Date:</strong>
   <%= @transaction.transaction_date %>
-</p>
-
-<p>
+<br>
   <strong>Retailer:</strong>
   <%= @transaction.retailer.name %>
-</p>
-
-<p>
+<br>
   <strong>Retailer Split:</strong>
   <%= @transaction.retailer_split %>
-</p>
-
-<p>
+<br>
   <strong>Cause:</strong>
   <%= @transaction.cause.name %>
-</p>
-
-<p>
+<br>
   <strong>Cause Split:</strong>
   <%= @transaction.cause_split %>
-</p>
-
-<p>
+<br>
   <strong>Date:</strong>
   <%= @transaction.transaction_date %>
-</p>
-
-<p>
+<br>
   <strong>Record Created At:</strong>
   <%= @transaction.created_at %>
-</p>
-
+<br><br><br>
+<!-- END OF TRANSACTION DETAILS -->
+<!-- EDIT FORM FOR TRANSACTION -->
 <%= form_for @transaction do |f| %>
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
-
       <ul>
       <% @transaction.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -72,68 +57,43 @@
       </ul>
     </div>
    <% end %>
-
-
-  <p>
-  User Name
+  <p>User Name
   <%= f.select(:user_id) do %>
   <%= options_from_collection_for_select(User.all, :id, :username, @transaction.user_id) %>
-  <% end %>
-  </p>
-
-<br>
-
-<p>
-  Transaction Date
-  <%= f.date_select(:transaction_date) %>
-  </p>
-
-<br>
-
-  <p>
-  Transaction Amount
-  <%= text_field(:transaction, :amount) %>
-  </p>
-
-<br>
-
-  <p>
-  Cause Name
-  <%= f.select(:cause_id) do %>
+  <% end %></p>
+  <br>
+  <p>Transaction Date
+  <%= f.date_select(:transaction_date) %></p>
+  <br>
+  <p>Transaction Amount
+  <%= text_field(:transaction, :amount) %></p>
+  <br>
+  Cause Name <%= f.select(:cause_id) do %>
   <%= options_from_collection_for_select(Cause.all, :id, :name, @transaction.cause_id) %>
-  <% end %>
-  </p>
-
-<br>
-
-  <p>
-  Retailer Name
-  <%= f.select(:retailer_id) do %>
+  <% end %><br>
+  Cause Split <%= text_field(:transaction, :cause_split) %>
+  <br>
+  <br>
+  Retailer Name <%= f.select(:retailer_id) do %>
   <%= options_from_collection_for_select(Retailer.all, :id, :name, @transaction.retailer_id) %>
-  <% end %>
-  </p>
-
-<br>
-
-  <p>
-  Upload Receipt Image
-  <%= f.file_field :image %>
-  </p>
-
-<br>
-
+  <% end %><br>
+  Retailer Split <%= text_field(:transaction, :retailer_split) %>
+  <br>
+  <br>
+  <p>Upload Receipt Image <%= f.file_field :image %></p>
+  <br>
+  <br>
+  <h4>Are you ready to approve this transaction?<br>
+    Check here:  <%= check_box("transaction", "approved") %></h4>
+  <br>
     <div class="actions">
     <%= f.submit "Submit Changes" %>
     </div>
 <% end %>
-
-
+<!-- END OF EDIT FORM FOR TRANSACTION -->
 </div>
-
 <hr>
-
 <div class="container">
   <%= link_to 'Transactions Lists', transactions_path %> |
 <%= link_to 'Edit', edit_transaction_path(@transaction) %>
-
 </div>

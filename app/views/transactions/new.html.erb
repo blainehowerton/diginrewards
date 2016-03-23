@@ -22,13 +22,11 @@
 <div class="jumbotron">
       <div class="container">
         <h1>Transaction View</h1>
-        <p>Creating your transaction. </p>
+        <p> Welcome <%= current_user.username %>. <%= notice %>  Creating your transaction.</p>
       </div>
     </div>
 
 <div class="container">
-<p id="notice"><%= notice %></p>
-
 <%= form_for @transaction do |f| %>
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
@@ -41,54 +39,37 @@
       </ul>
     </div>
    <% end %>
-
-  <p>
-    User Name
-    <%= f.select(:user_id) do %>
-    <%= options_from_collection_for_select(User.all, :id, :username) %>
-    <% end %>
-  </p>
-
-<br>
-
 <p>
     Transaction Date
     <%= f.date_select(:transaction_date) %>
   </p>
-
 <br>
-
   <p>
     Transaction Amount
     <%= text_field(:transaction, :amount) %>
   </p>
-
 <br>
-
   <p>
     Cause Name <input id="cause_search", type="text", name="cause_name">
   </p>
-
 <br>
- <div>
   <p>
     Retailer Name: <input id="retailer_search", type="text", name="retailer_name">
   </p>
- </div>
-
 <br>
-
   <p>
     Upload Receipt Image
     <%= f.file_field :image %>
   </p>
-
 <br>
   <div class="actions">
     <%= f.submit "Create" %>
   </div>
 <% end %>
 
+You are logged in as:  <%= current_user.username %> (User ID:  <%= current_user.id %>)  | <%= render 'devise/menu/login_items' %>
+<br>
+<br>
 <%= javascript_tag "var all_retailer_names = #{Retailer.pluck(:name)}" %>
 <%= javascript_tag "var all_cause_names = #{Cause.pluck(:name)}" %>
 
@@ -106,4 +87,3 @@
 </script>
 </body>
 </html>
-

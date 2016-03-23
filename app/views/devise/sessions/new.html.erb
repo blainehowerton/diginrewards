@@ -1,3 +1,13 @@
+<!-- LARGE JUMBOTRON PAGE HEADER -->
+<div class="jumbotron">
+      <div class="container">
+        <h1>Log In</h1>
+        <p>Sign in to your account. </p>
+      </div>
+    </div>
+<!-- END OF LARGE JUMBOTRON -->
+<div class="container">
+<p id="notice"><%= notice %></p>
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -22,5 +32,8 @@
     <%= f.submit "Log in" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+<br>
+<hr>
+<%= link_to 'Home', "/" %> |  <%= render "devise/shared/links" %>
+<br>
+</div>

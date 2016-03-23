@@ -1,4 +1,12 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="jumbotron">
+      <div class="container">
+        <h1>Account</h1>
+        <p>You are editing user account <%= current_user.username %>. <%= notice %></p>
+      </div>
+    </div>
+<div class="container">
+
+<h2><%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -27,11 +35,17 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  <br>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
 <% end %>
 
+<hr>
+<%= link_to "Back", :back %>
+
+</div>
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
