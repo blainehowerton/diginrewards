@@ -14,9 +14,6 @@ class TransactionsController < ApplicationController
   def show
   end
 
-  def show2
-  end
-
   def edit
   end
 
@@ -46,7 +43,7 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to transactions_url, notice: 'Transaction was successfully updated.' }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit }
