@@ -8,6 +8,8 @@ gem 'pg'
 gem 'puma'
 gem 'heroku'
 gem "paperclip", "~> 4.3"
+gem 'aws-sdk-rails'
+gem 'aws-sdk', '< 2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use mysql2 as the database for Active Record
