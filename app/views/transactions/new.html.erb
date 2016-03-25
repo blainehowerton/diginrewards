@@ -48,14 +48,12 @@
     Transaction Amount
     <%= text_field(:transaction, :amount) %>
   </p>
-<br>
-  <p>
-    Cause Name <input id="cause_search", type="text", name="cause_name">
-  </p>
-<br>
+  <br>
   <p>
     Retailer Name: <input id="retailer_search", type="text", name="retailer_name">
   </p>
+<br>
+<p>Cause Name:  <%= text_field_tag 'cause_name', @transaction.cause.name %></p>
 <br>
   <p>
     Upload Receipt Image
@@ -80,7 +78,7 @@ You are logged in as:  <%= current_user.username %> (User ID:  <%= current_user.
     });
   });
   $(function() {
-    $( "#cause_search" ).autocomplete({
+    $( "#cause_name" ).autocomplete({
       source: all_cause_names
     });
   });
