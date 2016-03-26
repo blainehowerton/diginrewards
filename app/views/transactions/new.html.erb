@@ -31,7 +31,6 @@
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
-
       <ul>
       <% @transaction.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -67,10 +66,8 @@
 <br>
 <hr>
 You are logged in as:  <%= current_user.username %> (User ID:  <%= current_user.id %>)
-
 <%= javascript_tag "var all_retailer_names = #{Retailer.pluck(:name)}" %>
 <%= javascript_tag "var all_cause_names = #{Cause.pluck(:name)}" %>
-
 <script language="javascript" type="text/javascript">
   $(function() {
     $( "#retailer_search" ).autocomplete({
