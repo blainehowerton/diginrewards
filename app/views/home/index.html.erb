@@ -5,9 +5,24 @@
         <p><a class="btn btn-primary btn-lg btn-block" href="/admin" role="button">Database Administration &raquo;</a></p>
          <p><a class="btn btn-primary btn-lg btn-block" href="/transactions" role="button">Transaction Processing &raquo;</a></p>
          <p><a class="btn btn-primary btn-lg btn-block" href="/transactions/new" role="button">User Transaction Input Form &raquo;</a></p>
+         <!--  User Account Login/Logout -->
+      <% if user_signed_in? %>
+      User account (<%= current_user.username %>) IS signed in.  
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+        <% else %>
+        User account is NOT signed in.
+        <%= link_to('Login', new_user_session_path)  %>  
+        <% end %><br>
+      <!-- Admin Account Login/Logout -->
+      <% if admin_signed_in? %>
+      Admin account (<%= current_admin.email %>) IS signed in. 
+      <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>        
+        <% else %>
+        Admin account IS NOT signed in.
+        <%= link_to('Login', new_admin_session_path)  %>  
+        <% end %><br>
       </div>
     </div>
-
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
@@ -29,14 +44,6 @@
       </div>
      </div>
 </div>
-
 <hr>
-<div class="container">
-<%= link_to 'Home', "/" %> | <%= link_to 'New Transaction', new_transaction_path %> | 
-  <%= render 'devise/menu/registration_items' %> | 
-  <%= render 'devise/menu/login_items' %>
-<br>
 <%= yield %>
-</div>
 
-<br>

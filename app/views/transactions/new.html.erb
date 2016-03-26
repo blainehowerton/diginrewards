@@ -50,10 +50,10 @@
   </p>
   <br>
   <p>
-    Retailer Name: <input id="retailer_search", type="text", name="retailer_name">
+    Retailer Name <input id="retailer_search", type="text", name="retailer_name">
   </p>
 <br>
-<p>Cause Name:  <%= text_field_tag 'cause_name', @transaction.cause.name %></p>
+<p>Cause Name <%= text_field_tag 'cause_name', @transaction.cause.name %></p>
 <br>
   <p>
     Upload Receipt Image
@@ -64,10 +64,10 @@
     <%= f.submit "Create" %>
   </div>
 <% end %>
+<br>
+<hr>
+You are logged in as:  <%= current_user.username %> (User ID:  <%= current_user.id %>)
 
-You are logged in as:  <%= current_user.username %> (User ID:  <%= current_user.id %>)  | <%= render 'devise/menu/login_items' %>
-<br>
-<br>
 <%= javascript_tag "var all_retailer_names = #{Retailer.pluck(:name)}" %>
 <%= javascript_tag "var all_cause_names = #{Cause.pluck(:name)}" %>
 
@@ -83,5 +83,6 @@ You are logged in as:  <%= current_user.username %> (User ID:  <%= current_user.
     });
   });
 </script>
+<%= render 'devise/menu/login_items' %>
 </body>
 </html>
