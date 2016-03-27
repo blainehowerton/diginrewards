@@ -10,7 +10,7 @@
   <STYLE>
     .ui-autocomplete.ui-widget {
       font-family: Verdana,Arial,sans-serif;
-      font-size: 10px;
+      font-size: 14px;
     }
   </STYLE>
 
@@ -70,9 +70,8 @@ You are logged in as:  <%= current_user.username %> (User ID:  <%= current_user.
 <%= javascript_tag "var all_cause_names = #{Cause.pluck(:name)}" %>
 <script language="javascript" type="text/javascript">
   $(function() {
-    $( "#retailer_search" ).autocomplete({
-      source: all_retailer_names
-    });
+    $( "#retailer_search" ).autocomplete
+    ({source: all_retailer_names});
   });
   $(function() {
     $( "#cause_name" ).autocomplete({

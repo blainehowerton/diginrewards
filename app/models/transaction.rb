@@ -10,4 +10,9 @@ class Transaction < ActiveRecord::Base
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
+  validates_presence_of :amount, :message => "for transaction is needed.  Please enter your receipt amount."
+  validates_presence_of :image, :message => "needs to be uploaded. Please upload your receipt."
+  validates_numericality_of :amount, :only_decimal => true, message: "%{value} is not a valid dollar amount in Transaction Amount."
+
+
 end

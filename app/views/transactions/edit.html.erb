@@ -21,7 +21,7 @@
   <%= @transaction.user.username %>
 <br>
  <strong>Transaction Amount:</strong>
-  <%= @transaction.amount %>
+  <%= number_to_currency(@transaction.amount) %>
 <br>
   <strong>Date:</strong>
   <%= @transaction.transaction_date %>
@@ -57,11 +57,6 @@
       </ul>
     </div>
    <% end %>
-  <p>User Name
-  <%= f.select(:user_id) do %>
-  <%= options_from_collection_for_select(User.all, :id, :username, @transaction.user_id) %>
-  <% end %></p>
-  <br>
   <p>Transaction Date
   <%= f.date_select(:transaction_date) %></p>
   <br>
