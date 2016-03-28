@@ -15,11 +15,10 @@
     </div>
 
 <div class="container">
-<p><%= link_to 'New Onboard', "onboarding/new" %></p>
 
-<p>LIST ALL USERS</p>
+<p>RETAILERS SECTION</p>
 
-<p>LIST CURRENT RETAILERS</p>
+<p><%= link_to 'New retailer', "retailers/new" %></p>
 
 <table class="table">
     <thead>
@@ -43,30 +42,51 @@
     </tbody>
   </table>
 
-<p>LIST CURRENT CAUSES</p>
+<p>CAUSES SECTION</p>
 
-<p> LIST ALL TRANSACTIONS</p>
-	<table class="table">
+<p><%= link_to 'New cause', "causes/new" %></p>
+
+<table class="table">
     <thead>
       <tr>
-        <th>Amount</th>
-        <th>User ID</th>
-        <th>Retailer</th>
-        <th>Cause</th>
+        <th>Cause Name</th>
+        <th>Paypal ID</th>
+        <th>Phone</th>
         <th colspan="3"></th>
       </tr>
     </thead>
     <tbody>
-      <% @transactions.each do |transaction| %>
+      <% @causes.each do |cause| %>
         <tr>
-          <td>$<%= transaction.amount %></td>
-          <td><%= transaction.user.username %></td>
-          <td><%= transaction.retailer.name %></td>
-          <td><%= transaction.cause.name %></td>
-          <!-- OPTIONAL LINKS IN THE TABLE - DELETE COMMENT TO PUT THEM THERE
-          <td><%= link_to 'View', transaction %></td>
-          <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
-          <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+          <td><%= cause.name %></td>
+          <td><%= cause.paypalID %></td>
+          <td><%= cause.phone %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p>USERS SECTION</p>
+
+<p><%= link_to 'New user', "users/new" %></p>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Paypal ID</th>
+        <th>Cause ID</th>
+        <th>Email</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.username %></td>
+          <td><%= user.paypalID %></td>
+          <td><%= user.cause_id %></td>
+          <td><%= user.email %></td>
         </tr>
       <% end %>
     </tbody>

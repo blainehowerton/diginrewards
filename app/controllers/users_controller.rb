@@ -1,18 +1,19 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
   	@users = User.all
   	end
 
 	def new
-    # @onboarding = Retailer.new
-  	end
+    @user = User.new
+	end
 
-  	def show
-  	end
+	def show
+	end
 
-  	def create
-    # @onboarding = Retailer.new
+	def create
+  # @onboarding = Retailer.new
 	end
 
 end

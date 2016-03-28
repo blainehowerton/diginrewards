@@ -6,6 +6,7 @@ class RetailersController < ApplicationController
 	end
 
 	def new
+    @retailer = Retailer.new
 	end
 
 	def show

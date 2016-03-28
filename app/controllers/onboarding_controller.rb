@@ -1,8 +1,9 @@
 class OnboardingController < ApplicationController
 
 	def index
-  	@transactions = Transaction.all
   	@retailers = Retailer.all
+  	@users = User.all
+  	@causes = Cause.all
   	end
 
 	def new
