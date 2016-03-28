@@ -9,4 +9,8 @@ class RegistrationsController < Devise::RegistrationsController
   def account_update_params
     params.require(:user).permit(:username, :cause_id, :email, :password, :password_confirmation)
   end
+
+  def after_sign_up_path_for(resource)
+    '/transactions/new' # Or :prefix_to_your_route
+  end
 end
