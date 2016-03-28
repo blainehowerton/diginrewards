@@ -1,7 +1,7 @@
 <div class="jumbotron">
       <div class="container">
         <h1>Sign Up</h1>
-        <p>You are signing up for a user account. <%= notice %></p>
+        <p>You are signing up for a user transaction account. <%= notice %></p>
       </div>
     </div>
 <div class="container">
@@ -12,12 +12,12 @@
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
-  </div>
+  </div><br>
 
   <div class="field">
     <%= f.label :username %><br />
-    <%= f.email_field :username %>
-  </div>
+    <%= f.text_field :username %>
+  </div><br>
 
   <div class="field">
     <%= f.label :password %>
@@ -25,20 +25,29 @@
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+  </div><br>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-<br>
+  </div><br>
+
+  <div class="field">
+  <strong>Select a cause</strong><br />
+  <%= f.select(:cause_id) do %><br />
+  <%= options_from_collection_for_select(Cause.all, :id, :name) %>
+  <% end %>
+  <br>You can change this later.<br>
+  If your preferred cause is not listed, they have not signed up.<br>
+  Select one of the causes above and ask them to sign up at http://rewards.digin.club
+  </div><br>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+    <%= f.submit "Sign Up" %>
+  </div><br>
+
 <% end %>
 <br>
-Already have an account? <%= render "devise/shared/links" %>
 <hr>
-<%= link_to 'Home', "/" %>
+Already have an account? <%= render "devise/shared/links" %><br>
 </div>
