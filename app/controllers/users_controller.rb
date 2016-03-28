@@ -13,7 +13,6 @@ class UsersController < ApplicationController
 	end
 
 	def create
-  # @onboarding = Retailer.new
 	end
 
 end

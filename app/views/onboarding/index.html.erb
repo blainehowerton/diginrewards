@@ -10,12 +10,12 @@
 <div class="jumbotron">
       <div class="container">
         <h1>Onboarding</h1>
-        <p> You are in the onboarding section. <%= notice %></p>
+        <p> You are in the onboarding section.</p>
       </div>
     </div>
 
 <div class="container">
-
+ <%= notice %>
 <p>RETAILERS SECTION</p>
 
 <p><%= link_to 'New retailer', "retailers/new" %></p>
@@ -68,7 +68,8 @@
 
   <p>USERS SECTION</p>
 
-<p><%= link_to 'New user', "users/new" %></p>
+<p><%= link_to 'New user', "/" %></p>
+<!-- NEEDS TO ONBOARD THROUGH DEVISE -->
 
 <table class="table">
     <thead>

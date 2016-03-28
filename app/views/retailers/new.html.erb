@@ -15,7 +15,63 @@
     </div>
 
 <div class="container">
-INSERT CODE FOR VIEW HERE.
+
+<%= form_for @retailer do |f| %>
+  <% if @retailer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@retailer.errors.count, "error") %> prohibited this retailer from being saved:</h2>
+
+      <ul>
+      <% @retailer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+   <% end %>
+  <p>
+    Retailer Name
+    <%= f.text_field(:name) %>
+  </p>
+  <br>
+  <p>
+    Contact Email
+    <%= f.email_field(:contact_email) %>
+  </p>
+  <br>
+  <p>Paypal ID
+    <%= f.text_field(:paypalID) %>
+  </p>
+  <br>
+  <p>
+    Address
+    <%= f.text_field(:address) %>
+  </p>
+  <br>
+  <p>
+    City
+    <%= f.text_field(:city) %>, State <%= f.text_field(:state) %> </p>
+<p> Zip <%= f.number_field(:zip) %>
+  </p>
+  <br>
+  <p>
+    Phone
+    <%= f.number_field(:phone) %>
+  </p>
+  <br>
+  <p>
+    Split
+    <%= f.number_field(:split) %>
+  </p>
+  <br>
+<br>
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
+
+
+
+
 </div>
 
 <br>
