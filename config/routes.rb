@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :transactions
   resources :user_form
+  resources :onboarding
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # The priority is based upon order of creation: first created -> highest priority.
