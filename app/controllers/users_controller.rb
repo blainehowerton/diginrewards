@@ -1,8 +1,7 @@
-class OnboardingController < ApplicationController
+class UsersController < ApplicationController
 
-	def index
-  	@transactions = Transaction.all
-  	@retailers = Retailer.all
+  def index
+  	@users = User.all
   	end
 
 	def new
