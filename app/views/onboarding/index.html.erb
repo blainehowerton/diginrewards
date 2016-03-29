@@ -1,11 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
-</head>
-<body>
 
 <div class="jumbotron">
       <div class="container">
@@ -16,9 +11,18 @@
 
 <div class="container">
  <%= notice %>
-<p>RETAILERS SECTION</p>
 
-<p><%= link_to 'New retailer', "retailers/new" %></p>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Retailers
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
 
 <table class="table">
     <thead>
@@ -41,10 +45,19 @@
       <% end %>
     </tbody>
   </table>
-
-<p>CAUSES SECTION</p>
-
-<p><%= link_to 'New cause', "causes/new" %></p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          Causes
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
 
 <table class="table">
     <thead>
@@ -65,11 +78,19 @@
       <% end %>
     </tbody>
   </table>
-
-  <p>USERS SECTION</p>
-
-<p><%= link_to 'New user', "/" %></p>
-<!-- NEEDS TO ONBOARD THROUGH DEVISE -->
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Users
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
 
 <table class="table">
     <thead>
@@ -92,7 +113,15 @@
       <% end %>
     </tbody>
   </table>
-  
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="retailers/new" class="btn btn-primary btn-lg active" role="button">New Retailer</a>
+<a href="causes/new" class="btn btn-primary btn-lg active" role="button">New Cause</a>
+<a href="/users/sign_up" class="btn btn-primary btn-lg active" role="button">New User</a>
+
 </div>
 
 <%= yield %>
