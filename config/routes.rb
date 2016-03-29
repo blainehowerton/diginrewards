@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :transactions
-  resources :user_form
+  resources :users
+  resources :retailers
+  resources :causes
+  resources :onboarding
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
