@@ -10,7 +10,7 @@
   <STYLE>
     .ui-autocomplete.ui-widget {
       font-family: Verdana,Arial,sans-serif;
-      font-size: 10px;
+      font-size: 14px;
     }
   </STYLE>
 
@@ -22,7 +22,7 @@
 <div class="jumbotron">
       <div class="container">
         <h1>Transaction View</h1>
-        <p> Welcome <%= current_user.username %>. <%= notice %>  Creating your transaction.</p>
+        <p> Hello <%= current_user.username %>. <%= notice %>  Creating your transaction.</p>
       </div>
     </div>
 
@@ -31,7 +31,6 @@
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
-
       <ul>
       <% @transaction.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -50,10 +49,10 @@
   </p>
   <br>
   <p>
-    Retailer Name: <input id="retailer_search", type="text", name="retailer_name">
+    Retailer Name <input id="retailer_search", type="text", name="retailer_name">
   </p>
 <br>
-<p>Cause Name:  <%= text_field_tag 'cause_name', @transaction.cause.name %></p>
+<p>Cause Name <%= text_field_tag 'cause_name', @transaction.cause.name %></p>
 <br>
   <p>
     Upload Receipt Image
@@ -64,18 +63,15 @@
     <%= f.submit "Create" %>
   </div>
 <% end %>
-
-You are logged in as:  <%= current_user.username %> (User ID:  <%= current_user.id %>)  | <%= render 'devise/menu/login_items' %>
 <br>
-<br>
+<hr>
+You are logged in as:  <%= current_user.username %> (User ID:  <%= current_user.id %>)
 <%= javascript_tag "var all_retailer_names = #{Retailer.pluck(:name)}" %>
 <%= javascript_tag "var all_cause_names = #{Cause.pluck(:name)}" %>
-
 <script language="javascript" type="text/javascript">
   $(function() {
-    $( "#retailer_search" ).autocomplete({
-      source: all_retailer_names
-    });
+    $( "#retailer_search" ).autocomplete
+    ({source: all_retailer_names});
   });
   $(function() {
     $( "#cause_name" ).autocomplete({
@@ -83,5 +79,6 @@ You are logged in as:  <%= current_user.username %> (User ID:  <%= current_user.
     });
   });
 </script>
+<%= render 'devise/menu/login_items' %>
 </body>
 </html>
