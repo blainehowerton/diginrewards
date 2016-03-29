@@ -14,7 +14,6 @@ module ApplicationHelper
  
     options_for_select(options, select_deselect)
   end
-
   
 end
 

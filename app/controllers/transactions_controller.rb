@@ -27,9 +27,14 @@ class TransactionsController < ApplicationController
   end
 
   def create
+    # Find retailer and cause names and save their ids to the transaction table
     params[:transaction][:retailer_id] = Retailer.find_by_name(params[:retailer_name])[:id]
     params[:transaction][:cause_id] = Cause.find_by_name(params[:cause_name])[:id]
+    # Find retailer and cause splits by entered names and save their split values to the transaction table
+    params[:transaction][:retailer_split] = Retailer.find_by_name(params[:retailer_name])[:split]
+    params[:transaction][:cause_split] = Cause.find_by_name(params[:cause_name])[:split]
     @transaction = Transaction.new(transaction_params)
+    # Set the transaction user_id = to the logged in user, and save the username to the transaction (transaction.user_id)
     if @transaction.save
     @transaction.user_id = current_user.id
     end
