@@ -46,9 +46,9 @@ RailsAdmin.config do |config|
       field :retailer
       field :cause
       field :approved
-      field :user_split
       field :retailer_split
       field :cause_split
+      field :fee_split
     end
   end
 end

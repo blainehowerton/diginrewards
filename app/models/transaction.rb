@@ -2,6 +2,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :retailer
   belongs_to :user
   belongs_to :cause
+  belongs_to :default
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" },
   storage: :s3,
