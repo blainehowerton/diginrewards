@@ -40,7 +40,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
     # Set the transaction user_id = to the logged in user, and save the username to the transaction (transaction.user_id)
     if @transaction.save
-      # save values from the Defaults table to the transaction's fee_split field
+      # save fee_split value from the Defaults table to the transaction's fee_split field
       @transaction.fee_split = @defaults.fee_split
       # save value from current signed in user to transaction's user_id field
       @transaction.user_id = current_user.id

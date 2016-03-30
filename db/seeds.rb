@@ -6,3 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Admin.new({ :email => 'admin@example.com', :password => 'password', :password_confirmation => 'password'}).save
+Default.new({ :cause_split => '.03', :retailer_split => '.03', :fee_split => '.09'}).save
+Cause.new({ :name => 'samplecause', :contact_email => 'samplecause@samplecause.com', :split => '.03'}).save
+Retailer.new({ :name => 'sampleretailer', :split => '.03'}).save

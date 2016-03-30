@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20160330033557) do
 
   create_table "causes", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                                                      null: false
-    t.datetime "updated_at",                                                      null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.string   "paypalID"
     t.string   "contact_email"
     t.string   "address"
@@ -42,21 +42,21 @@ ActiveRecord::Schema.define(version: 20160330033557) do
     t.string   "state",         limit: 2
     t.string   "zip",           limit: 5
     t.string   "phone",         limit: 10
-    t.decimal  "split",                    precision: 5, scale: 2, default: 0.03, null: false
+    t.decimal  "split",                    precision: 5, scale: 2
   end
 
   create_table "defaults", force: :cascade do |t|
     t.decimal  "cause_split",    precision: 5, scale: 2, default: 0.03, null: false
     t.decimal  "retailer_split", precision: 5, scale: 2, default: 0.03, null: false
-    t.decimal  "fee_split",      precision: 5, scale: 2, default: 0.03, null: false
+    t.decimal  "fee_split",      precision: 5, scale: 2, default: 0.09, null: false
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
   end
 
   create_table "retailers", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                                                      null: false
-    t.datetime "updated_at",                                                      null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.string   "paypalID"
     t.string   "address"
     t.string   "city"
@@ -64,25 +64,25 @@ ActiveRecord::Schema.define(version: 20160330033557) do
     t.string   "zip",           limit: 5
     t.string   "phone",         limit: 10
     t.string   "contact_email"
-    t.decimal  "split",                    precision: 5, scale: 2, default: 0.03, null: false
+    t.decimal  "split",                    precision: 5, scale: 2
   end
 
   create_table "transactions", force: :cascade do |t|
     t.decimal  "amount",             precision: 10, scale: 2
     t.integer  "user_id"
     t.integer  "retailer_id"
-    t.datetime "created_at",                                                 null: false
-    t.datetime "updated_at",                                                 null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.boolean  "approved"
     t.date     "transaction_date"
-    t.decimal  "cause_split",        precision: 5,  scale: 2, default: 0.03, null: false
-    t.decimal  "retailer_split",     precision: 5,  scale: 2, default: 0.03, null: false
     t.integer  "cause_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.decimal  "fee_split",          precision: 5,  scale: 2
+    t.decimal  "retailer_split",     precision: 5,  scale: 2
+    t.decimal  "cause_split",        precision: 5,  scale: 2
   end
 
   create_table "users", force: :cascade do |t|
