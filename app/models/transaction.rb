@@ -2,6 +2,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :retailer
   belongs_to :user
   belongs_to :cause
+  belongs_to :default
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" },
   storage: :s3,
@@ -10,8 +11,12 @@ class Transaction < ActiveRecord::Base
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  validates_presence_of :amount, :message => "for transaction is needed.  Please enter your receipt amount."
   validates_presence_of :image, :message => "needs to be uploaded. Please upload your receipt."
+  validates_presence_of :retailer_split, :message => "Retailer split decimal must be entered."
+  validates_presence_of :cause_split, :message => "Cause split decimal must be entered."
+  validates_presence_of :retailer_id, :message => "Retailer name must be entered."
+  validates_presence_of :cause_id, :message => "Cause name must be entered."
+  validates_presence_of :transaction_date, :message => "Transaction date must be entered."
   validates_numericality_of :amount, :only_decimal => true, message: "%{value} is not a valid dollar amount in Transaction Amount."
 
 

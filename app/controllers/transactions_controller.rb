@@ -33,10 +33,17 @@ class TransactionsController < ApplicationController
     # Find retailer and cause splits by entered names and save their split values to the transaction table
     params[:transaction][:retailer_split] = Retailer.find_by_name(params[:retailer_name])[:split]
     params[:transaction][:cause_split] = Cause.find_by_name(params[:cause_name])[:split]
+    # Create a defaults object from the defaults table
+    @defaults = Default.new
+    @defaults = Default.first
+    # Create a Transaction object
     @transaction = Transaction.new(transaction_params)
     # Set the transaction user_id = to the logged in user, and save the username to the transaction (transaction.user_id)
     if @transaction.save
-    @transaction.user_id = current_user.id
+      # save fee_split value from the Defaults table to the transaction's fee_split field
+      @transaction.fee_split = @defaults.fee_split
+      # save value from current signed in user to transaction's user_id field
+      @transaction.user_id = current_user.id
     end
 
     respond_to do |format|
@@ -78,6 +85,6 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:id, :amount, :retailer_id, :created_at, :updated_at, :approved, :transaction_date, :user_split, :cause_split, :retailer_split, :cause_id, :image)
+      params.require(:transaction).permit(:id, :amount, :retailer_id, :created_at, :fee_split, :updated_at, :approved, :transaction_date, :cause_split, :retailer_split, :cause_id, :image)
     end
 end
