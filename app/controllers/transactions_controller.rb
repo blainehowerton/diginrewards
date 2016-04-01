@@ -13,6 +13,7 @@ class TransactionsController < ApplicationController
   end
 
   def show
+    @transaction.cause_id = current_user.cause_id
   end
 
   def edit
@@ -27,23 +28,19 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    # Find retailer and cause names and save their ids to the transaction table
+    # Find retailer name in the retailer table by entered value and save its id to the transaction table
     params[:transaction][:retailer_id] = Retailer.find_by_name(params[:retailer_name])[:id]
-    params[:transaction][:cause_id] = Cause.find_by_name(params[:cause_name])[:id]
-    # Find retailer and cause splits by entered names and save their split values to the transaction table
-    params[:transaction][:retailer_split] = Retailer.find_by_name(params[:retailer_name])[:split]
-    params[:transaction][:cause_split] = Cause.find_by_name(params[:cause_name])[:split]
-    # Create a defaults object from the defaults table
-    @defaults = Default.new
-    @defaults = Default.first
+    # Find splits in retailer table by entered retailer name and save their split values to the transaction table
+    params[:transaction][:retailer_split] = Retailer.find_by_name(params[:retailer_name])[:user_split]
+    params[:transaction][:cause_split] = Retailer.find_by_name(params[:retailer_name])[:cause_split]
+    params[:transaction][:fee_split] = Retailer.find_by_name(params[:retailer_name])[:fee_split]
     # Create a Transaction object
     @transaction = Transaction.new(transaction_params)
     # Set the transaction user_id = to the logged in user, and save the username to the transaction (transaction.user_id)
     if @transaction.save
-      # save fee_split value from the Defaults table to the transaction's fee_split field
-      @transaction.fee_split = @defaults.fee_split
       # save value from current signed in user to transaction's user_id field
       @transaction.user_id = current_user.id
+      @transaction.cause_id = current_user.cause_id
     end
 
     respond_to do |format|

@@ -52,8 +52,8 @@
     Retailer Name <input id="retailer_search", type="text", name="retailer_name">
   </p>
 <br>
-<p>Cause Name <%= text_field_tag 'cause_name', @transaction.cause.name %></p>
-<br>
+<p>Your account is set to donate to: <b><%= @transaction.cause.name %></b>
+<br><br>
   <p>
     Upload Receipt Image
     <%= f.file_field :image %>

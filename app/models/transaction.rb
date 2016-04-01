@@ -15,7 +15,6 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :retailer_split, :message => "Retailer split decimal must be entered."
   validates_presence_of :cause_split, :message => "Cause split decimal must be entered."
   validates_presence_of :retailer_id, :message => "Retailer name must be entered."
-  validates_presence_of :cause_id, :message => "Cause name must be entered."
   validates_presence_of :transaction_date, :message => "Transaction date must be entered."
   validates_numericality_of :amount, :only_decimal => true, message: "%{value} is not a valid dollar amount in Transaction Amount."
 
