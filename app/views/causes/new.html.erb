@@ -29,42 +29,39 @@
     </div>
    <% end %>
   <p>
-    Cause Name
+    Cause Name<br>
     <%= f.text_field(:name) %>
   </p>
   <br>
   <p>
-    Contact Email
+    Contact Email<br>
     <%= f.email_field(:contact_email) %>
   </p>
   <br>
-  <p>Paypal ID
+  <p>Paypal ID<br>
     <%= f.text_field(:paypalID) %>
   </p>
   <br>
   <p>
-    Address
+    Address<br>
     <%= f.text_field(:address) %>
   </p>
   <br>
   <p>
-    City
+    City<br>
     <%= f.text_field(:city) %></p>
     <br>
-    <p> State <%= f.text_field(:state) %>
+    <p> State <br>
+      <%= f.text_field(:state) %>
      </p>
      <br>
-<p> Zip <%= f.number_field(:zip) %>
+<p> Zip<br>
+   <%= f.number_field(:zip) %>
   </p>
   <br>
   <p>
-    Phone
+    Phone<br>
     <%= f.number_field(:phone) %>
-  </p>
-  <br>
-  <p>
-    Cause Split
-    <%= text_field(:cause, :split) %>
   </p>
   <br>
 <br>
