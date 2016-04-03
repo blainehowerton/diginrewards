@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+</head>
+<body>
+
+<div class="jumbotron">
+      <div class="container">
+        <h1>Onboarding</h1>
+        <p> You are onboarding a new user. <%= notice %></p>
+      </div>
+    </div>
+
+<div class="container">
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+      <ul>
+      <% @transaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+   <% end %>
+
+<div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div><br>
+
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </div><br>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div><br>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div><br>
+
+  <div class="field">
+  <strong>Select a cause</strong><br />
+  <%= f.select(:cause_id) do %><br />
+  <%= options_from_collection_for_select(Cause.all, :id, :name) %>
+  <% end %>
+  <br>You can change this later.<br>
+  If your preferred cause is not listed, they have not signed up.<br>
+  Select one of the causes above and ask them to sign up at http://rewards.digin.club
+  </div><br>
+
+  <div class="actions">
+    <%= f.submit "Sign Up" %>
+  </div><br>
+
+<% end %>
+
+
+
+</div>
+
+<br>
+<br>
+
+<%= yield %>
+
+</body>
+
+<hr>
+
+</html>
+
+
