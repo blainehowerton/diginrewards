@@ -1,8 +1,8 @@
 <!-- LARGE JUMBOTRON PAGE HEADER -->
 <div class="jumbotron">
       <div class="container">
-        <h1>Transaction View</h1>
-        <p>Editing the current transaction. </p>
+        <h1>Approval View</h1>
+        <p>Approving the current transaction. </p>
       </div>
     </div>
 <!-- END OF LARGE JUMBOTRON -->
@@ -78,8 +78,8 @@
   <p>Upload Receipt Image <%= f.file_field :image %></p>
   <br>
   <br>
-  <%= text_field(:transaction, :status) %>
-    
+  <h4>Are you ready to approve this transaction?<br>
+    Check here:  <%= check_box("transaction", "approved") %></h4>
   <br>
     <div class="actions">
     <%= f.submit "Submit Changes" %>

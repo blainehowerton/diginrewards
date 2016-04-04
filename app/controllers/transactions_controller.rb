@@ -19,9 +19,6 @@ class TransactionsController < ApplicationController
   def edit
   end
 
-  def approve
-  end
-
   def new
     @transaction = Transaction.new
     @transaction.cause_id = current_user.cause_id
@@ -39,6 +36,7 @@ class TransactionsController < ApplicationController
     # Set the transaction user_id = to the logged in user, and save the username to the transaction (transaction.user_id)
     if @transaction.save
       # save value from current signed in user to transaction's user_id field
+      @transaction.status == "Not Reviewed"
       @transaction.user_id = current_user.id
       @transaction.cause_id = current_user.cause_id
     end
@@ -82,6 +80,6 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:id, :amount, :retailer_id, :created_at, :fee_split, :updated_at, :approved, :transaction_date, :cause_split, :retailer_split, :cause_id, :image)
+      params.require(:transaction).permit(:id, :status, :amount, :retailer_id, :created_at, :fee_split, :updated_at, :transaction_date, :cause_split, :retailer_split, :cause_id, :image)
     end
 end

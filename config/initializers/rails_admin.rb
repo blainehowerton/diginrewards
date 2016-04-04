@@ -40,12 +40,12 @@ RailsAdmin.config do |config|
   config.model 'Transaction' do
     edit do
       field :image
+      field :status
       field :amount
       field :transaction_date
       field :user
       field :retailer
       field :cause
-      field :approved
       field :retailer_split
       field :cause_split
       field :fee_split

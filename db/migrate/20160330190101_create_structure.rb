@@ -48,7 +48,9 @@ class CreateStructure < ActiveRecord::Migration
     t.string   "zip",           limit: 5
     t.string   "phone",         limit: 10
     t.string   "contact_email"
-    t.decimal  "split",                    precision: 5, scale: 2
+    t.decimal  "fee_split",                    precision: 5, scale: 2
+    t.decomal  "cause_split",                     precision: 5, scale: 2
+    t.decimal  "user_split",                     precision: 5, scale: 2
   end
 
   create_table "transactions" do |t|

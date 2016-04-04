@@ -13,6 +13,9 @@
 <p> Welcome admin (<%= current_admin.email %>), and user (<%= current_user.username %>). <%= notice %></p>
 <!-- Login Menu -->
 <%= yield %>
+
+
+        <%= :status == "Final" %>
 <br>
 <!-- ACCORDION INITIALIZE -->
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -20,7 +23,7 @@
 <!-- 1ST ACCORDION VIEW FOR PENDING TRANSACTIONS-->
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">        
           Pending Transactions 
         </a>
       </h4>
@@ -42,8 +45,7 @@
     <tbody>
       <% @transactions.each do |transaction| %>
         <tr>
-          <% if transaction.approved? %>
-          <% else %>
+          <% if transaction.status == "Not Reviewed" %>
           <td><%= number_to_currency(transaction.amount) %></td>
           <td><%= transaction.user.username %></td>
           <td><%= transaction.retailer.name %></td>
@@ -52,8 +54,11 @@
           <td><%= link_to 'View', transaction %></td>
           <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
           <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+          <% else %>
           <% end %>
         </tr>
+          
+          
       <% end %>
     </tbody>
   </table>
@@ -73,9 +78,8 @@
       </div>
       <div class="modal-body">
       <% @transactions.each do |transaction| %>
-            <% if transaction.approved? %>
-            <% else %>
-              <%= image_tag transaction.image.url(:medium) %>
+            <% if transaction.status == "Not Reviewed" %>
+            <%= image_tag transaction.image.url(:medium) %>
               <br>
               Transaction ID:  <%= transaction.id %>
               <br>
@@ -94,6 +98,7 @@
               <br>
               <br>
               <br>
+            <% else %>  
             <% end %>
       <% end %>
       </div>
@@ -134,7 +139,7 @@
     <tbody>
       <% @transactions.each do |transaction| %>
         <tr>
-          <% if transaction.approved? %>
+          <% if transaction.status == "Approved" %>
           <td><%= number_to_currency (transaction.amount) %></td>
           <td><%= transaction.user.username %></td>
           <td><%= transaction.retailer.name %></td>
