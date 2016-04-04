@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330190101) do
+ActiveRecord::Schema.define(version: 20160401004058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,9 @@ ActiveRecord::Schema.define(version: 20160330190101) do
     t.string   "zip",           limit: 5
     t.string   "phone",         limit: 10
     t.string   "contact_email"
-    t.decimal  "split",                    precision: 5, scale: 2
+    t.decimal  "fee_split",                precision: 5, scale: 2
+    t.decimal  "cause_split",              precision: 5, scale: 2
+    t.decimal  "user_split",               precision: 5, scale: 2
   end
 
   create_table "transactions", force: :cascade do |t|

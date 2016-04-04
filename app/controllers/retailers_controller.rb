@@ -27,7 +27,7 @@ def create
 end
 
 def retailer_params
-      params.require(:retailer).permit(:name, :paypalID, :contact_email, :phone, :address, :city, :state, :zip, :split)
+      params.require(:retailer).permit(:name, :paypalID, :contact_email, :phone, :address, :city, :state, :zip, :fee_split, :cause_split, :user_split)
     end
 
 end

@@ -12,7 +12,6 @@
 <!-- UPDATE NOTICE -->
 <p> Welcome admin (<%= current_admin.email %>), and user (<%= current_user.username %>). <%= notice %></p>
 <!-- Login Menu -->
-<p><%= link_to 'Home', "/" %> | <%= link_to 'New Transaction', new_transaction_path %></p>
 <%= yield %>
 <br>
 <!-- ACCORDION INITIALIZE -->
@@ -190,7 +189,7 @@
 
 <hr>
 <%= link_to 'Home', "/" %> | <%= link_to 'New Transaction', new_transaction_path %> | 
-<%= link_to 'Onboarding', "/onboarding" %>
+<%= link_to 'Onboarding', "/onboarding" %> | <%= link_to 'Database Admin', "/admin" %>
 <br>
 <%= yield %>
 <br>
@@ -205,8 +204,7 @@
 <div class="container">
 You are not authorized to view this page.  You must be logged in as an admin and a user to continue.
 <hr>
-<%= link_to 'Home', "/" %> | <%= link_to 'New Transaction', new_transaction_path %> | 
-<%= link_to 'Onboarding', "/onboarding" %>
+<%= link_to 'Home', "/" %>
   <% end %>
 
 <br>
