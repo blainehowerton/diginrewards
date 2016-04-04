@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 	end
 
 	def create
-	@user = User.new(user_params)
+	@user = User.new
 
 		respond_to do |format|
 	      if @user.save
@@ -26,8 +26,5 @@ class UsersController < ApplicationController
 	    end
 	end
 
-	def retailer_params
-      params.require(:user).permit(:username, :cause_id, :paypalID, :street_address, :city, :state, :zip, :phone, :email, :encrypted_password)
-    end
 
 end
