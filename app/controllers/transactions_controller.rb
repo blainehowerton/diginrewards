@@ -10,6 +10,7 @@ class TransactionsController < ApplicationController
 
   def index
   	@transactions = Transaction.all
+    @transaction = Transaction.new
   end
 
   def show
@@ -80,6 +81,6 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:id, :status, :amount, :retailer_id, :created_at, :fee_split, :updated_at, :transaction_date, :cause_split, :retailer_split, :cause_id, :image)
+      params.require(:transaction).permit(:approve, :id, :status, :amount, :retailer_id, :created_at, :fee_split, :updated_at, :transaction_date, :cause_split, :retailer_split, :cause_id, :image)
     end
 end

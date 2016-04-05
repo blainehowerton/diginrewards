@@ -78,7 +78,7 @@
   <p>Upload Receipt Image <%= f.file_field :image %></p>
   <br>
   <br>
-  <%= text_field(:transaction, :status) %>
+  Approvals:  <%= select_tag :status, options_for_select([['Not Reviewed', 1], ['Approved', 2]]) %>
     
   <br>
     <div class="actions">
