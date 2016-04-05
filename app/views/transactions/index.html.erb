@@ -31,8 +31,9 @@
 <!-- VIEW PENDING TRANSACTIONS -->
     <div class="container">
       <% @transactions.each do |transaction| %>
-      <div class="col-md-3">
+      
             <% if transaction.status == "Not Reviewed" %>
+            <div class="col-md-5">
             <%= image_tag transaction.image.url(:medium) %>
               <br>
               Transaction ID:  <%= transaction.id %>
@@ -53,10 +54,8 @@
               <br>
               <br>
             <% end %>
-      </div>
-      <% end %>
-    </div>
-    </div>
+            <% end %>
+    </div></div>
 <!-- END OF VIEW FOR PENDING TRANSACTIONS -->
 
       </div>
@@ -68,7 +67,7 @@
     <div class="panel-heading" role="tab" id="headingTwo">
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Approved Transactions
+          Processing Que
         </a>
       </h4>
     </div>
