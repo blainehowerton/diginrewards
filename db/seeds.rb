@@ -7,3 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Admin.new({ :email => 'admin@example.com', :password => 'password', :password_confirmation => 'password'}).save
 Default.new({ :cause_split => '.03', :retailer_split => '.03', :fee_split => '.09'}).save
+Retailer.new({ :name => 'sample retailer', :fee_split => '.09', :cause_split => '.03', :user_split => '.03'}).save
+Cause.create(name: 'sample cause')

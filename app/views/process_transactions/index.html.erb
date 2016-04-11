@@ -34,19 +34,14 @@
           <td><%= number_to_currency (transaction.amount) %></td>
           <td><%= transaction.user.username %></td>
           <td><%= transaction.retailer.name %></td>
-          <td><%= transaction.cause.name %></td>
-          <!-- OPTIONAL VIEW, UNCOMMENT TO ACTIVATE
-          <td><%= link_to 'View', transaction %></td> -->
-          <td><%= link_to 'View/Edit', edit_transaction_path(transaction) %></td>
-          <td><%= link_to 'Pay', edit_transaction_path(transaction) %></td>
-          <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= transaction.cause.name %></td>          
           <% else %>
           <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <a href="#" class="btn btn-primary btn-lg active" role="button">Process Payments</a>
+  <a href="/process_transactions/new" class="btn btn-primary btn-lg active" role="button">Process Payments</a>
   <!-- END TABLE VIEW FOR REVIEWED TRANSACTIONS-->
 </div>
 

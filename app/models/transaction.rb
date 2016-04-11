@@ -3,6 +3,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :user
   belongs_to :cause
   belongs_to :default
+  has_many :cause_transactions
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" },
   storage: :s3,
@@ -16,6 +17,7 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :transaction_date, :message => "Transaction date must be entered."
   validates_numericality_of :amount, :only_decimal => true, message: "%{value} is not a valid dollar amount in Transaction Amount."
 
+# Rails Admin Drop Down Values in status field
  def status_enum
    [['Not Reviewed'],['Approved'],['Final']]
   end

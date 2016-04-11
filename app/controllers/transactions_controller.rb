@@ -10,7 +10,7 @@ class TransactionsController < ApplicationController
 
   def index
   	@transactions = Transaction.all
-    @transaction = Transaction.new
+    # @transaction = Transaction.new(params[:amount])
   end
 
   def show
@@ -22,10 +22,11 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    @transaction.cause_id = current_user.cause_id
+    @transaction.cause_id = current_user.cause_id 
   end
 
   def create
+    @CauseTransaction = CauseTransaction.new
     # Find retailer name in the retailer table by entered value and save its id to the transaction table
     params[:transaction][:retailer_id] = Retailer.find_by_name(params[:retailer_name])[:id]
     # Find splits in retailer table by entered retailer name and save their split values to the transaction table

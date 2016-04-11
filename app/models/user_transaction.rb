@@ -1,3 +1,3 @@
 class UserTransaction < ActiveRecord::Base
-	belongs_to :user
+	belongs_to :transactions
 end
