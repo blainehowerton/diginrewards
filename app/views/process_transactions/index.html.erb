@@ -51,7 +51,12 @@
 <%= yield %>
 
 </body>
-
 <hr>
+<%= link_to 'Home', "/" %> | 
+<%= link_to 'Transaction Home', "/transactions" %> |  
+<%= link_to 'New Transaction', new_transaction_path %> | 
+<%= link_to 'Onboarding', "/onboarding" %> | <%= link_to 'Database Admin', "/admin" %>
+<br>
+
 
 </html>

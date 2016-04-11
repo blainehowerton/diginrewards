@@ -19,17 +19,36 @@
 
 
 
+<!-- 
 
+<% @transactions.each do |transaction| %>
+  <% if transaction.status == "Approved" %>
+  <%= number_to_currency (transaction.amount) %>
+  <%= transaction.user.username %>
+  <%= transaction.retailer.name %>
+  <%= transaction.cause.name %>     
+  <br>
+  <br>   
+  <% else %>
+  <% end %>
+<% end %>
+
+ -->
+
+<br>
+<br>
+<hr>
+<%= link_to 'Home', "/" %> | 
+<%= link_to 'Transaction Home', "/transactions" %> |  
+<%= link_to 'New Transaction', new_transaction_path %> | 
+<%= link_to 'Onboarding', "/onboarding" %> | <%= link_to 'Database Admin', "/admin" %>
+<br>
 </div>
-
-<br>
-<br>
-
 <%= yield %>
 
 </body>
 
-<hr>
+
 
 </html>
 

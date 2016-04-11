@@ -38,12 +38,20 @@
   <strong>Cause Split:</strong>
   <%= @transaction.cause_split %>
 <br>
+<strong>Transaction Fee:</strong>
+  <%= @transaction.fee_split %>
+<br>
   <strong>Date:</strong>
   <%= @transaction.transaction_date %>
 <br>
   <strong>Record Created At:</strong>
   <%= @transaction.created_at %>
-<br><br><br>
+<br>
+<strong>Transaction Summary:</strong><br>
+ <%= number_to_currency(@transaction.fee_split * @transaction.amount) %> of this transaction will go to Dig In, <%= number_to_currency(@transaction.retailer_split * @transaction.amount) %> of this transaction will go to <%= @transaction.user.username %> for cash back, <%= number_to_currency(@transaction.cause_split * @transaction.amount) %> of this transaction will go to the cause (<%= @transaction.cause.name %>). 
+ <br>
+
+<br><br>
 <!-- END OF TRANSACTION DETAILS -->
 <!-- EDIT FORM FOR TRANSACTION -->
 <%= form_for @transaction do |f| %>
@@ -75,6 +83,9 @@
   Retailer Split <%= text_field(:transaction, :retailer_split) %>
   <br>
   <br>
+  Transaction Fee <%= text_field(:transaction, :fee_split) %>
+  <br>
+  <br>
   <p>Upload Receipt Image <%= f.file_field :image %></p>
   <br>
   <br>
@@ -91,6 +102,5 @@
 </div>
 <hr>
 <div class="container">
-  <%= link_to 'Transactions Lists', transactions_path %> |
-<%= link_to 'Edit', edit_transaction_path(@transaction) %>
+  <%= link_to 'Transactions Home', transactions_path %>
 </div>
