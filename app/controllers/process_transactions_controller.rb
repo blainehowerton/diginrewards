@@ -1,4 +1,5 @@
 class ProcessTransactionsController < ApplicationController
+     before_filter :authenticate_admin!
 
 	def index
 	@transactions = Transaction.all
