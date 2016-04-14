@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+</head>
+<body>
+
+<div class="jumbotron">
+      <div class="container">
+        <h1>Payment Processing</h1>
+        <p> You are about to process payments for the following transactions. <%= notice %></p>
+      </div>
+    </div>
+
+<div class="container">
+<!-- BEGINNING OF TABLE VIEW FOR REVIEWED TRANSACTIONS-->
+      <div class="table-responsive">
+        <table class="table">
+    <thead>
+      <tr>
+        <th>Amount</th>
+        <th>User ID</th>
+        <th>Retailer</th>
+        <th>Cause</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+        <tr>
+          <% if transaction.status == "Approved" %>
+          <td><%= number_to_currency (transaction.amount) %></td>
+          <td><%= transaction.user.username %></td>
+          <td><%= transaction.retailer.name %></td>
+          <td><%= transaction.cause.name %></td>          
+          <% else %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <a href="/process_transactions/new" class="btn btn-primary btn-lg active" role="button">Process Payments</a>
+  <!-- END TABLE VIEW FOR REVIEWED TRANSACTIONS-->
+</div>
+
+<br>
+<br>
+
+<%= yield %>
+
+</body>
+<hr>
+<%= link_to 'Home', "/" %> | 
+<%= link_to 'Transaction Home', "/transactions" %> |  
+<%= link_to 'New Transaction', new_transaction_path %> | 
+<%= link_to 'Onboarding', "/onboarding" %> | <%= link_to 'Database Admin', "/admin" %>
+<br>
+
+
+</html>

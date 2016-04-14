@@ -10,6 +10,7 @@ class TransactionsController < ApplicationController
 
   def index
   	@transactions = Transaction.all
+    # @transaction = Transaction.new(params[:amount])
   end
 
   def show
@@ -19,15 +20,13 @@ class TransactionsController < ApplicationController
   def edit
   end
 
-  def approve
-  end
-
   def new
     @transaction = Transaction.new
-    @transaction.cause_id = current_user.cause_id
+    @transaction.cause_id = current_user.cause_id 
   end
 
   def create
+    @CauseTransaction = CauseTransaction.new
     # Find retailer name in the retailer table by entered value and save its id to the transaction table
     params[:transaction][:retailer_id] = Retailer.find_by_name(params[:retailer_name])[:id]
     # Find splits in retailer table by entered retailer name and save their split values to the transaction table
@@ -39,6 +38,7 @@ class TransactionsController < ApplicationController
     # Set the transaction user_id = to the logged in user, and save the username to the transaction (transaction.user_id)
     if @transaction.save
       # save value from current signed in user to transaction's user_id field
+      @transaction.status == "Not Reviewed"
       @transaction.user_id = current_user.id
       @transaction.cause_id = current_user.cause_id
     end
@@ -82,6 +82,6 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:id, :amount, :retailer_id, :created_at, :fee_split, :updated_at, :approved, :transaction_date, :cause_split, :retailer_split, :cause_id, :image)
+      params.require(:transaction).permit(:approve, :id, :status, :amount, :retailer_id, :created_at, :fee_split, :updated_at, :transaction_date, :cause_split, :retailer_split, :cause_id, :image)
     end
 end

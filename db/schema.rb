@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401004058) do
+ActiveRecord::Schema.define(version: 20160411160201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,10 +31,22 @@ ActiveRecord::Schema.define(version: 20160401004058) do
     t.datetime "updated_at"
   end
 
+  create_table "cause_transactions", force: :cascade do |t|
+    t.string   "cause_id"
+    t.date     "date"
+    t.integer  "transaction_id"
+    t.decimal  "credit_amount",  precision: 10, scale: 2
+    t.decimal  "debit_amount",   precision: 10, scale: 2
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "memo"
+    t.string   "status"
+  end
+
   create_table "causes", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "paypalID"
     t.string   "contact_email"
     t.string   "address"
@@ -42,7 +54,7 @@ ActiveRecord::Schema.define(version: 20160401004058) do
     t.string   "state",         limit: 2
     t.string   "zip",           limit: 5
     t.string   "phone",         limit: 10
-    t.decimal  "split",                    precision: 5, scale: 2
+    t.integer  "split"
   end
 
   create_table "defaults", force: :cascade do |t|
@@ -51,6 +63,18 @@ ActiveRecord::Schema.define(version: 20160401004058) do
     t.decimal  "fee_split",      precision: 5, scale: 2, default: 0.09, null: false
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
+  end
+
+  create_table "retailer_transactions", force: :cascade do |t|
+    t.string   "retailer_id"
+    t.date     "date"
+    t.integer  "transaction_id"
+    t.decimal  "credit_amount",  precision: 10, scale: 2
+    t.decimal  "debit_amount",   precision: 10, scale: 2
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "memo"
+    t.string   "status"
   end
 
   create_table "retailers", force: :cascade do |t|
@@ -69,13 +93,23 @@ ActiveRecord::Schema.define(version: 20160401004058) do
     t.decimal  "user_split",               precision: 5, scale: 2
   end
 
+  create_table "rewards_transactions", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "transaction_id"
+    t.decimal  "credit_amount",  precision: 10, scale: 2
+    t.decimal  "debit_amount",   precision: 10, scale: 2
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "memo"
+    t.string   "retailer_id",                             null: false
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.decimal  "amount",             precision: 10, scale: 2
     t.integer  "user_id"
     t.integer  "retailer_id"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.boolean  "approved"
+    t.datetime "created_at",                                                           null: false
+    t.datetime "updated_at",                                                           null: false
     t.date     "transaction_date"
     t.integer  "cause_id"
     t.string   "image_file_name"
@@ -85,6 +119,19 @@ ActiveRecord::Schema.define(version: 20160401004058) do
     t.decimal  "fee_split",          precision: 5,  scale: 2
     t.decimal  "retailer_split",     precision: 5,  scale: 2
     t.decimal  "cause_split",        precision: 5,  scale: 2
+    t.string   "status",                                      default: "Not Reviewed", null: false
+  end
+
+  create_table "user_transactions", force: :cascade do |t|
+    t.string   "user_id"
+    t.date     "date"
+    t.integer  "transaction_id"
+    t.decimal  "credit_amount",  precision: 10, scale: 2
+    t.decimal  "debit_amount",   precision: 10, scale: 2
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "memo"
+    t.string   "status"
   end
 
   create_table "users", force: :cascade do |t|

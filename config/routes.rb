@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :retailers
   resources :causes
   resources :onboarding
+  resources :process_transactions
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
