@@ -1,55 +1,120 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+<% if admin_signed_in? %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
-</head>
-<body>
 
 <div class="jumbotron">
       <div class="container">
-        <h1>Transaction Approval</h1>
+        <h1>Process Transactions</h1>
         <p> You have processed all approved transactions. <%= notice %></p>
       </div>
     </div>
-
 <div class="container">
 
+<!-- UPDATE NOTICE -->
+<p> Welcome admin (<%= current_admin.email %>). <%= notice %></p><br>
 
-
-
-<!-- 
-
-<% @transactions.each do |transaction| %>
-  <% if transaction.status == "Approved" %>
-  <%= number_to_currency (transaction.amount) %>
-  <%= transaction.user.username %>
-  <%= transaction.retailer.name %>
-  <%= transaction.cause.name %>     
+  <h4>All approved transactions have been processed and the Que has been emptied.</h4>
+  <p>You may enter a new account transaction below.</p>
   <br>
-  <br>   
-  <% else %>
-  <% end %>
-<% end %>
-
- -->
-
 <br>
-<br>
+<!-- ACCORDION INITIALIZE -->
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Create Retailer Deposits & Withdrawls
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Create User Deposits & Withdrawls
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Create Cause Deposits & Withdrawls
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+</div>
+    <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFour">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Create Dig In Rewards Deposits & Withdrawls
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+<br><br>
+
+
+
+<div class="container">
 <hr>
 <%= link_to 'Home', "/" %> | 
 <%= link_to 'Transaction Home', "/transactions" %> |  
 <%= link_to 'New Transaction', new_transaction_path %> | 
 <%= link_to 'Onboarding', "/onboarding" %> | <%= link_to 'Database Admin', "/admin" %>
 <br>
+<!-- Show error if both a user and admin aren't logged in -->
+<% else %>
+<div class="jumbotron">
+      <div class="container">
+        <h1>Transaction Processing</h1>
+        <p>Showing transactions and reports. </p>
+      </div>
+    </div>
+<div class="container">
+You are not authorized to view this page.  You must be logged in as an admin and a user to continue.<br>
+<% if user_signed_in? %>
+      User account (<%= current_user.username %>) IS signed in.  
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+        <% else %>
+        User account is NOT signed in.
+        <%= link_to('Login', new_user_session_path)  %>  
+        <% end %><br>
+      <!-- Admin Account Login/Logout -->
+      <% if admin_signed_in? %>
+      Admin account (<%= current_admin.email %>) IS signed in. 
+      <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>        
+        <% else %>
+        Admin account IS NOT signed in.
+        <%= link_to('Login', new_admin_session_path)  %>  
+        <% end %><br>
+
+<hr>
+<%= link_to 'Home', "/" %>
+  <% end %>
+
 </div>
-<%= yield %>
-
-</body>
-
-
-
-</html>
-
-

@@ -61,6 +61,10 @@ class ProcessTransactionsController < ApplicationController
           	transaction.status = "Final"
           	transaction.save
           end
+          @RewardsTransaction = RewardsTransaction.new
+          @RetailerTransaction = RetailerTransaction.new
+          @UserTransaction = UserTransaction.new
+          @RetailerTransaction = RetailerTransaction.new
       end	
 	end
 
