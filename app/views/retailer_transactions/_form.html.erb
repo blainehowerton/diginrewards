@@ -1,11 +1,7 @@
-<%= form_for @rtransaction do |f| %>
-  <p>
-    Transaction Amount
-    <%= f.text_field :credit_amount %>
-  </p>
-
-<%= f.submit %>
-
+<%= form_for @rtransaction, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+  <%= f.text_field :credit_amount %>
+  <%= f.submit "Create" %>
 <% end %>
+
         
 
