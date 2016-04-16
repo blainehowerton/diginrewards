@@ -1,8 +1,25 @@
 class RetailerTransactionsController < ApplicationController
+<<<<<<< HEAD
 
 def new
 	@rtransaction = RetailerTransaction.new
     @rtransaction.credit_amount = "16"
+=======
+  before_filter :authenticate_admin!
+
+def become
+end
+
+def index
+end
+
+def edit
+end
+
+def new
+	@rtransaction = RetailerTransaction.new
+    @rtransaction.credit_amount = '16.1'
+>>>>>>> 7f2dcf42e38fe14b3fe30c681fed8cc534c633ff
 end
 
 def create
@@ -21,9 +38,23 @@ end
 def show
 end
 
+<<<<<<< HEAD
 def transaction_params
       params.require(:rtransaction).permit(:credit_amount)
     end
+=======
+def update
+end
+
+def destroy
+end
+
+private
+
+def transaction_params
+params.require(:rtransaction).permit(:memo)
+end
+>>>>>>> 7f2dcf42e38fe14b3fe30c681fed8cc534c633ff
 
 end
 
