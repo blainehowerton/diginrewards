@@ -3,11 +3,8 @@ class ReportsController < ApplicationController
 
   end
 
-  def payout
-    @start_date = params[:start_date]
-    @end_date = params[:end_date]
-    @cause_ids_in_range = Transaction.select(:cause_id).where("created_at >= '#{@start_date}' and created_at <= '#{@end_date}'").distinct.pluck(:cause_id)
-    
-
+  def retailer_balances
+    # @retailer_debits = RetailerTransaction.group('retailer_id').sum(:debit_amount).sum(:credit_amount)
+    @retailer_balances = RetailerTransaction.group(:retailer_id).select("retailer_id, SUM(retailer_transactions.debit_amount) AS total_debits, SUM(retailer_transactions.credit_amount) AS total_credits")
   end
 end

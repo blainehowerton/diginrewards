@@ -1,0 +1,11 @@
+<h1> Retailer Balances Report </h1>
+
+
+<table>
+  <tr><th>Retailer <th> Debits <th> Credits
+  <% @retailer_balances.each do |item| %>
+    <tr>
+      <td><%= item.retailer_id %><td><%= item.total_debits %><td><%= item.total_credits %>
+    </tr>
+
+<% end %>
