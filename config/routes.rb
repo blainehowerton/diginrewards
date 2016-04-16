@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  
+
+  get '/admin/reports', to: 'reports#index'
+  get '/admin/reports/payout/:start_date,:end_date', to: 'reports#payout'
+
   devise_for :admins
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :transactions
