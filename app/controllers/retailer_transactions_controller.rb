@@ -1,48 +1,25 @@
 class RetailerTransactionsController < ApplicationController
  before_filter :authenticate_admin!
 
-def become
-end
-
-def index
-end
-
-def edit
-end
-
 def new
-	@rtransaction = RetailerTransaction.new
-    @rtransaction.credit_amount = '16.1'
+@retailertransaction = RetailerTransaction.new
 end
 
 def create
-	@rtransaction = RetailerTransaction.new
-	respond_to do |format|
-      if @rtransaction.save
-        format.html { redirect_to @rtransaction, notice: 'Retailer Transaction was successfully created.' }
-        format.json { render :show, status: :created, location: @rtransaction }
+@retailertransaction = RetailerTransaction.new(retailertransaction_params)
+  respond_to do |format|
+      if @retailertransaction.save
+        format.html { redirect_to '/process_transactions/new', notice: 'Retailer Transaction was successfully created.' }
+        format.json { render :show, status: :created, location: @retailertransaction }
       else
         format.html { render :new }
-        format.json { render json: @rtransaction.errors, status: :unprocessable_entity }
+        format.json { render json: @retailertransaction.errors, status: :unprocessable_entity }
       end
     end
 end
 
-def show
-end
-
-def update
-end
-
-def destroy
-end
-
 private
-
-def transaction_params
-params.require(:rtransaction).permit(:memo)
+def retailertransaction_params
+      params.require(:retailer_transaction).permit(:debit_amount, :retailer_id, :credit_amount, :memo, :date)
 end
-
 end
-
-

@@ -1,1 +1,75 @@
-<%= render "form" %>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+</head>
+<body>
+
+<div class="jumbotron">
+      <div class="container">
+        <h1>Retailer Transaction</h1>
+        <p> You are creating a retailer transaction.</p>
+      </div>
+    </div>
+
+<div class="container">
+
+<%= form_for @retailertransaction do |f| %>
+  <% if @retailertransaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@retailertransaction.errors.count, "error") %> prohibited this retailer from being saved:</h2>
+
+      <ul>
+      <% @retailertransaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+   <% end %>
+  
+  	<p>
+  		Date<br>
+  		<%= f.date_select(:date) %>
+  	</p>
+
+  	<p>
+  		Retailer Name <%= f.select(:retailer_id) do %>
+  		<%= options_from_collection_for_select(Retailer.all, :id, :name, @retailertransaction.retailer_id) %>
+  		<% end %>
+  	</p>
+
+  	<p>
+  		Deposit Amount<br>
+  		<%= f.number_field :credit_amount, :step => '0.01' %>
+  	</p>
+
+	<p>
+	    Withdrawl Amount<br>
+	    <%= f.number_field :debit_amount, :step => '0.01' %>
+  	</p>
+
+  	<p>
+  		Memo<br>
+  		<%= f.text_field :memo %>
+  	</p>
+
+  <br>
+<br>
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
+</div>
+
+<br>
+<br>
+
+<%= yield %>
+
+</body>
+
+<hr>
+
+</html>
