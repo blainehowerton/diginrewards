@@ -56,12 +56,12 @@
      </p>
      <br>
 <p> Zip<br>
-   <%= f.number_field(:zip) %>
+   <%= f.number_field :zip, :step => 'any' %>
   </p>
   <br>
   <p>
     Phone<br>
-    <%= f.number_field(:phone) %>
+    <%= f.number_field :phone, :step => 'any' %>
   </p>
   <br>
 <br>

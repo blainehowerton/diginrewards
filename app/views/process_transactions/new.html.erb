@@ -39,7 +39,6 @@
 
 
 
-        <% end %>
       </div>
     </div>
   </div>
@@ -96,6 +95,7 @@
 <%= link_to 'New Transaction', new_transaction_path %> | 
 <%= link_to 'Onboarding', "/onboarding" %> | <%= link_to 'Database Admin', "/admin" %>
 <br>
+
 <!-- Show error if both a user and admin aren't logged in -->
 <% else %>
 <div class="jumbotron">
@@ -124,6 +124,7 @@ You are not authorized to view this page.  You must be logged in as an admin and
 
 <hr>
 <%= link_to 'Home', "/" %>
-  <% end %>
-
+<% end %>
 </div>
+
+
