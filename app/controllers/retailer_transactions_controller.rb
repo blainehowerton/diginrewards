@@ -1,6 +1,12 @@
 class RetailerTransactionsController < ApplicationController
  before_filter :authenticate_admin!
 
+def index
+    # @retailer_debits = RetailerTransaction.group('retailer_id').sum(:debit_amount).sum(:credit_amount)
+    @retailer_balances = RetailerTransaction.group(:retailer_id).select("retailer_id, SUM(retailer_transactions.debit_amount) AS total_debits, SUM(retailer_transactions.credit_amount) AS total_credits")
+    @retailers = Retailer.all
+end
+
 def new
 @retailertransaction = RetailerTransaction.new
 end
@@ -22,4 +28,5 @@ private
 def retailertransaction_params
       params.require(:retailer_transaction).permit(:debit_amount, :retailer_id, :credit_amount, :memo, :date)
 end
+
 end
