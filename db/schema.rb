@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411160201) do
+ActiveRecord::Schema.define(version: 20160420032138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20160411160201) do
   end
 
   create_table "cause_transactions", force: :cascade do |t|
-    t.string   "cause_id"
     t.date     "date"
     t.integer  "transaction_id"
     t.decimal  "credit_amount",  precision: 10, scale: 2
@@ -41,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160411160201) do
     t.datetime "updated_at",                              null: false
     t.string   "memo"
     t.string   "status"
+    t.integer  "cause_id"
   end
 
   create_table "causes", force: :cascade do |t|
@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 20160411160201) do
   end
 
   create_table "retailer_transactions", force: :cascade do |t|
-    t.string   "retailer_id"
     t.date     "date"
     t.integer  "transaction_id"
     t.decimal  "credit_amount",  precision: 10, scale: 2
@@ -75,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160411160201) do
     t.datetime "updated_at",                              null: false
     t.string   "memo"
     t.string   "status"
+    t.integer  "retailer_id"
   end
 
   create_table "retailers", force: :cascade do |t|
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20160411160201) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.string   "memo"
-    t.string   "retailer_id",                             null: false
+    t.integer  "retailer_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -123,7 +123,6 @@ ActiveRecord::Schema.define(version: 20160411160201) do
   end
 
   create_table "user_transactions", force: :cascade do |t|
-    t.string   "user_id"
     t.date     "date"
     t.integer  "transaction_id"
     t.decimal  "credit_amount",  precision: 10, scale: 2
@@ -132,6 +131,7 @@ ActiveRecord::Schema.define(version: 20160411160201) do
     t.datetime "updated_at",                              null: false
     t.string   "memo"
     t.string   "status"
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
