@@ -20,7 +20,8 @@
   <table class="table">
   <thead>
   <tr>
-  	<th>Retailer</th>
+  	<th>Retailer ID</th>
+  	<th>Retailer Name</th>
   	<th>Deposits</th>
   	<th>Withdrawls</th>
   	<th>Balance</th>
@@ -31,6 +32,8 @@
   <% @retailer_balances.each do |item| %>
 	    <tr>
 	      <td><%= item.retailer_id %></td>
+	      <td></td>
+	      <!-- <td><%= @retailer.name = Retailer.find_by name:(item.retailer_id) %></td> -->
 	      <td><%= number_to_currency(item.total_credits) %></td>
 	      <td><%= number_to_currency(item.total_debits) %></td>
 	      <td><%= number_to_currency(item.balance = item.total_credits.to_s.to_d - item.total_debits.to_s.to_d) %></td>
