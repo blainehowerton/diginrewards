@@ -1,5 +1,6 @@
 class Retailer < ActiveRecord::Base
   has_many :transactions
+  has_many :retailer_transactions
 
   validates_presence_of :name, :message => "for retailer must be entered."
   validates_presence_of :paypalID, :message => "ID must be entered."
