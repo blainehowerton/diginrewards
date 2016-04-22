@@ -1,11 +1,31 @@
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover{background-color:#f5f5f5}
+</style>
+
 <h1> Retailer Balances Report </h1>
 
-
 <table>
-  <tr><th>Retailer <th> Debits <th> Credits
+  <tr><th> Retailer ID <th> Retailer Name <th> PaypalID <th> Balance <th> Total Debits <th> Total Credits
   <% @retailer_balances.each do |item| %>
     <tr>
-      <td><%= item.retailer_id %><td><%= item.total_debits %><td><%= item.total_credits %>
+      <% id = item.retailer_id %>
+      <% name = item.retailer.name %>
+      <% paypal_id = item.retailer.paypalID %>
+      <% total_credits = item.total_credits || 0 %>
+      <% total_debits = item.total_debits || 0 %>
+      <% balance = total_credits - total_debits %>
+      <td><%= id %><td><%= name %><td><%= paypal_id %><td><%= balance %><td><%= total_debits %><td><%= total_credits %>
     </tr>
 
 <% end %>
