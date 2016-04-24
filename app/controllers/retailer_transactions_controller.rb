@@ -2,9 +2,7 @@ class RetailerTransactionsController < ApplicationController
  before_filter :authenticate_admin!
 
 def index
-    # @retailer_debits = RetailerTransaction.group('retailer_id').sum(:debit_amount).sum(:credit_amount)
-    @retailer_balances = RetailerTransaction.group(:retailer_id).select("retailer_id, SUM(retailer_transactions.debit_amount) AS total_debits, SUM(retailer_transactions.credit_amount) AS total_credits")
-    @retailer = Retailer.new
+    @retailer_balances = RetailerTransaction.joins(:retailer).group(:retailer_id).select("retailer_id, SUM(retailer_transactions.debit_amount) AS total_debits, SUM(retailer_transactions.credit_amount) AS total_credits")
 end
 
 def new
@@ -15,7 +13,7 @@ def create
 @retailertransaction = RetailerTransaction.new(retailertransaction_params)
   respond_to do |format|
       if @retailertransaction.save
-        format.html { redirect_to '/process_transactions/new', notice: 'Retailer Transaction was successfully created.' }
+        format.html { redirect_to '/retailer_transactions', notice: 'Retailer Transaction was successfully created.' }
         format.json { render :show, status: :created, location: @retailertransaction }
       else
         format.html { render :new }
