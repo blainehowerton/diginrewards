@@ -3,7 +3,7 @@ class RetailerTransactionsController < ApplicationController
 
 def index
     @retailer_balances = RetailerTransaction.joins(:retailer).group(:retailer_id).select("retailer_id, SUM(retailer_transactions.debit_amount) AS total_debits, SUM(retailer_transactions.credit_amount) AS total_credits")
-end
+  end
 
 def new
 @retailertransaction = RetailerTransaction.new

@@ -34,6 +34,12 @@
   		<%= f.date_select(:date) %>
   	</p>
 
+    <p>
+      Retailer Name <%= f.select(:retailer_id) do %>
+      <%= options_from_collection_for_select(Retailer.all, :id, :name, @rewardstransaction.retailer_id) %>
+      <% end %>
+    </p>
+
   	<p>
   		Deposit Amount<br>
   		<%= f.number_field :credit_amount, :step => '0.01' %>

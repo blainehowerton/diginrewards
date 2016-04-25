@@ -101,11 +101,7 @@ ActiveRecord::Schema.define(version: 20160420032138) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.string   "memo"
-<<<<<<< HEAD
-    t.string   "retailer_id"
-=======
     t.integer  "retailer_id"
->>>>>>> master
   end
 
   create_table "transactions", force: :cascade do |t|
