@@ -4,7 +4,7 @@
 <div class="jumbotron">
       <div class="container">
         <h1>Transaction Dashboard</h1>
-        <p>Transactions and partner reports. </p>
+        <p>Transactions and reports. </p>
       </div>
     </div>
 <div class="container">
@@ -127,7 +127,7 @@
         <h2>SHOW BALANCES</h2>
            <%= link_to 'Retailers', "/retailer_transactions" %>  |  
            Causes  |  
-           Users  |  
+           <%= link_to 'Users', "/user_transactions" %>  |
            Rewards Program
         <br><hr>
           <h2>VIEW HISTORY</h2>
@@ -169,7 +169,7 @@ There will be other reports but that will be a good start.</p>
           <%= link_to 'Retailers', "/retailer_transactions/new" %>  |
           <%= link_to 'Causes', "/cause_transactions/new" %>  |
           <%= link_to 'Users', "/user_transactions/new" %>  |
-          <%= link_to 'Rewards', "/rewards_transactions/new" %>  |
+          <%= link_to 'Rewards', "/rewards_transactions/new" %>
       </div>
     </div>
   </div>
@@ -196,7 +196,6 @@ There will be other reports but that will be a good start.</p>
 <%= link_to 'Home', "/" %> | 
 <%= link_to 'New User Transaction', new_transaction_path %> | 
 <%= link_to 'Onboarding', "/onboarding" %> | <%= link_to 'Database Admin', "/admin" %>
-<br>
 <%= yield %>
 <br>
 <!-- Show error if both a user and admin aren't logged in -->
@@ -229,7 +228,5 @@ You are not authorized to view this page.  You must be logged in as an admin and
 <%= link_to 'Home', "/" %>
   <% end %>
 
-<br>
 <%= yield %>
-<br>
 </div>
