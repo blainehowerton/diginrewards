@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420032138) do
+ActiveRecord::Schema.define(version: 20160422034622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 20160420032138) do
   create_table "cause_transactions", force: :cascade do |t|
     t.date     "date"
     t.integer  "transaction_id"
-    t.decimal  "credit_amount",  precision: 10, scale: 2
-    t.decimal  "debit_amount",   precision: 10, scale: 2
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.decimal  "credit_amount",  precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "debit_amount",   precision: 10, scale: 2, default: 0.0, null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
     t.string   "memo"
     t.string   "status"
     t.integer  "cause_id"
@@ -68,10 +68,10 @@ ActiveRecord::Schema.define(version: 20160420032138) do
   create_table "retailer_transactions", force: :cascade do |t|
     t.date     "date"
     t.integer  "transaction_id"
-    t.decimal  "credit_amount",  precision: 10, scale: 2
-    t.decimal  "debit_amount",   precision: 10, scale: 2
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.decimal  "credit_amount",  precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "debit_amount",   precision: 10, scale: 2, default: 0.0, null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
     t.string   "memo"
     t.string   "status"
     t.integer  "retailer_id"
@@ -96,10 +96,10 @@ ActiveRecord::Schema.define(version: 20160420032138) do
   create_table "rewards_transactions", force: :cascade do |t|
     t.date     "date"
     t.integer  "transaction_id"
-    t.decimal  "credit_amount",  precision: 10, scale: 2
-    t.decimal  "debit_amount",   precision: 10, scale: 2
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.decimal  "credit_amount",  precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "debit_amount",   precision: 10, scale: 2, default: 0.0, null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
     t.string   "memo"
     t.integer  "retailer_id"
   end
@@ -125,10 +125,10 @@ ActiveRecord::Schema.define(version: 20160420032138) do
   create_table "user_transactions", force: :cascade do |t|
     t.date     "date"
     t.integer  "transaction_id"
-    t.decimal  "credit_amount",  precision: 10, scale: 2
-    t.decimal  "debit_amount",   precision: 10, scale: 2
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.decimal  "credit_amount",  precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "debit_amount",   precision: 10, scale: 2, default: 0.0, null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
     t.string   "memo"
     t.string   "status"
     t.integer  "user_id"
