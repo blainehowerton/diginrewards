@@ -1,11 +1,10 @@
 <% if admin_signed_in? %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
 <div class="jumbotron">
       <div class="container">
-        <h1>Transaction Processing</h1>
-        <p>Showing transactions and reports. </p>
+        <h1>Transaction Dashboard</h1>
+        <p>Transactions and reports. </p>
       </div>
     </div>
 <div class="container">
@@ -125,9 +124,35 @@
     </div>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
       <div class="panel-body">
-        CUSTOM REPORTS HERE<BR>
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-    </div>
+        <h2>SHOW BALANCES</h2>
+           <%= link_to 'Retailers', "/retailer_transactions" %>  |  
+           <%= link_to 'Causes', "/cause_transactions" %>  |
+           <%= link_to 'Users', "/user_transactions" %>  |
+           <%= link_to 'Rewards', "/rewards_transactions" %>
+        <br><hr>
+          <h2>VIEW HISTORY</h2>
+           Retailers  |  
+           Causes  |  
+           Users  |  
+           Rewards Program
+         <br><hr>
+           <h2>PRINT RECEIPTS</h2>
+           Retailers  |  
+           Causes  |  
+           Users  |  
+           Rewards Program
+           <br>
+
+<br><br><br>
+           <p>The two most important reports are:<br>
+
+1) A report that can show me for a specified date range how much to money to send to each user PayPal and cause PayPal.<br>
+
+2) A report that can be created for a specified date range for each individual retailer that shows how many members shopped with them and how much they spent as well as how much money was deducted from their account. We will also have to be able to include copies of the receipts to prove each of those transactions.<br>
+
+There will be other reports but that will be a good start.</p>
+
+      </div>
     </div>
     </div>
   <!-- END OF THIRD ACCORDION PANEL -->
@@ -136,12 +161,21 @@
     <div class="panel-heading" role="tab" id="headingFour">
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-           4th accordion</a></h4>
+           Transactions Journal Entry</a></h4>
     </div>
     <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
       <div class="panel-body">
-         FOURTH ACCORDION CONTENT<BR>
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        <h2>SHOW BALANCES</h2>
+           <%= link_to 'Retailers', "/retailer_transactions" %>  |  
+           <%= link_to 'Causes', "/cause_transactions" %>  |
+           <%= link_to 'Users', "/user_transactions" %>  |
+           <%= link_to 'Rewards', "/rewards_transactions" %>
+        <br><hr>
+        <h2>NEW ENTRY</h2>
+          <%= link_to 'Retailers', "/retailer_transactions/new" %>  |
+          <%= link_to 'Causes', "/cause_transactions/new" %>  |
+          <%= link_to 'Users', "/user_transactions/new" %>  |
+          <%= link_to 'Rewards', "/rewards_transactions/new" %>
       </div>
     </div>
   </div>
@@ -165,9 +199,9 @@
 </div>
 <div class="container">
 <hr>
-<%= link_to 'Home', "/" %> | <%= link_to 'New Transaction', new_transaction_path %> | 
+<%= link_to 'Home', "/" %> | 
+<%= link_to 'New User Transaction', new_transaction_path %> | 
 <%= link_to 'Onboarding', "/onboarding" %> | <%= link_to 'Database Admin', "/admin" %>
-<br>
 <%= yield %>
 <br>
 <!-- Show error if both a user and admin aren't logged in -->
@@ -200,7 +234,5 @@ You are not authorized to view this page.  You must be logged in as an admin and
 <%= link_to 'Home', "/" %>
   <% end %>
 
-<br>
 <%= yield %>
-<br>
 </div>

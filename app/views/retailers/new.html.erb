@@ -56,27 +56,27 @@
      </p>
      <br>
 <p> Zip <br>
-  <%= f.number_field(:zip) %>
+  <%= f.number_field :zip, :step => 'any' %>
   </p>
   <br>
   <p>
     Phone<br>
-    <%= f.number_field(:phone) %>
+    <%= f.number_field :phone, :step => 'any' %>
   </p>
   <br>
   <p>
     Fee Split decimal (to Dig In)<br>
-    <%= f.number_field(:fee_split) %>
+    <%= f.number_field :fee_split, :step => '0.01' %>
   </p>
   <br>
   <p>
     Cause Split decimal (donation to the Cause)<br>
-    <%= f.number_field(:cause_split) %>
+    <%= f.number_field :cause_split, :step => '0.01' %>
   </p>
   <br>
   <p>
     User Split decimal (cash back to the User)<br>
-    <%= f.number_field(:user_split) %>
+    <%= f.number_field :user_split, :step => '0.01' %>
   </p>
   <br>
 <br>
@@ -84,7 +84,6 @@
     <%= f.submit "Create" %>
   </div>
 <% end %>
-</div>
 
 <br>
 <br>
@@ -94,5 +93,7 @@
 </body>
 
 <hr>
-
+<%= link_to 'Home', "/" %> | <%= link_to 'Onboarding', "/onboarding" %> | 
+<%= link_to 'Transaction Dashboard', "/transactions" %> | <%= link_to 'Database Admin', "/admin" %>
+</div>
 </html>

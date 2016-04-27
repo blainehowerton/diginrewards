@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+</head>
+<body>
+
+<div class="jumbotron">
+      <div class="container">
+        <h1>User Transaction</h1>
+        <p> You are creating a user transaction journal entry.</p>
+      </div>
+    </div>
+
+<div class="container">
+
+<%= form_for @usertransaction do |f| %>
+  <% if @usertransaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@retailertransaction.errors.count, "error") %> prohibited this retailer from being saved:</h2>
+
+      <ul>
+      <% @usertransaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+   <% end %>
+  
+  	<p>
+  		Date<br>
+  		<%= f.date_select(:date) %>
+  	</p>
+
+  	<p>
+  		User Name <%= f.select(:user_id) do %>
+  		<%= options_from_collection_for_select(User.all, :id, :username, @usertransaction.user_id) %>
+  		<% end %>
+  	</p>
+
+  	<p>
+  		Deposit Amount<br>
+  		<%= f.number_field :credit_amount, :step => '0.01' %>
+  	</p>
+
+	<p>
+	    Withdrawl Amount<br>
+	    <%= f.number_field :debit_amount, :step => '0.01' %>
+  	</p>
+
+  	<p>
+  		Memo<br>
+  		<%= f.text_field :memo %>
+  	</p>
+
+  <br>
+<br>
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
+
+<br>
+<br>
+
+<%= yield %>
+
+</body>
+
+<hr>
+<%= link_to 'Home', "/" %> | 
+<%= link_to 'Transaction Dashboard', "/transactions" %> |
+<%= link_to 'User Transactions', "/user_transactions" %> |
+<%= link_to 'Database Admin', "/admin" %><br>
+</div>
+
+</html>
