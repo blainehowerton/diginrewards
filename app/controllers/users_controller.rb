@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_filter :authenticate_user!
+before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+before_action :authenticate_user!
 
 	def index
-  	@user_balances = UserTransaction.joins(:user).group(:user_id).select("user_id, SUM(user_transactions.debit_amount) AS total_debits, SUM(user_transactions.credit_amount) AS total_credits").where("username = current_user")
-  	@transaction_totals = Transaction.joins(:user).group(:user_id).select("user_id, SUM(transactions.amount) AS total_transactions").where("username = current_user")
-	@transactions = Transaction.all.joins(:user).where("username = current_user")
+  	@user_balances = UserTransaction.joins(:user).where(user_id: current_user.id).group(:user_id).select("user_id, SUM(credit_amount) - SUM(debit_amount) AS total_balance")
+  	@user_transactions = Transaction.where(user_id: current_user.id)
+  	@transaction_totals = Transaction.joins(:user).where(user_id: current_user.id).group(:user_id).select("user_id, SUM(transactions.amount) AS total_transactions")
+  	@user_payments = UserTransaction.where(user_id: current_user.id).where.not(debit_amount: 0)
 	end
 
 	def new

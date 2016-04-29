@@ -29,61 +29,91 @@ Dig In Rewards gives you cash back for your purchases while automatically donati
 <p><a class="btn btn-primary btn-lg btn-block" href="/transactions/new" role="button">Create new transaction &raquo;</a></p>
 
 <HR>
-
-<div class="table-responsive">
-  <table class="table">
-  <thead>
-  <tr>
-    <th>Total Cash from Retailers</th>
-    <th>Payments To <%= current_user.username %></th>
-    <th>Current Balance</th>
-    <th colspan="3"></th>
-      </tr>
-    </thead>
-  <tbody>
-  <% @user_balances.each do |item| %>
-      <tr>
-        <% total_credits = item.total_credits || 0 %>
-        <% total_debits = item.total_debits || 0 %>
-        <% balance = total_credits - total_debits %>
-        <td><%= number_to_currency(total_credits) %></td>
-        <td><%= number_to_currency(total_debits) %></td>
-        <td><%= number_to_currency(balance) %></td>
-    <% end %>
-  </tr>
-  </tbody>
-</table>
-
-<h4>LIST OF TRANSACTIONS</h4>
-		<% @transactions.each do |transaction| %>
-			<%= transaction.transaction_date %>, <%= transaction.retailer.name %>, <%= number_to_currency(transaction.amount) %><br>
-		<% end %>
-	<b>TOTAL SPENT:   
-		<% @transaction_totals.each do |transaction| %>
-			<% id = transaction.user_id %>
-	        <% total_transactions = transaction.total_transactions || 0 %>
-	        <%= number_to_currency(total_transactions) %>
-	    <% end %> </b>
-
-<br><br>
-
-<h4>CAUSE DONATIONS</h4>
-		<% @transactions.each do |transaction| %>
-			<%= transaction.transaction_date %>, <%= transaction.cause.name %>, <%= number_to_currency (transaction.cause_split * transaction.amount) %><br>
-		<% end %>
-	<b>TOTAL DONATIONS:  XXXXX </B>
-
-<hr>
-
-<h5>CAUSE INFORMATION</h5>
 <% cause = Cause.find(current_user.cause_id) %>
-<p>You are currently signed up to donate to  <b>"<%= cause.name %>"</b> as your preferred cause.  If you would like to change your cause, update it in your USER PREFERENCES.<p>
+You are logged in as:  <%= current_user.username %><br><br>
 
-<P>LIST OF CURRENT CAUSES IN THE PROGRAM<p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">CURRENT ACCOUNT BALANCE</h3>
+  </div>
+  <div class="panel-body">
+    <p>This is the actual amount currently in your account (no balance is shown if it's currently at $0.00).  We will periodically send payments to you.  When we do, we will deduct the payment from your balance.  A note will be made in payment history below.</p>
+    <b>BALANCE:  
+    <% @user_balances.each do |item| %>
+      <%= number_to_currency(item.total_balance) %>
+    <% end %></b>
+  </div>
+</div>
 
-<p>REQUEST TO ADD A CAUSE</P>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">PAYMENT HISTORY</h3>
+  </div>
+  <div class="panel-body">
+  <p>Here is a list of cash payments deducted from your account.</p>
+  <% @user_payments.each do |payment| %>
+        <%= payment.date %>, <%= payment.memo %>, <%= number_to_currency(payment.debit_amount) %> <br>
+      <% end %>
 
-<hr>
+  <% payment_balance = 0 %>
+    <% @user_payments.each do |payment| %>
+      <% payment_balance = payment_balance + payment.debit_amount %>
+      <% end %><br>
+  <b>TOTAL: <%= number_to_currency(payment_balance) %></b>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">PURCHASE HISTORY</h3>
+  </div>
+  <div class="panel-body">
+    <p>Purchase history shows all purchases entered.  After they are all approved, we will place your cash percentage into your account and they will remain in this view for your reference.</p>
+    <% @user_transactions.each do |transaction| %>
+      <%= transaction.transaction_date %>, <%= transaction.retailer.name %>, <%= number_to_currency(transaction.amount) %><br>
+    <% end %><br>
+  <b>TOTAL:   
+    <% @transaction_totals.each do |transaction| %>
+          <% total_transactions = transaction.total_transactions %>
+          <%= number_to_currency(total_transactions) %>
+      <% end %></b>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">DONATIONS</h3>
+  </div>
+  <div class="panel-body">
+    <p>Based on your currently entered purchases, these are the causes that have received (or soon will receive) a donation.</p>
+  <% @user_transactions.each do |transaction| %>
+  <%= transaction.transaction_date %>, <%= transaction.cause.name %>, <%= number_to_currency (transaction.amount * transaction.cause_split) %><br>
+  <% end %>
+
+  <% donation_balance = 0 %>
+  <% @user_transactions.each do |transaction| %>
+    <% transaction_total = transaction.amount * transaction.cause_split
+    donation_balance = donation_balance + transaction_total %>
+    <% end %><br>
+<b>TOTAL: <%= number_to_currency(donation_balance) %></b>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">CAUSE INFORMATION</h3>
+  </div>
+  <div class="panel-body">
+    <p>You are currently signed up to donate to  <b>"<%= cause.name %>"</b> as your preferred cause.  If you would like to change your cause, update it in your USER PREFERENCES.<p>
+
+    <P>LIST OF CURRENT CAUSES IN THE PROGRAM<p>
+
+    <p>REQUEST TO ADD A CAUSE</P>
+  </div>
+</div>
+
+
 
 <p>LIST OF CURRENT BUSINEESES IN THE PROGRAM<P>
 
