@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+</head>
+<body>
+
+<div class="jumbotron">
+      <div class="container">
+        <h1>User Dashboard</h1>
+        <p> Showing details about your user account.</p>
+      </div>
+    </div>
+
+<div class="container">
+<p><%= notice %></p>
+
+<h4>DESCRIPTION OF PROGRAM</h4>
+Dig In Rewards gives you cash back for your purchases while automatically donating to a cause of your choice.  The innovative program is designed to give consumers incentives for their loyalty to businesses, while supporting their favorite cause.</P>
+
+<p>Retailers give a percentage of every transaction as cash back to our member and to our member's cause.<p>
+
+<hr>
+
+<H5>Have you recently made a purchase from one of our partners?</h5>
+<p>If so, create a transaction below.  Fill in the details and take a picture of your receipt.  We'll do the rest for you.<p>
+<p><a class="btn btn-primary btn-lg btn-block" href="/transactions/new" role="button">Create new transaction &raquo;</a></p>
+
+<HR>
+
+<div class="table-responsive">
+  <table class="table">
+  <thead>
+  <tr>
+    <th>Total Cash from Retailers</th>
+    <th>Payments To <%= current_user.username %></th>
+    <th>Current Balance</th>
+    <th colspan="3"></th>
+      </tr>
+    </thead>
+  <tbody>
+  <% @user_balances.each do |item| %>
+      <tr>
+        <% total_credits = item.total_credits || 0 %>
+        <% total_debits = item.total_debits || 0 %>
+        <% balance = total_credits - total_debits %>
+        <td><%= number_to_currency(total_credits) %></td>
+        <td><%= number_to_currency(total_debits) %></td>
+        <td><%= number_to_currency(balance) %></td>
+    <% end %>
+  </tr>
+  </tbody>
+</table>
+
+<h4>LIST OF TRANSACTIONS</h4>
+		<% @transactions.each do |transaction| %>
+			<%= transaction.transaction_date %>, <%= transaction.retailer.name %>, <%= number_to_currency(transaction.amount) %><br>
+		<% end %>
+	<b>TOTAL SPENT:   
+		<% @transaction_totals.each do |transaction| %>
+			<% id = transaction.user_id %>
+	        <% total_transactions = transaction.total_transactions || 0 %>
+	        <%= number_to_currency(total_transactions) %>
+	    <% end %> </b>
+
+<br><br>
+
+<h4>CAUSE DONATIONS</h4>
+		<% @transactions.each do |transaction| %>
+			<%= transaction.transaction_date %>, <%= transaction.cause.name %>, <%= number_to_currency (transaction.cause_split * transaction.amount) %><br>
+		<% end %>
+	<b>TOTAL DONATIONS:  XXXXX </B>
+
+<hr>
+
+<h5>CAUSE INFORMATION</h5>
+<% cause = Cause.find(current_user.cause_id) %>
+<p>You are currently signed up to donate to  <b>"<%= cause.name %>"</b> as your preferred cause.  If you would like to change your cause, update it in your USER PREFERENCES.<p>
+
+<P>LIST OF CURRENT CAUSES IN THE PROGRAM<p>
+
+<p>REQUEST TO ADD A CAUSE</P>
+
+<hr>
+
+<p>LIST OF CURRENT BUSINEESES IN THE PROGRAM<P>
+
+<p>LINK TO WORDPRESS DIRECTORY</P>
+
+<p>REQUEST TO ADD A BUSINESS</P>
+
+<hr>
+
+<p>RSS FEED OF RECENT NEWS</P>
+
+<p>RSS FEED OF RECENTLY ADDED BUSINESSES</P>
+
+<HR>
+
+<p>INVITE SOMEONE TO JOIN</P>
+
+</div>
+
+<br>
+<br>
+
+<%= yield %>
+
+</body>
+
+<hr>
+
+</html>

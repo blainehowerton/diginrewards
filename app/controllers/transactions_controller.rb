@@ -10,7 +10,6 @@ class TransactionsController < ApplicationController
 
   def index
   	@transactions = Transaction.all
-    # @transaction = Transaction.new(params[:amount])
   end
 
   def show

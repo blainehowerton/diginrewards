@@ -11,6 +11,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    '/transactions/new' # Or :prefix_to_your_route
+    '/users' # Or :prefix_to_your_route
   end
 end
