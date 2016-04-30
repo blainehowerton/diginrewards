@@ -33,26 +33,20 @@ You are logged in as:  <%= current_user.username %><br><br>
 
 
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">CURRENT ACCOUNT BALANCE</h3>
-  </div>
-  <div class="panel-body">
-    <p>This is the actual amount currently in your account (no balance is shown if it's currently at $0.00).  We will periodically send payments to you.  When we do, we will deduct the payment from your balance.  A note will be made in payment history below.</p>
+<%= panel title: 'ACCOUNT BALANCE' do %>
+<div class='panel-body'>
+<p>This is the actual amount currently in your account (no balance is shown if it's currently at $0.00).  We will periodically send payments to you.  When we do, we will deduct the payment from your balance.  A note will be made in payment history below.</p>
     <b>BALANCE:  
     <% @user_balances.each do |item| %>
       <%= number_to_currency(item.total_balance) %>
     <% end %></b>
-  </div>
 </div>
+<% end %>
 
 
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">PAYMENT HISTORY</h3>
-  </div>
-  <div class="panel-body">
+<%= panel title: 'PAYMENT HISTORY' do %>
+<div class='panel-body'>
   <p>Here is a list of cash payments deducted from your account.</p>
   <% @user_payments.each do |payment| %>
         <%= payment.date %>, <%= payment.memo %>, <%= number_to_currency(payment.debit_amount) %> <br>
@@ -63,17 +57,14 @@ You are logged in as:  <%= current_user.username %><br><br>
       <% payment_balance = payment_balance + payment.debit_amount %>
       <% end %><br>
   <b>TOTAL: <%= number_to_currency(payment_balance) %></b>
-  </div>
 </div>
+<% end %>
 
 
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">PURCHASE HISTORY</h3>
-  </div>
-  <div class="panel-body">
-    <p>Purchase history shows all purchases entered.  After they are all approved, we will place your cash percentage into your account and they will remain in this view for your reference.</p>
+<%= panel title: 'PURCHASE HISTORY' do %>
+<div class='panel-body'>
+  <p>Purchase history shows all purchases entered.  After they are all approved, we will place your cash percentage into your account and they will remain in this view for your reference.</p>
     <% @user_transactions.each do |transaction| %>
       <%= transaction.transaction_date %>, <%= transaction.retailer.name %>, <%= number_to_currency(transaction.amount) %><br>
     <% end %><br>
@@ -82,17 +73,14 @@ You are logged in as:  <%= current_user.username %><br><br>
           <% total_transactions = transaction.total_transactions %>
           <%= number_to_currency(total_transactions) %>
       <% end %></b>
-  </div>
 </div>
+<% end %>
 
 
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">DONATIONS</h3>
-  </div>
-  <div class="panel-body">
-        <p>Based on your currently entered purchases, these are the causes that have received (or soon will receive) a donation.</p>
+<%= panel title: 'CURRENT DONATION' do %>
+<div class='panel-body'>
+  <p>Based on your currently entered purchases, these are the causes that have received (or soon will receive) a donation.</p>
       <% @user_transactions.each do |transaction| %>
       <%= transaction.transaction_date %>, <%= transaction.cause.name %>, <%= number_to_currency (transaction.amount * transaction.cause_split) %><br>
       <% end %>
@@ -103,16 +91,14 @@ You are logged in as:  <%= current_user.username %><br><br>
         donation_balance = donation_balance + transaction_total %>
         <% end %><br>
     <b>TOTAL: <%= number_to_currency(donation_balance) %></b>
-  </div>
 </div>
+<% end %>
 
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">CAUSE INFORMATION</h3>
-  </div>
-  <div class="panel-body">
-    <p>You are currently signed up to donate to  <b>"<%= cause.name %>"</b> as your preferred cause.  If you would like to change your cause, update it in your USER PREFERENCES.  Currently available causes are listed below.</p>
+
+<%= panel title: 'CAUSE INFORMATION' do %>
+<div class='panel-body'>
+  <p>You are currently signed up to donate to  <b>"<%= cause.name %>"</b> as your preferred cause.  If you would like to change your cause, update it in your USER PREFERENCES.  Currently available causes are listed below.</p>
 
 
     <div class="table-responsive">
@@ -139,18 +125,13 @@ You are logged in as:  <%= current_user.username %><br><br>
 <center>
     <a href="#" class="btn btn-primary" role="button">REQUEST TO ADD A CAUSE</a>
 </center>
-
-  </div>
 </div>
+<% end %>
 
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">LIST OF CURRENT BUSINESSES IN THE PROGRAM</h3>
-  </div>
-  <div class="panel-body">
-    <div class="table-responsive">
-      <table class="table table-striped">
+<%= panel title: 'LIST OF CURRENT BUSINESSES IN THE PROGRAM' do %>
+<div class='panel-body'>
+  <table class="table table-striped">
         <thead>
           <tr>
               <th>Name</th>
@@ -172,26 +153,26 @@ You are logged in as:  <%= current_user.username %><br><br>
             <% end %>
         </tbody>
       </table>
-  </div>
 
-<center>
+    <center>
     <p><a href="http://rewards.digin.club/index.php/business-directory/?action=search" class="btn btn-primary" role="button">SEARCH FOR BUSINESS INFORMATION</a></p>
 
     <a href="#" class="btn btn-primary" role="button">REQUEST TO ADD A BUSINESS</a>
-</center>
-
-  </div>
+    </center>
 </div>
+<% end %>
 
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">RECENT DIG IN CLUB REWARDS NEWS</h3>
-  </div>
-  <div class="panel-body">
-    <!-- start feedwind code --><script type="text/javascript">document.write('\x3Cscript type="text/javascript" src="' + ('https:' == document.location.protocol ? 'https://' : 'http://') + 'feed.mikle.com/js/rssmikle.js">\x3C/script>');</script><script type="text/javascript">(function() {var params = {rssmikle_url: "http://rewards.digin.club/?feed=rss2",rssmikle_frame_width: "400",rssmikle_frame_height: "400",frame_height_by_article: "0",rssmikle_target: "_blank",rssmikle_font: "Arial, Helvetica, sans-serif",rssmikle_font_size: "12",rssmikle_border: "on",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "on",autoscroll: "on",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "Off",rssmikle_title: "off",rssmikle_title_sentence: "Dig In Rewards Recent News",rssmikle_title_link: "http://rewards.digin.club",rssmikle_title_bgcolor: "#FFFFFF",rssmikle_title_color: "#000000",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#0066FF",rssmikle_item_border_bottom: "on",rssmikle_item_description: "on",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#666666",rssmikle_item_date: "gl1",rssmikle_timezone: "Etc/GMT",datetime_format: "%b %e, %Y %l:%M %p",item_description_style: "text+tn",item_thumbnail: "crop",item_thumbnail_selection: "auto",article_num: "15",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><div style="font-size:10px; text-align:center; "><a href="http://feed.mikle.com/" target="_blank" style="color:#CCCCCC;">RSS Feed Widget</a><!--Please display the above link in your web page according to Terms of Service.--></div><!-- end feedwind code --><!--  end  feedwind code -->
-  </div>
+
+
+
+<%= panel title: 'RECENT DIG IN CLUB REWARDS NEWS' do %>
+<div class='panel-body'>
+  <!-- start feedwind code --><script type="text/javascript">document.write('\x3Cscript type="text/javascript" src="' + ('https:' == document.location.protocol ? 'https://' : 'http://') + 'feed.mikle.com/js/rssmikle.js">\x3C/script>');</script><script type="text/javascript">(function() {var params = {rssmikle_url: "http://rewards.digin.club/?feed=rss2",rssmikle_frame_width: "400",rssmikle_frame_height: "400",frame_height_by_article: "0",rssmikle_target: "_blank",rssmikle_font: "Arial, Helvetica, sans-serif",rssmikle_font_size: "12",rssmikle_border: "on",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "on",autoscroll: "on",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "Off",rssmikle_title: "off",rssmikle_title_sentence: "Dig In Rewards Recent News",rssmikle_title_link: "http://rewards.digin.club",rssmikle_title_bgcolor: "#FFFFFF",rssmikle_title_color: "#000000",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#0066FF",rssmikle_item_border_bottom: "on",rssmikle_item_description: "on",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#666666",rssmikle_item_date: "gl1",rssmikle_timezone: "Etc/GMT",datetime_format: "%b %e, %Y %l:%M %p",item_description_style: "text+tn",item_thumbnail: "crop",item_thumbnail_selection: "auto",article_num: "15",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><div style="font-size:10px; text-align:center; "><a href="http://feed.mikle.com/" target="_blank" style="color:#CCCCCC;">RSS Feed Widget</a><!--Please display the above link in your web page according to Terms of Service.--></div><!-- end feedwind code --><!--  end  feedwind code -->
 </div>
+<% end %>
+
+
 
 <br>
 <br>
