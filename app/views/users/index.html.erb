@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="/resources/demos/style.css">
-
 </head>
 <body>
 
 <div class="jumbotron">
       <div class="container">
         <h1>User Dashboard</h1>
-        <p> Showing details about your user account.</p>
+        <p> Showing Dig In Club Rewards account details.</p>
       </div>
     </div>
 
@@ -18,7 +17,7 @@
 <p><%= notice %></p>
 
 <h4>DESCRIPTION OF PROGRAM</h4>
-Dig In Rewards gives you cash back for your purchases while automatically donating to a cause of your choice.  The innovative program is designed to give consumers incentives for their loyalty to businesses, while supporting their favorite cause.</P>
+Dig In Club Rewards gives you cash back for your purchases while automatically donating to a cause of your choice.  The innovative program is designed to give consumers incentives for their loyalty to businesses, while supporting their favorite cause.</P>
 
 <p>Retailers give a percentage of every transaction as cash back to our member and to our member's cause.<p>
 
@@ -32,6 +31,8 @@ Dig In Rewards gives you cash back for your purchases while automatically donati
 <% cause = Cause.find(current_user.cause_id) %>
 You are logged in as:  <%= current_user.username %><br><br>
 
+
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">CURRENT ACCOUNT BALANCE</h3>
@@ -44,6 +45,8 @@ You are logged in as:  <%= current_user.username %><br><br>
     <% end %></b>
   </div>
 </div>
+
+
 
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -63,6 +66,8 @@ You are logged in as:  <%= current_user.username %><br><br>
   </div>
 </div>
 
+
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">PURCHASE HISTORY</h3>
@@ -80,22 +85,24 @@ You are logged in as:  <%= current_user.username %><br><br>
   </div>
 </div>
 
+
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">DONATIONS</h3>
   </div>
   <div class="panel-body">
-    <p>Based on your currently entered purchases, these are the causes that have received (or soon will receive) a donation.</p>
-  <% @user_transactions.each do |transaction| %>
-  <%= transaction.transaction_date %>, <%= transaction.cause.name %>, <%= number_to_currency (transaction.amount * transaction.cause_split) %><br>
-  <% end %>
+        <p>Based on your currently entered purchases, these are the causes that have received (or soon will receive) a donation.</p>
+      <% @user_transactions.each do |transaction| %>
+      <%= transaction.transaction_date %>, <%= transaction.cause.name %>, <%= number_to_currency (transaction.amount * transaction.cause_split) %><br>
+      <% end %>
 
-  <% donation_balance = 0 %>
-  <% @user_transactions.each do |transaction| %>
-    <% transaction_total = transaction.amount * transaction.cause_split
-    donation_balance = donation_balance + transaction_total %>
-    <% end %><br>
-<b>TOTAL: <%= number_to_currency(donation_balance) %></b>
+      <% donation_balance = 0 %>
+      <% @user_transactions.each do |transaction| %>
+        <% transaction_total = transaction.amount * transaction.cause_split
+        donation_balance = donation_balance + transaction_total %>
+        <% end %><br>
+    <b>TOTAL: <%= number_to_currency(donation_balance) %></b>
   </div>
 </div>
 
@@ -105,32 +112,85 @@ You are logged in as:  <%= current_user.username %><br><br>
     <h3 class="panel-title">CAUSE INFORMATION</h3>
   </div>
   <div class="panel-body">
-    <p>You are currently signed up to donate to  <b>"<%= cause.name %>"</b> as your preferred cause.  If you would like to change your cause, update it in your USER PREFERENCES.<p>
+    <p>You are currently signed up to donate to  <b>"<%= cause.name %>"</b> as your preferred cause.  If you would like to change your cause, update it in your USER PREFERENCES.  Currently available causes are listed below.</p>
 
-    <P>LIST OF CURRENT CAUSES IN THE PROGRAM<p>
 
-    <p>REQUEST TO ADD A CAUSE</P>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+          <th>Name</th>
+          <th>City</th>
+          <th>State</th><tr>
+          </tr>
+        </thead>
+        <tbody>
+          <% @causes.each do |cause| %>
+          <tr>
+          <td><%= cause.name %></td>
+          <td><%= cause.city %></td>
+          <td><%= cause.state %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+<center>
+    <a href="#" class="btn btn-primary" role="button">REQUEST TO ADD A CAUSE</a>
+</center>
+
   </div>
 </div>
 
 
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">LIST OF CURRENT BUSINESSES IN THE PROGRAM</h3>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Cash %</th>
+              <th>Cause %</th><tr>
+          </tr>
+        </thead>
+        <tbody>
+              <% @retailers.each do |retailer| %>
+              <tr>
+                <td><%= retailer.name %></td>
+                <td><%= retailer.city %></td>
+                <td><%= retailer.state %></td>
+                <td><%= number_to_percentage(retailer.user_split * 100, precision:0) %></td>
+                <td><%= number_to_percentage(retailer.cause_split * 100, precision:0) %></td>
+              </tr>
+            <% end %>
+        </tbody>
+      </table>
+  </div>
 
-<p>LIST OF CURRENT BUSINEESES IN THE PROGRAM<P>
+<center>
+    <p><a href="http://rewards.digin.club/index.php/business-directory/?action=search" class="btn btn-primary" role="button">SEARCH FOR BUSINESS INFORMATION</a></p>
 
-<p>LINK TO WORDPRESS DIRECTORY</P>
+    <a href="#" class="btn btn-primary" role="button">REQUEST TO ADD A BUSINESS</a>
+</center>
 
-<p>REQUEST TO ADD A BUSINESS</P>
+  </div>
+</div>
 
-<hr>
 
-<p>RSS FEED OF RECENT NEWS</P>
-
-<p>RSS FEED OF RECENTLY ADDED BUSINESSES</P>
-
-<HR>
-
-<p>INVITE SOMEONE TO JOIN</P>
-
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">RECENT DIG IN CLUB REWARDS NEWS</h3>
+  </div>
+  <div class="panel-body">
+    <!-- start feedwind code --><script type="text/javascript">document.write('\x3Cscript type="text/javascript" src="' + ('https:' == document.location.protocol ? 'https://' : 'http://') + 'feed.mikle.com/js/rssmikle.js">\x3C/script>');</script><script type="text/javascript">(function() {var params = {rssmikle_url: "http://rewards.digin.club/?feed=rss2",rssmikle_frame_width: "400",rssmikle_frame_height: "400",frame_height_by_article: "0",rssmikle_target: "_blank",rssmikle_font: "Arial, Helvetica, sans-serif",rssmikle_font_size: "12",rssmikle_border: "on",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "on",autoscroll: "on",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "Off",rssmikle_title: "off",rssmikle_title_sentence: "Dig In Rewards Recent News",rssmikle_title_link: "http://rewards.digin.club",rssmikle_title_bgcolor: "#FFFFFF",rssmikle_title_color: "#000000",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#0066FF",rssmikle_item_border_bottom: "on",rssmikle_item_description: "on",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#666666",rssmikle_item_date: "gl1",rssmikle_timezone: "Etc/GMT",datetime_format: "%b %e, %Y %l:%M %p",item_description_style: "text+tn",item_thumbnail: "crop",item_thumbnail_selection: "auto",article_num: "15",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><div style="font-size:10px; text-align:center; "><a href="http://feed.mikle.com/" target="_blank" style="color:#CCCCCC;">RSS Feed Widget</a><!--Please display the above link in your web page according to Terms of Service.--></div><!-- end feedwind code --><!--  end  feedwind code -->
+  </div>
 </div>
 
 <br>
@@ -139,6 +199,8 @@ You are logged in as:  <%= current_user.username %><br><br>
 <%= yield %>
 
 </body>
+
+
 
 <hr>
 

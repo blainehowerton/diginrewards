@@ -7,6 +7,8 @@ before_action :authenticate_user!
   	@user_transactions = Transaction.where(user_id: current_user.id)
   	@transaction_totals = Transaction.joins(:user).where(user_id: current_user.id).group(:user_id).select("user_id, SUM(transactions.amount) AS total_transactions")
   	@user_payments = UserTransaction.where(user_id: current_user.id).where.not(debit_amount: 0)
+  	@retailers = Retailer.all
+  	@causes = Cause.all
 	end
 
 	def new
