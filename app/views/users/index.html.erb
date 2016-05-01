@@ -16,6 +16,13 @@
 <div class="container">
 <p><%= notice %></p>
 
+<%= nav do %>
+  <%= link_to 'Home', users_path %>
+  <%= link_to 'Profile', '/users/show' %>
+<% end %>
+  
+
+
 <h4>DESCRIPTION OF PROGRAM</h4>
 Dig In Club Rewards gives you cash back for your purchases while automatically donating to a cause of your choice.  The innovative program is designed to give consumers incentives for their loyalty to businesses, while supporting their favorite cause.</P>
 
@@ -98,7 +105,7 @@ You are logged in as:  <%= current_user.username %><br><br>
 
 <%= panel title: 'CAUSE INFORMATION' do %>
 <div class='panel-body'>
-  <p>You are currently signed up to donate to  <b>"<%= cause.name %>"</b> as your preferred cause.  If you would like to change your cause, update it in your USER PREFERENCES.  Currently available causes are listed below.</p>
+  <p>You are currently signed up to donate to  <b>"<%= cause.name %>"</b> as your preferred cause.  If you would like to change your cause, edit it in your <%= link_to 'User Profile', '/users/edit' %>.  Currently available causes are listed below.</p>
 
 
     <div class="table-responsive">

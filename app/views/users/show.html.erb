@@ -1,1 +1,57 @@
-THE SHOW VIEW
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+</head>
+<body>
+
+<div class="jumbotron">
+      <div class="container">
+        <h1>User Dashboard</h1>
+        <p> Showing Dig In Club Rewards account details.</p>
+      </div>
+    </div>
+
+<div class="container">
+<p><%= notice %></p>
+
+<%= nav do %>
+  <%= link_to 'Home', users_path %>
+  <%= link_to 'Profile', '/users/show' %>
+<% end %>
+
+<br>
+
+<p>You are logged in as:  <%= current_user.username %></p>
+
+<p>Your Paypal ID:  <%= current_user.paypalID %></p>
+
+<% cause = Cause.find(current_user.cause_id) %>
+<p>Your current selected cause:  <%= cause.name %>
+
+<hr>
+
+<h4>CONTACT INFORMATION</h4>
+<p>Street Address:  <%= current_user.address %><br>
+City:  <%= current_user.city %><br>
+State:  <%= current_user.state %><br>
+Zip:  <%= current_user.zip %><br>
+Phone:  <%= current_user.phone %><br>
+Email:  <%= current_user.email %></p>
+
+<%= link_to 'Edit Profile', '/users/edit' %>
+
+
+<br>
+<br>
+
+<%= yield %>
+
+</body>
+
+
+
+<hr>
+
+</html>
