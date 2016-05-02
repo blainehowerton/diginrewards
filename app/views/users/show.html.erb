@@ -19,26 +19,23 @@
 <%= nav do %>
   <%= link_to 'Home', users_path %>
   <%= link_to 'Profile', '/users/show' %>
-<% end %>
+  <p align="right"><%= icon :user %>  <%= current_user.username %></p>
+<% end %> 
 
 <br>
 
-<p>You are logged in as:  <%= current_user.username %></p>
-
-<p>Your Paypal ID:  <%= current_user.paypalID %></p>
-
 <% cause = Cause.find(current_user.cause_id) %>
-<p>Your current selected cause:  <%= cause.name %>
+<h4>Your current selected cause:  <%= cause.name %></h4>
 
-<hr>
+<br>
 
 <h4>CONTACT INFORMATION</h4>
-<p>Street Address:  <%= current_user.address %><br>
-City:  <%= current_user.city %><br>
-State:  <%= current_user.state %><br>
-Zip:  <%= current_user.zip %><br>
-Phone:  <%= current_user.phone %><br>
-Email:  <%= current_user.email %></p>
+<p><%= current_user.username %><br>
+<%= current_user.address %><br>
+<%= current_user.city %>, <%= current_user.state %>  <%= current_user.zip %><br>
+<b>Phone:  <%= number_to_phone(current_user.phone) %><br>
+Email:  <%= current_user.email %></p></b>
+<p>Your Paypal ID:  <%= current_user.paypalID %></p>
 
 <%= link_to 'Edit Profile', '/users/edit' %>
 
