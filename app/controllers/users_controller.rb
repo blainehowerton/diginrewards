@@ -3,13 +3,14 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 before_action :authenticate_user!
 
 	def index
-  	@user_balances = UserTransaction.joins(:user).where(user_id: current_user.id).group(:user_id).select("user_id, SUM(credit_amount) - SUM(debit_amount) AS total_balance")
-  	@user_transactions = Transaction.where(user_id: current_user.id)
-  	@transaction_totals = Transaction.joins(:user).where(user_id: current_user.id).group(:user_id).select("user_id, SUM(transactions.amount) AS total_transactions")
-  	@user_payments = UserTransaction.where(user_id: current_user.id).where.not(debit_amount: 0)
   	@retailers = Retailer.all
   	@causes = Cause.all
-	end
+    @user_payments = UserTransaction.where(user_id: current_user.id).where.not(debit_amount: 0)
+    @user_balances = UserTransaction.joins(:user).where(user_id: current_user.id).group(:user_id).select("user_id, SUM(credit_amount) - SUM(debit_amount) AS total_balance")
+    @user_transactions = Transaction.where(user_id: current_user.id)
+    @transaction_totals = Transaction.joins(:user).where(user_id: current_user.id).group(:user_id).select("user_id, SUM(transactions.amount) AS total_transactions")
+    
+  end
 
 	def new
     @user = User.new
@@ -43,6 +44,13 @@ before_action :authenticate_user!
 	      end
 	    end
 	end
+
+  def history
+    @user_balances = UserTransaction.joins(:user).where(user_id: current_user.id).group(:user_id).select("user_id, SUM(credit_amount) - SUM(debit_amount) AS total_balance")
+    @user_payments = UserTransaction.where(user_id: current_user.id).where.not(debit_amount: 0)
+    @user_transactions = Transaction.where(user_id: current_user.id)
+    @transaction_totals = Transaction.joins(:user).where(user_id: current_user.id).group(:user_id).select("user_id, SUM(transactions.amount) AS total_transactions")
+  end
 
 	def set_user
       @user = User.find(current_user.id)

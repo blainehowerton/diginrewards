@@ -18,10 +18,11 @@
 
 <%= nav do %>
   <%= link_to 'Home', users_path %>
+  <%= link_to 'History', '/users/history' %>
   <%= link_to 'Profile', '/users/show' %>
   <p align="right"><%= icon :user %>  <%= current_user.username %></p>
 <% end %> 
-
+  
 <br>
 
 <% cause = Cause.find(current_user.cause_id) %>

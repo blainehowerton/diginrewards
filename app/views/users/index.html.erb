@@ -12,11 +12,12 @@
 
 <%= nav do %>
   <%= link_to 'Home', users_path %>
+  <%= link_to 'History', '/users/history' %>
   <%= link_to 'Profile', '/users/show' %>
   <p align="right"><%= icon :user %>  <%= current_user.username %></p>
 <% end %> 
   
-
+<br>
 
 <h4>DESCRIPTION OF PROGRAM</h4>
 Dig In Club Rewards gives you cash back for your purchases while automatically donating to a cause of your choice.  The innovative program is designed to give consumers incentives for their loyalty to businesses, while supporting their favorite cause.</P>
@@ -31,69 +32,6 @@ Dig In Club Rewards gives you cash back for your purchases while automatically d
 
 <% cause = Cause.find(current_user.cause_id) %>
 <br>
-
-
-
-<%= panel title: 'ACCOUNT BALANCE' do %>
-<div class='panel-body'>
-<p>This is the actual amount currently in your account (no balance is shown if it's currently at $0.00).  We will periodically send payments to you.  When we do, we will deduct the payment from your balance.  A note will be made in payment history below.</p>
-    <b>BALANCE:  
-    <% @user_balances.each do |item| %>
-      <%= number_to_currency(item.total_balance) %>
-    <% end %></b>
-</div>
-<% end %>
-
-
-
-<%= panel title: 'PAYMENT HISTORY' do %>
-<div class='panel-body'>
-  <p>Here is a list of cash payments deducted from your account.</p>
-  <% @user_payments.each do |payment| %>
-        <%= payment.date %>, <%= payment.memo %>, <%= number_to_currency(payment.debit_amount) %> <br>
-      <% end %>
-
-  <% payment_balance = 0 %>
-    <% @user_payments.each do |payment| %>
-      <% payment_balance = payment_balance + payment.debit_amount %>
-      <% end %><br>
-  <b>TOTAL: <%= number_to_currency(payment_balance) %></b>
-</div>
-<% end %>
-
-
-
-<%= panel title: 'PURCHASE HISTORY' do %>
-<div class='panel-body'>
-  <p>Purchase history shows all purchases entered.  After they are all approved, we will place your cash percentage into your account and they will remain in this view for your reference.</p>
-    <% @user_transactions.each do |transaction| %>
-      <%= transaction.transaction_date %>, <%= transaction.retailer.name %>, <%= number_to_currency(transaction.amount) %><br>
-    <% end %><br>
-  <b>TOTAL:   
-    <% @transaction_totals.each do |transaction| %>
-          <% total_transactions = transaction.total_transactions %>
-          <%= number_to_currency(total_transactions) %>
-      <% end %></b>
-</div>
-<% end %>
-
-
-
-<%= panel title: 'CURRENT DONATIONS' do %>
-<div class='panel-body'>
-  <p>Based on your currently entered purchases, these are the causes that have received (or soon will receive) a donation.</p>
-      <% @user_transactions.each do |transaction| %>
-      <%= transaction.transaction_date %>, <%= transaction.cause.name %>, <%= number_to_currency (transaction.amount * transaction.cause_split) %><br>
-      <% end %>
-
-      <% donation_balance = 0 %>
-      <% @user_transactions.each do |transaction| %>
-        <% transaction_total = transaction.amount * transaction.cause_split
-        donation_balance = donation_balance + transaction_total %>
-        <% end %><br>
-    <b>TOTAL: <%= number_to_currency(donation_balance) %></b>
-</div>
-<% end %>
 
 
 
