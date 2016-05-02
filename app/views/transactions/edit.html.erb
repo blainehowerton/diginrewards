@@ -1,106 +1,238 @@
-<!-- LARGE JUMBOTRON PAGE HEADER -->
+<% if admin_signed_in? %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
 <div class="jumbotron">
       <div class="container">
-        <h1>Transaction View</h1>
-        <p>Editing the current transaction. </p>
+        <h1>Transaction Dashboard</h1>
+        <p>Transactions and reports. </p>
       </div>
     </div>
-<!-- END OF LARGE JUMBOTRON -->
 <div class="container">
-<p id="notice"><%= notice %></p>
-<!-- TRANSACTION RECEIPT IMAGE -->
-<% if @transaction.image? %>
-<%= image_tag @transaction.image.url(:medium) %>
+<!-- UPDATE NOTICE -->
+<p> Welcome admin (<%= current_admin.email %>). <%= notice %></p>
+<!-- Login Menu -->
+<%= yield %>
 <br>
-<%= link_to 'Show Full Size Image', @transaction.image.url %>
-<% end %>
-<br><br>
-<!-- END OF TRANSACTION RECEIPT IMAGE -->
-<!-- TRANSACTION DETAILS -->
-  <strong>User:</strong>
-  <%= @transaction.user.username %>
-<br>
- <strong>Transaction Amount:</strong>
-  <%= number_to_currency(@transaction.amount) %>
-<br>
-  <strong>Date:</strong>
-  <%= @transaction.transaction_date %>
-<br>
-  <strong>Retailer:</strong>
-  <%= @transaction.retailer.name %>
-<br>
-  <strong>Retailer Split:</strong>
-  <%= @transaction.retailer_split %>
-<br>
-  <strong>Cause:</strong>
-  <%= @transaction.cause.name %>
-<br>
-  <strong>Cause Split:</strong>
-  <%= @transaction.cause_split %>
-<br>
-<strong>Transaction Fee:</strong>
-  <%= @transaction.fee_split %>
-<br>
-  <strong>Date:</strong>
-  <%= @transaction.transaction_date %>
-<br>
-  <strong>Record Created At:</strong>
-  <%= @transaction.created_at %>
-<br>
-<strong>Transaction Summary:</strong><br>
- <%= number_to_currency(@transaction.fee_split * @transaction.amount) %> of this transaction will go to Dig In, <%= number_to_currency(@transaction.retailer_split * @transaction.amount) %> of this transaction will go to <%= @transaction.user.username %> for cash back, <%= number_to_currency(@transaction.cause_split * @transaction.amount) %> of this transaction will go to the cause (<%= @transaction.cause.name %>). 
- <br>
+<!-- ACCORDION INITIALIZE -->
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+<!-- 1ST ACCORDION VIEW FOR PENDING TRANSACTIONS-->
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">        
+          Pending Transactions 
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
 
-<br><br>
-<!-- END OF TRANSACTION DETAILS -->
-<!-- EDIT FORM FOR TRANSACTION -->
-<%= form_for @transaction do |f| %>
-  <% if @transaction.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
-      <ul>
-      <% @transaction.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<!-- VIEW PENDING TRANSACTIONS -->
+    <div class="container">
+      <% @transactions.each do |transaction| %>
+      
+            <% if transaction.status == "Not Reviewed" %>
+            <div class="col-md-5">
+            <%= image_tag transaction.image.url(:medium) %>
+              <br>
+              Transaction ID:  <%= transaction.id %>
+              <br>
+              Transaction Amount:  <%= number_to_currency(transaction.amount) %>
+              <br>
+              User Name:  <%= transaction.user.username %>
+              <br>
+              Retailer:  <%= transaction.retailer.name %>
+              <br>
+              Cause:  <%= transaction.cause.name %>
+              <br>
+              <!-- OPTIONAL VIEW LINK IN THE MODAL, DELETE COMMENT TO PUT IT IN THE LIST
+              <%= link_to 'View', transaction %> <br> -->
+              <%= link_to 'Edit', edit_transaction_path(transaction) %>     |
+              <%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <br>
+              <br>
+              <br>
+            </div>
+            <% end %>
+            <% end %>
+<!-- END OF VIEW FOR PENDING TRANSACTIONS -->
+
+      </div>
+      </div>
+      </div>
+      </div>
     </div>
-   <% end %>
-  <p>Transaction Date
-  <%= f.date_select(:transaction_date) %></p>
-  <br>
-  <p>Transaction Amount
-  <%= text_field(:transaction, :amount) %></p>
-  <br>
-  Cause Name <%= f.select(:cause_id) do %>
-  <%= options_from_collection_for_select(Cause.all, :id, :name, @transaction.cause_id) %>
-  <% end %><br>
-  Cause Split <%= text_field(:transaction, :cause_split) %>
-  <br>
-  <br>
-  Retailer Name <%= f.select(:retailer_id) do %>
-  <%= options_from_collection_for_select(Retailer.all, :id, :name, @transaction.retailer_id) %>
-  <% end %><br>
-  Retailer Split <%= text_field(:transaction, :retailer_split) %>
-  <br>
-  <br>
-  Transaction Fee <%= text_field(:transaction, :fee_split) %>
-  <br>
-  <br>
-  <p>Upload Receipt Image <%= f.file_field :image %></p>
-  <br>
-  <br>
-  Transaction Status <%= f.select(:status) do %>
-  <%= options_for_select([['Approved', "Approved"], ['Not Reviewed', "Not Reviewed"]], 'Not Reviewed') %>
-  <% end %>
-  <br>
-  <br>
-    <div class="actions">
-    <%= f.submit "Submit Changes" %>
-    </div>
-<% end %>
-<!-- END OF EDIT FORM FOR TRANSACTION -->
-</div>
-<hr>
+  </div>
+  <!-- END OF 1ST ACCORDION PANEL -->
+<!--  BEGIN 2ND ACCORDION PANEL -->
 <div class="container">
-  <%= link_to 'Transactions Home', transactions_path %>
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Processing Que
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+<!-- BEGINNING OF TABLE VIEW FOR REVIEWED TRANSACTIONS-->
+      <div class="table-responsive">
+        <table class="table">
+    <thead>
+      <tr>
+        <th>Amount</th>
+        <th>User ID</th>
+        <th>Retailer</th>
+        <th>Cause</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+        <tr>
+          <% if transaction.status == "Approved" %>
+          <td><%= number_to_currency (transaction.amount) %></td>
+          <td><%= transaction.user.username %></td>
+          <td><%= transaction.retailer.name %></td>
+          <td><%= transaction.cause.name %></td>
+          <!-- OPTIONAL VIEW, UNCOMMENT TO ACTIVATE
+          <td><%= link_to 'View', transaction %></td> -->
+          <td><%= link_to 'View/Edit', edit_transaction_path(transaction) %></td>
+          <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <a href="/process_transactions" class="btn btn-primary btn-lg active" role="button">Process Transactions</a>
+  <!-- END TABLE VIEW FOR REVIEWED TRANSACTIONS-->
+</div>
+</div>
+</div>
+</div>
+<!-- END 2ND ACCORION PANEL -->
+</div>
+<div class="container">
+<!-- BEGIN THIRD ACCORDION PANEL -->
+ <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Reports</a></h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <h2>SHOW BALANCES</h2>
+           <%= link_to 'Retailers', "/retailer_transactions" %>  |  
+           <%= link_to 'Causes', "/cause_transactions" %>  |
+           <%= link_to 'Users', "/user_transactions" %>  |
+           <%= link_to 'Rewards', "/rewards_transactions" %>
+        <br><hr>
+          <h2>VIEW HISTORY</h2>
+           Retailers  |  
+           Causes  |  
+           Users  |  
+           Rewards Program
+         <br><hr>
+           <h2>PRINT RECEIPTS</h2>
+           Retailers  |  
+           Causes  |  
+           Users  |  
+           Rewards Program
+           <br>
+
+<br><br><br>
+           <p>The two most important reports are:<br>
+
+1) A report that can show me for a specified date range how much to money to send to each user PayPal and cause PayPal.<br>
+
+2) A report that can be created for a specified date range for each individual retailer that shows how many members shopped with them and how much they spent as well as how much money was deducted from their account. We will also have to be able to include copies of the receipts to prove each of those transactions.<br>
+
+There will be other reports but that will be a good start.</p>
+
+      </div>
+    </div>
+    </div>
+  <!-- END OF THIRD ACCORDION PANEL -->
+  <!-- OPTIONAL FOURTH ACCORDION PANEL BEGIN-->
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFour">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+           Transactions Journal Entry</a></h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+      <div class="panel-body">
+        <h2>SHOW BALANCES</h2>
+           <%= link_to 'Retailers', "/retailer_transactions" %>  |  
+           <%= link_to 'Causes', "/cause_transactions" %>  |
+           <%= link_to 'Users', "/user_transactions" %>  |
+           <%= link_to 'Rewards', "/rewards_transactions" %>
+        <br><hr>
+        <h2>NEW ENTRY</h2>
+          <%= link_to 'Retailers', "/retailer_transactions/new" %>  |
+          <%= link_to 'Causes', "/cause_transactions/new" %>  |
+          <%= link_to 'Users', "/user_transactions/new" %>  |
+          <%= link_to 'Rewards', "/rewards_transactions/new" %>
+      </div>
+    </div>
+  </div>
+  <!-- END OF FOURTH ACCORDION PANEL -->
+</div>
+  <!-- OPTIONAL FIFTH ACCORDION PANEL BEGIN-->
+  <!-- <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFive">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+          Optional 5th accordion</a></h4>
+    </div>
+    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+      <div class="panel-body">
+        OPTIONAL Fifth ACCORDION CONTENT<BR>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div> -->
+  <!-- END OF FIFTH ACCORDION PANEL -->
+</div>
+<div class="container">
+<hr>
+<%= link_to 'Home', "/" %> | 
+<%= link_to 'New User Transaction', new_transaction_path %> | 
+<%= link_to 'Onboarding', "/onboarding" %> | <%= link_to 'Database Admin', "/admin" %>
+<%= yield %>
+<br>
+<!-- Show error if both a user and admin aren't logged in -->
+<% else %>
+<div class="jumbotron">
+      <div class="container">
+        <h1>Transaction Processing</h1>
+        <p>Showing transactions and reports. </p>
+      </div>
+    </div>
+<div class="container">
+You are not authorized to view this page.  You must be logged in as an admin and a user to continue.<br>
+<% if user_signed_in? %>
+      User account (<%= current_user.username %>) IS signed in.  
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+        <% else %>
+        User account is NOT signed in.
+        <%= link_to('Login', new_user_session_path)  %>  
+        <% end %><br>
+      <!-- Admin Account Login/Logout -->
+      <% if admin_signed_in? %>
+      Admin account (<%= current_admin.email %>) IS signed in. 
+      <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>        
+        <% else %>
+        Admin account IS NOT signed in.
+        <%= link_to('Login', new_admin_session_path)  %>  
+        <% end %><br>
+
+<hr>
+<%= link_to 'Home', "/" %>
+  <% end %>
+
+<%= yield %>
 </div>
