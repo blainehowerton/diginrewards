@@ -20,8 +20,8 @@ before_action :authenticate_user!
 
 	def update
     respond_to do |format|
-      if @user.update
-        format.html { redirect_to users_url, notice: 'User was successfully updated.' }
+      if @user.update(user_params)
+        format.html { redirect_to '/users/show', notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -45,7 +45,11 @@ before_action :authenticate_user!
 	end
 
 	def set_user
-      @user = User.find(params[:id])
+      @user = User.find(current_user.id)
+    end
+
+    def user_params
+      params.require(:user).permit(:id, :paypalID, :cause_id, :address, :city, :state, :zip, :phone, :email)
     end
 
 end
