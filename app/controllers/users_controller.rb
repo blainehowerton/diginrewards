@@ -9,7 +9,6 @@ before_action :authenticate_user!
     @user_balances = UserTransaction.joins(:user).where(user_id: current_user.id).group(:user_id).select("user_id, SUM(credit_amount) - SUM(debit_amount) AS total_balance")
     @user_transactions = Transaction.where(user_id: current_user.id)
     @transaction_totals = Transaction.joins(:user).where(user_id: current_user.id).group(:user_id).select("user_id, SUM(transactions.amount) AS total_transactions")
-    
   end
 
 	def new
