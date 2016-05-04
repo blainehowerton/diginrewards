@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/admin/reports', to: 'reports#index'
   get '/admin/reports/retailer_balances', to: 'reports#retailer_balances'
   get '/users/history', to: 'users#history'
+  get '/buttons', to: 'home#buttons'
 
   devise_for :admins
   devise_for :users, :controllers => { registrations: 'registrations' }

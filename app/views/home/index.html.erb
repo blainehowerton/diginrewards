@@ -1,47 +1,28 @@
-<div class="jumbotron">
-      <div class="container">
-        <h1>DigIn.club</h1>
-        <p> <%= notice %></p><br>
-        <p><a class="btn btn-primary btn-lg btn-block" href="/admin" role="button">Database Administration &raquo;</a></p>
-         <p><a class="btn btn-primary btn-lg btn-block" href="/onboarding" role="button">Onboarding &raquo;</a></p>
-         <p><a class="btn btn-primary btn-lg btn-block" href="/transactions" role="button">Transaction Dashboard &raquo;</a></p>
-         <p><a class="btn btn-primary btn-lg btn-block" href="/transactions/new" role="button">User Transaction Input Form &raquo;</a></p>
-         <a class="btn btn-primary btn-lg btn-block" href="/users" role="button">User Dashboard &raquo;</a></p>
-         <!--  User Account Login/Logout -->
-      <% if user_signed_in? %>
-      User account (<%= current_user.username %>) IS signed in.  
-      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-        <% else %>
-        User account is NOT signed in.
-        <%= link_to('Login', new_user_session_path)  %>  
-        <% end %><br>
-      <!-- Admin Account Login/Logout -->
-      <% if admin_signed_in? %>
-      Admin account (<%= current_admin.email %>) IS signed in. 
-      <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>        
-        <% else %>
-        Admin account IS NOT signed in.
-        <%= link_to('Login', new_admin_session_path)  %>  
-        <% end %><br>
+
+          
+      <div class="jumbotron">
+      
+      <center><img src="images/Dig-in-Rewards-(300-x-180).jpg" alt="Dig In Rewards" height="180" width="300"></center>
+
       </div>
-    </div>
     <div class="container">
+      <%= notice %>
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-4">
           <h2>Rewarding</h2>
-          <p>Our loyalty and rewards program is the only local program that supports causes while consumers buy local products and services at retailers.  With our easy-to-use app, simply upload your receipts from supporting businesses.  Then watch your balance grow and feel good that you just contributed to your favorite local cause.</p>
-          <p><a class="btn btn-default" href="#" role="button">Learn about rewards &raquo;</a></p>
+          <p>Dig In Rewards is an amazing cash-back program.  It gives consumers cash back on their purchases while automatically supporting causes.  With our easy-to-use mobile ready app, simply upload your receipts from supporting businesses.  Then watch your balance grow and feel good that you just contributed to your favorite local cause.</p>
+          <p><a class="btn btn-default" href="http://diginrewards.herokuapp.com/users/sign_up" role="button">Sign Up Now &raquo;</a></p>
         </div>
         <div class="col-md-4">
-          <h2>Healthy</h2>
-          <p>We take special care to bring the most healthy locally sourced products to your door. They are packaged with love and thought about with care.  Your optional monthly $49.99 subscription gets you new food products each month along with customized videos, recipes and advise from the best-of-the-best in the culinary industry.</p>
-          <p><a class="btn btn-default" href="#" role="button">Get subscription info &raquo;</a></p>
+          <h2>Easy</h2>
+          <p>We have taken special care to develop a fast and easy system.  After you have signed up for the program, it's as easy as shopping with our partners and submitting your receipt.  We will approve your purchase.  Then we will credit your paypal account with cash back and we will automatically send a donation to a cause of your choice.</p>
+          <p><a class="btn btn-default" href="http://diginrewards.herokuapp.com/users/sign_in" role="button">Sign In to your dashboard &raquo;</a></p>
        </div>
         <div class="col-md-4">
           <h2>Promising</h2>
           <p>There is nothing better than seeing a community support its local businesses, producers and causes.  The connection through rewards, payments and education is what we do.  That's why we have new partners every week.  Everyone wins.  We like waking up each day knowing that we are doing something great!</p>
-          <p><a class="btn btn-default" href="#" role="button">Partner with us &raquo;</a></p>
+          <p><a class="btn btn-default" href="http://rewards.digin.club" role="button">Check out our web site &raquo;</a></p>
         </div>
       </div>
      </div>
