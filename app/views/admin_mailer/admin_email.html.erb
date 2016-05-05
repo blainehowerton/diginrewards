@@ -5,7 +5,8 @@
   </head>
   <body>
   <% cause = Cause.find(@user.cause_id) %>
-    <h1>User, <%= @user.username %> has registered.</h1>
+    <h1>User "<%= @user.username %>" has registered.</h1>
+    <p>Email Address:  <%= @user.email %></p>
     <p>Paypal ID:  <%= @user.paypalID %></p>
     <p>Cause name:  <%= cause.name %></p>
     
