@@ -4,11 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-  
+  <% cause = Cause.find(@user.cause_id) %>
     <h1>User, <%= @user.username %> has registered.</h1>
-    <p>
-      EMAIL DETAILS HERE
-    </p>
+    <p>Paypal ID:  <%= @user.paypalID %></p>
+    <p>Cause name:  <%= cause.name %></p>
     
   </body>
 </html>
