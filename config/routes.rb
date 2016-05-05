@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/buttons', to: 'home#buttons'
 
   devise_for :admins
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_for :users, :controllers => { :registrations => "user_registrations" }
   resources :transactions
   resources :users
   resources :retailers

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.2.4'
 
-gem 'postmark-rails', '>= 0.10.0'
+# gem 'postmark-rails', '>= 0.10.0'
 gem 'devise'
 gem 'twitter-typeahead-rails'
 gem 'rails_12factor'

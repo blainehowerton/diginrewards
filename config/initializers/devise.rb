@@ -14,6 +14,8 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = 'bhowerton@yghdtv.com'
 
+  config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
+
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :get
 
