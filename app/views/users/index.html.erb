@@ -40,6 +40,7 @@ Dig In Club Rewards gives you cash back for your purchases while automatically d
   <p>You are currently signed up to donate to  <b>"<%= cause.name %>"</b> as your preferred cause.  If you would like to change your cause, edit it in your <%= link_to 'User Profile', '/users/edit' %>.  Currently available causes are listed below.</p>
 
 
+
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -59,7 +60,12 @@ Dig In Club Rewards gives you cash back for your purchases while automatically d
           <% end %>
         </tbody>
       </table>
-    </div>
+      <span>
+      <%= will_paginate @causes, renderer: BootstrapPagination::Rails %>
+    </div></span>
+
+
+
 
 <center>
     <a href="https://docs.google.com/forms/d/1L-L6I8vGMk5IggpypaxQcYhYwKrxKmTmEx35ZwqNLo8/viewform" class="btn btn-primary" role="button" target="blank">REQUEST TO ADD A CAUSE</a>
@@ -93,7 +99,7 @@ Dig In Club Rewards gives you cash back for your purchases while automatically d
             <% end %>
         </tbody>
       </table>
-
+<%= will_paginate @causes, renderer: BootstrapPagination::Rails %>
     <center>
     <p><a href="http://rewards.digin.club/index.php/business-directory/?action=search" class="btn btn-primary" role="button">SEARCH FOR BUSINESS INFORMATION</a></p>
 

@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 ruby '2.2.4'
 
 # gem 'postmark-rails', '>= 0.10.0'
+gem 'will_paginate-bootstrap'
+gem 'will_paginate', '~> 3.1.0'
 gem 'devise'
 gem 'twitter-typeahead-rails'
 gem 'rails_12factor'

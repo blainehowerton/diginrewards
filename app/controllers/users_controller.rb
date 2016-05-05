@@ -3,8 +3,8 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 before_action :authenticate_user!
 
 	def index
-  	@retailers = Retailer.all
-  	@causes = Cause.all
+  	@retailers = Retailer.paginate(:page => params[:page], :per_page =>5).order('name ASC')
+  	@causes = Cause.paginate(:page => params[:page], :per_page =>5).order('name ASC')
     @user_payments = UserTransaction.where(user_id: current_user.id).where.not(debit_amount: 0)
     @user_balances = UserTransaction.joins(:user).where(user_id: current_user.id).group(:user_id).select("user_id, SUM(credit_amount) - SUM(debit_amount) AS total_balance")
     @user_transactions = Transaction.where(user_id: current_user.id)
