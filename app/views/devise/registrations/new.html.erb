@@ -1,10 +1,11 @@
 <div class="jumbotron">
       <div class="container">
         <h1>Sign Up</h1>
-        <p>You are signing up for a new user transaction account. <%= notice %></p>
+        <p>You are signing up for a new Dig In Rewards account. <%= notice %></p>
       </div>
     </div>
 <div class="container">
+  <p>If you already have an account, go to your <%= link_to 'DASHBOARD', "/users" %></p>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -17,6 +18,11 @@
   <div class="field">
     <%= f.label :username %><br />
     <%= f.text_field :username %>
+  </div><br>
+
+  <div class="field">
+    <%= f.label :paypalID %><br />
+    <%= f.text_field :paypalID %>
   </div><br>
 
   <div class="field">

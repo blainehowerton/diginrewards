@@ -2,7 +2,6 @@
       <div class="container">
         <h1>Transaction Ticket</h1>
         <p><p id="notice"><%= notice %></p><p>Showing the current transaction. </p>
-        <p><a class="btn btn-primary btn-lg btn-block" href="/transactions/new" role="button">Create new transaction &raquo;</a></p>
         
       </div>
     </div>
@@ -43,13 +42,15 @@
   The cause (<%= @transaction.cause.name %>) will receive <%= number_to_currency(@transaction.cause_split * @transaction.amount) %>.
 </p>
 
+<p>Create another <%= link_to 'New', new_transaction_path(@transaction) %> transaction.</p>
+
+<p>Visit your <%= link_to 'Dashboard', "/users" %></p>
+
 </div>
 
 <hr>
 
 <div class="container">
-
-Create another <%= link_to 'New', new_transaction_path(@transaction) %> transaction.
 
 <br>
 
