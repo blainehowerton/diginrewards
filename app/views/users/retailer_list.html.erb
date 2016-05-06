@@ -1,0 +1,53 @@
+
+
+<div class="jumbotron">
+      <div class="container">
+        <h1>Business Information</h1>
+        <p>Listing all businesses in the program.</p>
+      </div>
+</div>
+
+<div class="container">
+  <div class='panel-body'>
+  <div class="table-responsive">
+  <table class="table table-striped">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Cash %</th>
+              <th>Cause %</th><tr>
+          </tr>
+        </thead>
+        <tbody>
+              <% @retailers.each do |retailer| %>
+              <tr>
+                <td><%= retailer.name %></td>
+                <td><%= retailer.city %></td>
+                <td><%= retailer.state %></td>
+                <td><%= number_to_percentage(retailer.user_split * 100, precision:0) %></td>
+                <td><%= number_to_percentage(retailer.cause_split * 100, precision:0) %></td>
+              </tr>
+            <% end %>
+        </tbody>
+      </table>
+      <center>
+      <%= will_paginate @retailers, renderer: BootstrapPagination::Rails %>
+      </center>
+</div>
+</div>
+
+
+<br>
+<br>
+
+<%= yield %>
+
+</body>
+
+<hr>
+<%= link_to "Back", '/users' %>
+
+</div>
+

@@ -37,77 +37,29 @@ Dig In Club Rewards gives you cash back for your purchases while automatically d
 
 <%= panel title: 'CAUSE INFORMATION' do %>
 <div class='panel-body'>
-  <p>You are currently signed up to donate to  <b>"<%= cause.name %>"</b> as your preferred cause.  If you would like to change your cause, edit it in your <%= link_to 'User Profile', '/users/edit' %>.  Currently available causes are listed below.</p>
+  <p>You are currently signed up to donate to  <b>"<%= cause.name %>"</b> as your preferred cause.</p>
 
+  <p>If you would like to change your cause, edit it in your <%= link_to 'User Profile', '/users/edit' %>.</p>
 
-
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-          <th>Name</th>
-          <th>City</th>
-          <th>State</th><tr>
-          </tr>
-        </thead>
-        <tbody>
-          <% @causes.each do |cause| %>
-          <tr>
-          <td><%= cause.name %></td>
-          <td><%= cause.city %></td>
-          <td><%= cause.state %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <span>
-      <%= will_paginate @causes, renderer: BootstrapPagination::Rails %>
-    </div></span>
-
-
-
-
-<center>
-    <a href="https://docs.google.com/forms/d/1L-L6I8vGMk5IggpypaxQcYhYwKrxKmTmEx35ZwqNLo8/viewform" class="btn btn-primary" role="button" target="blank">REQUEST TO ADD A CAUSE</a>
-</center>
-</div>
-<% end %>
-
-
-<%= panel title: 'LIST OF CURRENT BUSINESSES IN THE PROGRAM' do %>
-<div class='panel-body'>
-  <div class="table-responsive">
-  <table class="table table-striped">
-        <thead>
-          <tr>
-              <th>Name</th>
-              <th>City</th>
-              <th>State</th>
-              <th>Cash %</th>
-              <th>Cause %</th><tr>
-          </tr>
-        </thead>
-        <tbody>
-              <% @retailers.each do |retailer| %>
-              <tr>
-                <td><%= retailer.name %></td>
-                <td><%= retailer.city %></td>
-                <td><%= retailer.state %></td>
-                <td><%= number_to_percentage(retailer.user_split * 100, precision:0) %></td>
-                <td><%= number_to_percentage(retailer.cause_split * 100, precision:0) %></td>
-              </tr>
-            <% end %>
-        </tbody>
-      </table>
-<%= will_paginate @causes, renderer: BootstrapPagination::Rails %>
     <center>
-    <p><a href="http://rewards.digin.club/index.php/business-directory/?action=search" class="btn btn-primary" role="button">SEARCH FOR BUSINESS INFORMATION</a></p>
-
-    <a href="http://goo.gl/forms/MXlBGhNCEl" class="btn btn-primary" role="button" target="blank">REQUEST TO ADD A BUSINESS</a>
-    </center><br>
-</div>
+        <a href="/users/cause_list" class="btn btn-primary" role="button">SHOW CAUSE LIST</a>
+        <a href="https://docs.google.com/forms/d/1L-L6I8vGMk5IggpypaxQcYhYwKrxKmTmEx35ZwqNLo8/viewform" class="btn btn-primary" role="button" target="blank">REQUEST TO ADD A CAUSE</a>
+    </center>
 </div>
 <% end %>
+
+
+
+
+<%= panel title: 'BUSINESS PARTNER INFORMATION' do %>
+<div class='panel-body'>
+    <center>
+    <p><a href="/users/retailer_list" class="btn btn-primary" role="button">LIST ALL BUSINESSES</a>
+    <a href="http://goo.gl/forms/MXlBGhNCEl" class="btn btn-primary" role="button" target="blank">REQUEST TO ADD A BUSINESS</a>
+    <a href="http://rewards.digin.club/index.php/business-directory/?action=search" class="btn btn-primary" role="button">SEARCH FOR BUSINESS INFORMATION</a></p>
+    </center><br>
+<% end %>
+</div>
 
 
 

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get '/admin/reports', to: 'reports#index'
   get '/admin/reports/retailer_balances', to: 'reports#retailer_balances'
   get '/users/history', to: 'users#history'
+  get '/users/cause_list', to: 'users#cause_list'
+  get '/users/retailer_list', to: 'users#retailer_list'
   get '/buttons', to: 'home#buttons'
 
   devise_for :admins

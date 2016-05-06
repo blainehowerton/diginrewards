@@ -1,0 +1,57 @@
+
+
+<div class="jumbotron">
+      <div class="container">
+        <h1>Cause List</h1>
+        <p>Listing all causes in the program.</p>
+      </div>
+    </div>
+
+<div class="container">
+
+
+
+
+<div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+          <th>Name</th>
+          <th>City</th>
+          <th>State</th><tr>
+          </tr>
+        </thead>
+        <tbody>
+          <% @causes.each do |cause| %>
+          <tr>
+          <td><%= cause.name %></td>
+          <td><%= cause.city %></td>
+          <td><%= cause.state %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <center>
+      <%= will_paginate @causes, renderer: BootstrapPagination::Rails %>
+    </div></center>
+
+
+
+
+<br>
+<br>
+
+<%= yield %>
+
+</body>
+
+<hr>
+
+</html>
+<%= link_to "Back", '/users' %>
+
+</div>
+
+
+
+
