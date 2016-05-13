@@ -1,11 +1,19 @@
+<!-- FACEBOOK PAGE LIKE SCRIPT -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=218440228241995";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
-
-<div class="jumbotron">
-      <div class="container">
-        <h1>User Dashboard</h1>
-        <p> Showing Dig In Club Rewards account details.</p>
-      </div>
-    </div>
+    <div class="jumbotron">
+          <div class="container">
+            <h1>User Dashboard</h1>
+            <p> Showing Dig In Club Rewards account details.</p>
+          </div>
+        </div>
 
 <div class="container">
 <p><%= notice %></p>
@@ -23,6 +31,8 @@
 Dig In Club Rewards gives you cash back for your purchases while automatically donating to a cause of your choice.  The innovative program is designed to give consumers incentives for their loyalty to businesses, while supporting their favorite cause.</P>
 
 <p>Retailers give a percentage of every transaction as cash back to our member and to our member's cause.<p>
+
+<p>Please take this opportunity to "like" our Facebook Page.  We update all of our program information there.<div class="fb-like" data-href="https://www.facebook.com/diginrewards/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div><p>
 
 <hr>
 
