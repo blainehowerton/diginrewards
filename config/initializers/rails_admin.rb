@@ -51,4 +51,18 @@ RailsAdmin.config do |config|
       field :fee_split
     end
   end
+
+  config.model 'User' do
+    edit do
+      field :username
+      field :cause_id
+      field :paypalID
+      field :address
+      field :city
+      field :state
+      field :zip
+      field :phone
+      field :password
+    end
+  end
 end

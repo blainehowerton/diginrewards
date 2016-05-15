@@ -15,6 +15,17 @@ before_action :authenticate_user!
     @user = User.new
 	end
 
+  def cause_list
+    # @causes = Cause.paginate(:page => params[:page], :per_page => 20 ).order('name ASC')
+    @causes = Cause.order('name ASC')
+  end
+
+  def retailer_list
+    # @retailers = Retailer.paginate(:page => params[:page], :per_page => 20 ).order('name ASC')
+    @retailers = Retailer.order('name ASC')
+  end
+
+
 	def show
 	end
 

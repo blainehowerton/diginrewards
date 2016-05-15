@@ -22,7 +22,7 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    @transaction.cause_id = current_user.cause_id 
+    @transaction.cause_id = current_user.cause_id
   end
 
   def create
