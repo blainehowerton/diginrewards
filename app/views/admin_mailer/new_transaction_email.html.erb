@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+<% user = User.find(@transaction.user_id) %>
+<% retailer = Retailer.find(@transaction.retailer_id) %>
+<% cause = Cause.find(@transaction.cause_id) %>
+
+<p>
+  Date:  <%= @transaction.transaction_date %>
+</p>
+
+<p>
+  User:  <%= user.username %>
+</p>
+
+<p>
+  Amount:  <%= number_to_currency(@transaction.amount) %>
+</p>
+
+<p>
+  Retailer:  <%= retailer.name %>
+</p>
+
+<p>
+  Cause:  <%= cause.name %>
+</p>
+
+  </body>
+</html>
