@@ -20,12 +20,15 @@
 
 <div class="jumbotron">
       <div class="container">
-        <h1>Transaction View</h1>
-        <p> Hello <%= current_user.username %>. <%= notice %>  Creating your transaction.</p>
+        <h1>Hooray!</h1>
+        <p>You're on your way to cash back.</p>
       </div>
     </div>
 
 <div class="container">
+  <br>
+  <p> Hello <%= current_user.username %>. <%= notice %>  Creating your transaction.</p>
+  <br>
 <%= form_for @transaction do |f| %>
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
