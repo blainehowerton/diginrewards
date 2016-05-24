@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+<% user = User.find(@transaction.user_id) %>
+<% retailer = Retailer.find(@transaction.retailer_id) %>
+<% cause = Cause.find(@transaction.cause_id) %>
+
+<h1>User, <%= user.username %> has entered a transaction.</h1>
+The transaction is pending approval.
+
+<p>Please login to approve this transaction.<br>
+<a href="https://diginrewards.herokuapp.com/transactions">https://diginrewards.herokuapp.com/transactions</a>
+</p>
+
+<p>
+  <strong>Transaction Details:</strong><br>
+Date: <%= @transaction.transaction_date %><br>
+Amount: <%= number_to_currency(@transaction.amount) %><br>
+Retailer: <%= retailer.name %><br>
+Cause: <%= cause.name %>
+</p>
+
+  </body>
+</html>

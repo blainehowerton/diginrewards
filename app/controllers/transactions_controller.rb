@@ -36,11 +36,16 @@ class TransactionsController < ApplicationController
     # Create a Transaction object
     @transaction = Transaction.new(transaction_params)
     # Set the transaction user_id = to the logged in user, and save the username to the transaction (transaction.user_id)
+
     if @transaction.save
       # save value from current signed in user to transaction's user_id field
       @transaction.status == "Not Reviewed"
       @transaction.user_id = current_user.id
       @transaction.cause_id = current_user.cause_id
+    end
+
+    if @transaction.save
+      AdminMailer.new_transaction_email(@transaction).deliver_now
     end
 
     respond_to do |format|
