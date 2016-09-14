@@ -1,1 +1,72 @@
-retailer show screen
+
+
+<div class="jumbotron">
+      <div class="container">
+        <h1>Retailer View</h1>
+        <p> Viewing retailer register. <%= notice %></p>
+      </div>
+    </div>
+
+<div class="container">
+<p>
+<b>Retailer ID:  </b><%= @retailer.id %>
+<br>
+<b>Name:  </b><%= @retailer.name %>
+<br><br>
+<b>Address:</b><br>
+<%= @retailer.address %>
+<br>
+<%= @retailer.city %>, <%= @retailer.state %>, <%= @retailer.zip %>
+<br><br>
+<b>Phone:  </b><%= @retailer.phone %>
+</p>
+
+  <div class='panel-body'>
+  <div class="table-responsive">
+  <table class="table table-striped">
+        <thead>
+          <tr>
+              <th>Retailer ID</th>
+              <th>Transaction ID</th>
+              <th>Date</th>
+              <th>Credit Amount</th>
+              <th>Debit Amount</th>
+              <th>Memo</th>
+              <tr>
+          </tr>
+        </thead>
+        <tbody>
+              <% @retailertransactions.each do |transaction| %>
+              <tr>
+              	<td><%= transaction.retailer_id %></td>
+                <td><%= transaction.id %></td>
+                <td><%= transaction.date %></td>
+                <td><%= number_to_currency (transaction.credit_amount) %></td>
+                <td><%= number_to_currency (transaction.debit_amount) %></td>
+                <td><%= transaction.memo %></td>
+                
+              </tr>
+            <% end %>
+        </tbody>
+      </table>
+      <center>
+      </center>
+</div>
+
+
+</div>
+
+<br>
+<br>
+
+<%= yield %>
+
+</body>
+
+<hr>
+<%= link_to "Buttons", '/buttons'  %>  |  <%= link_to "Transactions Dashboard", '/transactions' %>
+</html>
+
+
+
+

@@ -10,6 +10,8 @@ class RetailersController < ApplicationController
 	end
 
 	def show
+  @retailer = Retailer.find(params[:id])
+  @retailertransactions = RetailerTransaction.where("retailer_id" => params[:id])
 	end
 
 def create
