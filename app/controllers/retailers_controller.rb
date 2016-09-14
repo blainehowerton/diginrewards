@@ -14,6 +14,9 @@ class RetailersController < ApplicationController
   @retailertransactions = RetailerTransaction.where("retailer_id" => params[:id])
 	end
 
+  def receipts
+  end
+
 def create
 @retailer = Retailer.new(retailer_params)
 

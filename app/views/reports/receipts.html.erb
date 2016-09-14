@@ -1,0 +1,25 @@
+<p>Show all transactions and receipts</p>
+
+<% @transactions.each do |t| %>
+    <%= t.amount %>, <%= t.retailer_id %>, <%= t.transaction_date %>, <%= image_tag t.image.url(:medium) %> <br>
+    <% end %>
+
+
+
+
+<!-- create_table "transactions", force: :cascade do |t|
+    t.decimal  "amount",             precision: 10, scale: 2
+    t.integer  "user_id"
+    t.integer  "retailer_id"
+    t.datetime "created_at",                                                           null: false
+    t.datetime "updated_at",                                                           null: false
+    t.date     "transaction_date"
+    t.integer  "cause_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.decimal  "fee_split",          precision: 5,  scale: 2
+    t.decimal  "retailer_split",     precision: 5,  scale: 2
+    t.decimal  "cause_split",        precision: 5,  scale: 2
+    t.string   "status",         -->
