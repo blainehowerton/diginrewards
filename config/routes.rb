@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get '/reports', to: 'reports#index'
   get '/reports/retailer_balances', to: 'reports#retailer_balances'
-  get '/reports/receipts', to: 'reports#receipts'
+  get '/reports/all_receipts', to: 'reports#all_receipts'
   get '/users/history', to: 'users#history'
   get '/users/cause_list', to: 'users#cause_list'
   get '/users/retailer_list', to: 'users#retailer_list'
@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   resources :cause_transactions
   resources :rewards_transactions
   resources :user_transactions
-  resources :reports
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

@@ -1,0 +1,34 @@
+
+
+<div class="jumbotron">
+      <div class="container">
+        <h1>Reports</h1>
+        <p> Showing all receipts. <%= notice %></p>
+      </div>
+    </div>
+
+<div class="container">
+<h3><i>Sorted, most recent first</i></h3>
+
+<% @transactions.each do |t| %>
+    User:  <%= t.user.username %><br>
+    Amount:  <%= number_to_currency(t.amount) %> <br>
+    Retailer:  <%= t.retailer.name %><br>
+    Date:  <%= t.transaction_date %><br>
+    <br><%= image_tag t.image.url(:medium) %><br>
+    <%= link_to 'show original', t.image.url %><br> <br>
+    <hr>
+    <% end %>
+
+</div>
+
+<br>
+<br>
+
+<%= yield %>
+
+</body>
+
+<hr>
+
+</html>
