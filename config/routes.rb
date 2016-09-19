@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :retailers
   resources :causes
   resources :onboarding
+  resources :reports
   resources :process_transactions
   resources :retailer_transactions
   resources :cause_transactions

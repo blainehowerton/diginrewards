@@ -12,4 +12,8 @@ class ReportsController < ApplicationController
   	# @transactions = Transaction.where("retailer_id" => 3)
   end
 
+  def show
+  	
+  end 
+
 end
