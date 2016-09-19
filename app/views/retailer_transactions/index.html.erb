@@ -44,7 +44,7 @@
         <td><%= number_to_currency(total_credits) %></td>
         <td><%= number_to_currency(total_debits) %></td>
         <td><%= number_to_currency(balance) %></td>
-        <td><%= link_to 'show report', retailer_transaction_path(item.retailer) %></td>
+        <td><%= link_to 'show', retailer_path(item.retailer) %></td>
     <% end %>
   </tr>
   </tbody>
