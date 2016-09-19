@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/users/cause_list', to: 'users#cause_list'
   get '/users/retailer_list', to: 'users#retailer_list'
   get '/buttons', to: 'home#buttons'
+  get '/retailers/register', to: 'retailers#register'
 
   devise_for :admins
   devise_for :users, :controllers => { :registrations => "user_registrations" }

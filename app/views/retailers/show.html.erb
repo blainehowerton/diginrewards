@@ -1,7 +1,7 @@
 <div class="jumbotron">
       <div class="container">
         <h1>Retailer View</h1>
-        <p> Viewing retailer register. <%= notice %></p>
+        <p> Viewing retailer information. <%= notice %></p>
       </div>
     </div>
 
@@ -19,6 +19,7 @@
 <b>Phone:  </b><%= @retailer.phone %>
 </p>
 
+<h2> Transactions </h2>
   <div class='panel-body'>
   <div class="table-responsive">
   <table class="table table-striped">
@@ -50,9 +51,19 @@
       <center>
       </center>
 </div>
-
-
 </div>
+
+<h2>Receipts</h2>
+
+<% @retailerreceipts.each do |receipt| %>
+    Date:  <%= receipt.transaction_date %><br>
+    User:  <%= receipt.user.username %><br>
+    Amount:  <%= number_to_currency(receipt.amount) %> <br>
+    Retailer:  <%= receipt.retailer.name %><br>
+    <br><%= image_tag receipt.image.url(:medium) %><br>
+    <%= link_to 'show original', receipt.image.url %><br> <br>
+    <hr>
+<% end %>
 
 <br>
 <br>
