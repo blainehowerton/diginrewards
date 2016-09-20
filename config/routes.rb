@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
-  get '/admin/reports', to: 'reports#index'
-  get '/admin/reports/retailer_balances', to: 'reports#retailer_balances'
+  get '/reports', to: 'reports#index'
+  get '/reports/retailer_balances', to: 'reports#retailer_balances'
+  get '/reports/all_receipts', to: 'reports#all_receipts'
   get '/users/history', to: 'users#history'
   get '/users/cause_list', to: 'users#cause_list'
   get '/users/retailer_list', to: 'users#retailer_list'
   get '/buttons', to: 'home#buttons'
+  get '/retailers/register', to: 'retailers#register'
 
   devise_for :admins
   devise_for :users, :controllers => { :registrations => "user_registrations" }
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
   resources :retailers
   resources :causes
   resources :onboarding
+  resources :reports
   resources :process_transactions
   resources :retailer_transactions
   resources :cause_transactions

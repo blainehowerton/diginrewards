@@ -1,8 +1,7 @@
 
-
 <div class="jumbotron">
       <div class="container">
-        <h1>Retailer Reports</h1>
+        <h1>Retailers</h1>
         <p>Listing all retailers in the program.</p>
       </div>
 </div>
@@ -14,14 +13,15 @@
         <thead>
           <tr>
               <th>Name</th>
-              <th>Register</th>
+              <th>Details</th>
           </tr>
         </thead>
         <tbody>
               <% @retailers.each do |retailer| %>
               <tr>
                 <td><%= retailer.name %></td>
-                <td><%= link_to 'show report', retailer %></td>
+                <td><%= link_to 'View', retailer %></td>
+                
               </tr>
             <% end %>
         </tbody>
@@ -44,4 +44,3 @@
 <%= link_to "Buttons", '/buttons'  %>  |  <%= link_to "Transactions Dashboard", '/transactions' %>
 
 </div>
-
