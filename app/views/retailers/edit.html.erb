@@ -1,4 +1,30 @@
-<h1>Editing Retailer</h1>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+
+<div class="jumbotron">
+      <div class="container">
+        <h1>Retailer Edit</h1>
+        <p> You are editing retailer information. <%= notice %></p>
+      </div>
+    </div>
+
+<div class="container">
 
 <%= render 'form' %>
 
+<br>
+<br>
+
+<%= yield %>
+
+</body>
+
+<hr>
+<%= link_to 'Home', "/" %> | <%= link_to 'Onboarding', "/onboarding" %> | 
+<%= link_to 'Transaction Dashboard', "/transactions" %> | <%= link_to 'Database Admin', "/admin" %>
+</div>
+</html>

@@ -10,13 +10,9 @@ class RetailersController < ApplicationController
 	end
 
   def show
-  @retailer = Retailer.find(params[:id])
+  set_retailer
   @retailertransactions = RetailerTransaction.where("retailer_id" => params[:id])
-  @retailerreceipts = Transaction.where("retailer_id" => params[:id]).all
-  end
-
-  def edit
-  @retailer = Retailer.find(params[:id])
+  @retailerreceipts = Transaction.where("retailer_id" => params[:id]).all.order('transaction_date DESC')
   end
 
   def create
@@ -33,8 +29,16 @@ class RetailersController < ApplicationController
       end
   end
 
-def retailer_params
-  params.require(:retailer).permit(:name, :paypalID, :contact_email, :phone, :address, :city, :state, :zip, :fee_split, :cause_split, :user_split)
-end
+  def update
+    @retailer = Retailer.find(params[:id])
+  end
 
+private
+    def retailer_params
+      params.require(:retailer).permit(:name, :authenticity_token, :paypalID, :contact_email, :phone, :address, :city, :state, :zip, :fee_split, :cause_split, :user_split)
+    end
+
+    def set_retailer
+      @retailer = Retailer.find(params[:id])
+    end
 end

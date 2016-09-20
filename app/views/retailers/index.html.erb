@@ -13,8 +13,7 @@
         <thead>
           <tr>
               <th>Name</th>
-              <th>Summary</th>
-              <th>Edit Info</th>
+              <th>Details</th>
           </tr>
         </thead>
         <tbody>
@@ -22,7 +21,6 @@
               <tr>
                 <td><%= retailer.name %></td>
                 <td><%= link_to 'View', retailer %></td>
-                <td><%= link_to 'Edit', edit_retailer_path(retailer) %></td>
                 
               </tr>
             <% end %>

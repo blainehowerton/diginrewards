@@ -16,74 +16,7 @@
 
 <div class="container">
 
-<%= form_for @retailer do |f| %>
-  <% if @retailer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@retailer.errors.count, "error") %> prohibited this retailer from being saved:</h2>
-
-      <ul>
-      <% @retailer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-   <% end %>
-  <p>
-    Retailer Name <br>
-    <%= f.text_field(:name) %>
-  </p>
-  <br>
-  <p>
-    Contact Email <br>
-    <%= f.email_field(:contact_email) %>
-  </p>
-  <br>
-  <p>Paypal ID<br>
-    <%= f.text_field(:paypalID) %>
-  </p>
-  <br>
-  <p>
-    Address<br>
-    <%= f.text_field(:address) %>
-  </p>
-  <br>
-  <p>
-    City<br>
-    <%= f.text_field(:city) %></p>
-    <br>
-    <p> State<br>
-     <%= f.text_field(:state) %>
-     </p>
-     <br>
-<p> Zip <br>
-  <%= f.number_field :zip, :step => 'any' %>
-  </p>
-  <br>
-  <p>
-    Phone<br>
-    <%= f.number_field :phone, :step => 'any' %>
-  </p>
-  <br>
-  <p>
-    Fee Split decimal (to Dig In)<br>
-    <%= f.number_field :fee_split, :step => '0.01' %>
-  </p>
-  <br>
-  <p>
-    Cause Split decimal (donation to the Cause)<br>
-    <%= f.number_field :cause_split, :step => '0.01' %>
-  </p>
-  <br>
-  <p>
-    User Split decimal (cash back to the User)<br>
-    <%= f.number_field :user_split, :step => '0.01' %>
-  </p>
-  <br>
-<br>
-  <div class="actions">
-    <%= f.submit "Create" %>
-  </div>
-<% end %>
+<%= render 'form' %>
 
 <br>
 <br>
