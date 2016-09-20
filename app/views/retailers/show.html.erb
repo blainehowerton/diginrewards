@@ -34,6 +34,14 @@
        <!-- Third Colum -->
         <div class="col-md-4">
           <h2>Financial Summary</h2>
+
+          <h5>Total Transactions:  
+            <% @sum = 0 %>
+            <% @retailerreceipts.each do |transaction| %>
+              <% @sum = @sum + transaction.amount %>
+            <% end %>
+            <%= number_to_currency(@sum) %></h5>
+
           <h5>Total Deposits:  
             <% @sum = 0 %>
             <% @retailertransactions.each do |transaction| %>
@@ -56,6 +64,8 @@
               <% @wsum = @wsum + transaction.credit_amount %>
             <% end %>
             <%= number_to_currency(@wsum - @dsum) %></h4>
+
+
         </div>
       </div>
 
