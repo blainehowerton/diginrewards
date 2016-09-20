@@ -12,6 +12,8 @@ class RetailersController < ApplicationController
   def show
   set_retailer
   @retailertransactions = RetailerTransaction.where("retailer_id" => params[:id])
+  @retailer_balances = RetailerTransaction.joins(:retailer).group(:retailer_id).select("retailer_id, SUM(retailer_transactions.debit_amount) AS total_debits, SUM(retailer_transactions.credit_amount) AS total_credits")
+  
   @retailerreceipts = Transaction.where("retailer_id" => params[:id]).all.order('transaction_date DESC')
   end
 

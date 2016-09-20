@@ -6,18 +6,61 @@
     </div>
 
 <div class="container">
-<p>
-<b>Retailer ID:  </b><%= @retailer.id %>
-<br>
-<b>Name:  </b><%= @retailer.name %>
-<br><br>
-<b>Address:</b><br>
-<%= @retailer.address %>
-<br>
-<%= @retailer.city %>, <%= @retailer.state %>, <%= @retailer.zip %>
-<br><br>
-<b>Phone:  </b><%= @retailer.phone %>
-</p>
+
+
+
+<div class="row">
+        <!-- First Column -->
+        <div class="col-md-4">
+          <h2>Retailer Information</h2>
+          <p>
+          <b>Retailer ID:  </b><%= @retailer.id %>
+          <br>
+          <b>Name:  </b><%= @retailer.name %>
+          <br><br>
+          <b>Address:</b><br>
+          <%= @retailer.address %>
+          <br>
+          <%= @retailer.city %>, <%= @retailer.state %>, <%= @retailer.zip %>
+          <br><br>
+          <b>Phone:  </b><%= @retailer.phone %>
+          </p>
+        </div>
+        <!-- Second Column option -->
+        <div class="col-md-4">
+          <h2></h2>
+          <p></p>
+       </div>
+       <!-- Third Colum -->
+        <div class="col-md-4">
+          <h2>Financial Summary</h2>
+          <h5>Total Deposits:  
+            <% @sum = 0 %>
+            <% @retailertransactions.each do |transaction| %>
+              <% @sum = @sum + transaction.credit_amount %>
+            <% end %>
+            <%= number_to_currency(@sum) %></h5>
+
+          <h5>Total Withdrawls:  
+            <% @sum = 0 %>
+            <% @retailertransactions.each do |transaction| %>
+              <% @sum = @sum + transaction.debit_amount %>
+            <% end %>
+            <%= number_to_currency(@sum) %></h5>
+
+          <h4>Current Balance:  
+            <% @wsum = 0 %>
+            <% @dsum = 0 %>
+            <% @retailertransactions.each do |transaction| %>
+              <% @dsum = @dsum + transaction.debit_amount %>
+              <% @wsum = @wsum + transaction.credit_amount %>
+            <% end %>
+            <%= number_to_currency(@wsum - @dsum) %></h4>
+        </div>
+      </div>
+
+
+
 
 <h2> Transactions </h2>
   <div class='panel-body'>
