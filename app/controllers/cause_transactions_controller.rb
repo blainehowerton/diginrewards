@@ -9,6 +9,10 @@ def new
 @causetransaction = CauseTransaction.new
 end
 
+def show
+end
+
+
 def create
 @causetransaction = CauseTransaction.new(causetransaction_params)
   respond_to do |format|
