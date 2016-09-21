@@ -2,7 +2,7 @@ class CausesController < ApplicationController
  before_filter :authenticate_admin!
 
   def index
-	@causes = Cause.new
+	@causes = Cause.all.order('name ASC')
 	end
 
 	def new
