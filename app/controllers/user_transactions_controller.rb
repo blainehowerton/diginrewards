@@ -22,6 +22,12 @@ def create
     end
 end
 
+def show
+@user = User.find(params[:id])
+@usertransactions = UserTransaction.where("user_id" => params[:id]).order('date DESC')
+@userreceipts = Transaction.where("user_id" => params[:id]).order('transaction_date DESC')
+end
+
 private
 def usertransaction_params
       params.require(:user_transaction).permit(:debit_amount, :user_id, :username, :credit_amount, :memo, :date)
