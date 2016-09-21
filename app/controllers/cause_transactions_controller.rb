@@ -2,7 +2,7 @@ class CauseTransactionsController < ApplicationController
 before_filter :authenticate_admin!
 
 def index
-    @cause_balances = CauseTransaction.joins(:cause).group(:cause_id).select("cause_id, SUM(cause_transactions.debit_amount) AS total_debits, SUM(cause_transactions.credit_amount) AS total_credits")
+@cause_balances = CauseTransaction.joins(:cause).group(:cause_id).select("cause_id, SUM(cause_transactions.debit_amount) AS total_debits, SUM(cause_transactions.credit_amount) AS total_credits")
 end
 
 def new
@@ -10,6 +10,9 @@ def new
 end
 
 def show
+@cause = Cause.find(params[:id])
+@causetransactions = CauseTransaction.where("cause_id" => params[:id]).order('date DESC')
+@causereceipts = Transaction.where("cause_id" => params[:id]).order('transaction_date DESC')
 end
 
 

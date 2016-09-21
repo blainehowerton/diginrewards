@@ -1,1 +1,110 @@
-show.html.erb
+<div class="jumbotron">
+      <div class="container">
+        <h1>Reports</h1>
+        <p> Viewing cause register. <%= notice %></p>
+      </div>
+    </div>
+
+<div class="container">
+
+
+<div class="row">
+        <!-- First Column -->
+        <div class="col-md-4">
+          	<p>
+			Cause ID:  </b><%= @cause.id %><br>
+			<b>Name:  </b><%= @cause.name %>
+			<br><br>
+			<b>Address:</b><br>
+			<%= @cause.address %>
+			<br>
+			<%= @cause.city %>, <%= @cause.state %>, <%= @cause.zip %>
+			<br><br>
+			<b>Phone:  </b><%= @cause.phone %>
+			</p>
+        </div>
+        <!-- Second Column option -->
+        <div class="col-md-4">
+          <h2></h2>
+          <p></p>
+       </div>
+       <!-- Third Colum -->
+        <div class="col-md-4">
+          <h2>Financial Summary</h2>
+
+          <h5>Total Transactions:  
+            <% @sum = 0 %>
+            <% @causereceipts.each do |transaction| %>
+              <% @sum = @sum + transaction.amount %>
+            <% end %>
+            <%= number_to_currency(@sum) %></h5>
+
+            <h5>Total Deposits:  
+            <% @sum = 0 %>
+            <% @causetransactions.each do |transaction| %>
+              <% @sum = @sum + transaction.credit_amount %>
+            <% end %>
+            <%= number_to_currency(@sum) %></h5>
+
+            <h5>Total Payouts:  
+            <% @sum = 0 %>
+            <% @causetransactions.each do |transaction| %>
+              <% @sum = @sum + transaction.debit_amount %>
+            <% end %>
+            <%= number_to_currency(@sum) %></h5>
+
+            <h4>Current Balance:  
+            <% @wsum = 0 %>
+            <% @dsum = 0 %>
+            <% @causetransactions.each do |transaction| %>
+              <% @dsum = @dsum + transaction.debit_amount %>
+              <% @wsum = @wsum + transaction.credit_amount %>
+            <% end %>
+            <%= number_to_currency(@wsum - @dsum) %></h4>
+        </div>
+      </div>
+
+
+  <div class='panel-body'>
+  <div class="table-responsive">
+  <table class="table table-striped">
+	<thead>
+          <tr>
+              <th>Cause ID</th>
+              <th>Transaction ID</th>
+              <th>Date</th>
+              <th>Credit Amount</th>
+              <th>Debit Amount</th>
+              <th>Memo</th>
+              <tr>
+          </tr>
+        </thead>
+        <tbody>
+              <% @causetransactions.each do |transaction| %>
+              <tr>
+              	<td><%= transaction.cause_id %></td>
+                <td><%= transaction.id %></td>
+                <td><%= transaction.date %></td>
+                <td><%= number_to_currency (transaction.credit_amount) %></td>
+                <td><%= number_to_currency (transaction.debit_amount) %></td>
+                <td><%= transaction.memo %></td>
+                
+              </tr>
+            <% end %>
+        </tbody>
+      </table>
+	</div>
+	</div>
+
+	<h2>Cause's Receipts</h2>
+
+<% @causereceipts.each do |receipt| %>
+    Date:  <%= receipt.transaction_date %><br>
+    User:  <%= receipt.user.username %><br>
+    Amount:  <%= number_to_currency(receipt.amount) %> <br>
+    Retailer:  <%= receipt.retailer.name %><br>
+    Status:  <%= receipt.status %><br>
+    <br><%= image_tag receipt.image.url(:medium) %><br>
+    <%= link_to 'show original', receipt.image.url %><br> <br>
+    <hr>
+<% end %>
