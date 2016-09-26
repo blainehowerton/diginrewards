@@ -83,6 +83,7 @@ Dig In Club Rewards gives you cash back for your purchases while automatically d
       <h4><%= retailer.headline %></h4>
       <h5><%= retailer.address %><br>
           <%= retailer.city %>, <%= retailer.state %>  <%= retailer.zip %> <br>
+          Phone:  <%= number_to_phone (retailer.phone) %><br>
       <a href="<%= retailer.web_address %>" target="blank"><%= retailer.web_address %></a></h5>
       <p><%= retailer.description %></P>
       <p><center><%= raw retailer.video_embed %></a></center></P>
