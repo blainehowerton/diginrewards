@@ -125,7 +125,12 @@
     </div>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
       <div class="panel-body">
-        <h2>SHOW BALANCES, HISTORY, & RECEIPTS</h2>
+        <h2>REGISTERS</h2>
+           <%= link_to 'Retailers', "/retailers" %>  |  
+           <%= link_to 'Causes', "/causes" %>  |
+           <%= link_to 'Users', "/reports/user_list" %>
+         <br><hr>
+         <h2>BALANCE SUMMARIES</h2>
            <%= link_to 'Retailers', "/retailer_transactions" %>  |  
            <%= link_to 'Causes', "/cause_transactions" %>  |
            <%= link_to 'Users', "/user_transactions" %>  |

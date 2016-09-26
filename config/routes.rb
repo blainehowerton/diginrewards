@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/reports', to: 'reports#index'
   get '/reports/retailer_balances', to: 'reports#retailer_balances'
   get '/reports/all_receipts', to: 'reports#all_receipts'
+  get 'reports/user_list', to: 'reports#user_list'
   get '/users/history', to: 'users#history'
   get '/users/cause_list', to: 'users#cause_list'
   get '/users/retailer_list', to: 'users#retailer_list'

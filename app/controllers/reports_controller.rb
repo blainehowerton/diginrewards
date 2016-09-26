@@ -12,6 +12,10 @@ class ReportsController < ApplicationController
   	# @transactions = Transaction.where("retailer_id" => 3)
   end
 
+  def user_list
+    @users = User.all.order('username ASC')
+  end
+
   def show
   	
   end 

@@ -1,8 +1,8 @@
 
 <div class="jumbotron">
       <div class="container">
-        <h1>Causes</h1>
-        <p>Listing all causes in the program.</p>
+        <h1>Users</h1>
+        <p>Listing all users in the program.</p>
       </div>
 </div>
 
@@ -17,10 +17,10 @@
           </tr>
         </thead>
         <tbody>
-              <% @causes.each do |item| %>
+              <% @users.each do |item| %>
               <tr>
-                <td><%= item.name %></td>
-                <td><%= link_to 'view', cause_transaction_path(item.id) %></td>
+                <td><%= item.username %></td>
+                <td><%= link_to 'show', user_transaction_path(item.id) %></td>
                 
               </tr>
             <% end %>

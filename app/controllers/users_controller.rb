@@ -25,6 +25,9 @@ before_action :authenticate_user!
     @retailers = Retailer.order('name ASC')
   end
 
+  def user_list
+  end
+
 
 	def show
 	end
