@@ -14,15 +14,21 @@
 <!-- Login Menu -->
 <%= yield %>
 <br>
-<br>
-<br>
+<!-- ACCORDION INITIALIZE -->
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+<!-- 1ST ACCORDION VIEW FOR PENDING TRANSACTIONS-->
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">        
+          Pending Transactions 
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
 
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title">Pending Transactions</h4>
-  </div>
-  <div class="panel-body">
+<!-- VIEW PENDING TRANSACTIONS -->
     <div class="container">
       <% @transactions.each do |transaction| %>
       
@@ -53,15 +59,25 @@
 <!-- END OF VIEW FOR PENDING TRANSACTIONS -->
 
       </div>
+      </div>
+      </div>
+      </div>
+    </div>
   </div>
-</div>
-
+  <!-- END OF 1ST ACCORDION PANEL -->
+<!--  BEGIN 2ND ACCORDION PANEL -->
+<div class="container">
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title">Processing Que</h4>
-  </div>
-  <div class="panel-body">
-    <!-- BEGINNING OF TABLE VIEW FOR REVIEWED TRANSACTIONS-->
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Processing Que
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+<!-- BEGINNING OF TABLE VIEW FOR REVIEWED TRANSACTIONS-->
       <div class="table-responsive">
         <table class="table">
     <thead>
@@ -94,14 +110,21 @@
   <a href="/process_transactions" class="btn btn-primary btn-lg active" role="button">Process Transactions</a>
   <!-- END TABLE VIEW FOR REVIEWED TRANSACTIONS-->
 </div>
-  </div>
 </div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title">Reports</h4>
-  </div>
-  <div class="panel-body">
+</div>
+</div>
+<!-- END 2ND ACCORION PANEL -->
+</div>
+<div class="container">
+<!-- BEGIN THIRD ACCORDION PANEL -->
+ <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Reports</a></h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
         <h2>REGISTERS</h2>
            <%= link_to 'Retailers', "/retailers" %>  |  
            <%= link_to 'Causes', "/causes" %>  |
@@ -120,30 +143,55 @@
            Users  |  
            Rewards Program
            <br>
-      </div>
-</div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title">Transactions Journal Entry</h4>
-  </div>
-  <div class="panel-body">
+<br><br><br>
+           <p>The two most important reports are:<br>
+
+1) A report that can show me for a specified date range how much to money to send to each user PayPal and cause PayPal.<br>
+
+2) A report that can be created for a specified date range for each individual retailer that shows how many members shopped with them and how much they spent as well as how much money was deducted from their account. We will also have to be able to include copies of the receipts to prove each of those transactions.<br>
+
+There will be other reports but that will be a good start.</p>
+
+      </div>
+    </div>
+    </div>
+  <!-- END OF THIRD ACCORDION PANEL -->
+  <!-- OPTIONAL FOURTH ACCORDION PANEL BEGIN-->
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFour">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+           Transactions Journal Entry</a></h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+      <div class="panel-body">
         <h2>NEW ENTRY</h2>
           <%= link_to 'Retailers', "/retailer_transactions/new" %>  |
           <%= link_to 'Causes', "/cause_transactions/new" %>  |
           <%= link_to 'Users', "/user_transactions/new" %>  |
           <%= link_to 'Rewards', "/rewards_transactions/new" %>
+      </div>
+    </div>
   </div>
+  <!-- END OF FOURTH ACCORDION PANEL -->
 </div>
-
-
-
-<br>
-<br>
-<br>
-
-
-
+  <!-- OPTIONAL FIFTH ACCORDION PANEL BEGIN-->
+  <!-- <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFive">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+          Optional 5th accordion</a></h4>
+    </div>
+    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+      <div class="panel-body">
+        OPTIONAL Fifth ACCORDION CONTENT<BR>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div> -->
+  <!-- END OF FIFTH ACCORDION PANEL -->
+</div>
 <div class="container">
 <hr>
 <%= link_to 'Home', "/" %> | 
