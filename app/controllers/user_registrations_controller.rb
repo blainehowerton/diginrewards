@@ -4,6 +4,7 @@ class UserRegistrationsController < Devise::RegistrationsController
 		super
 		if @user.persisted?
 			AdminMailer.admin_email(@user).deliver_now
+			AdminMailer.new_user_email(@user).deliver_now
 		end
 	end
 

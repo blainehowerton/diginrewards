@@ -18,30 +18,95 @@
 <div class="container">
 <p><%= notice %></p>
 
+<!-- Load user's Cause and user's transactions -->
+<% cause = Cause.find(current_user.cause_id) %>
+
+<!-- Page Tabs -->
 <%= nav do %>
   <%= link_to 'Home', users_path %>
   <%= link_to 'History', '/users/history' %>
   <%= link_to 'Profile', '/users/show' %>
   <p align="right"><%= icon :user %>  <%= current_user.username %></p>
 <% end %> 
-  
+
 <br>
 
-<h4>DESCRIPTION OF PROGRAM</h4>
-Dig In Club Rewards gives you cash back for your purchases while automatically donating to a cause of your choice.  The innovative program is designed to give consumers incentives for their loyalty to businesses, while supporting their favorite cause.</P>
+<!-- User Transaction Summary -->
+<div class="row">
+        <!-- First Column -->
+        <div class="col-md-4">
+          <h5>Cash Balance:  <% @user_balances.each do |item| %>
+          <%= number_to_currency(item.total_balance) %>
+          <% end %></h5>
+        </div>
+        <!-- Second Column -->
+        <div class="col-md-4">
+          <h5>Your Current Cause:  <%= cause.name %></h5>
+        </div>
+       <!-- Third Colum -->
+        <div class="col-md-4">
+          <h5>Total Donations:  
+          <% donation_balance = 0 %>
+          <% @user_transactions.each do |transaction| %>
+          <% transaction_total = transaction.amount * transaction.cause_split
+          donation_balance = donation_balance + transaction_total %>
+          <% end %>
+          <%= number_to_currency(donation_balance) %></h5>
+        </div>
+</div>
 
-<p>Retailers give a percentage of every transaction as cash back to our member and to our member's cause.<p>
+<!-- Find Pending transactions and display them (if there are any) -->
+<% @count = 0 %>
+<% @user_transactions.each do |item| %>
+  <% if item.status == 'Not Reviewed' %>
+  <% @pendingstatus = 'true' %>
+  <% @count = @count + 1 %>
+  <% end %>
+<% end %>
 
-<p>Please take this opportunity to "like" our Facebook Page.  We update all of our program information there.<div class="fb-like" data-href="https://www.facebook.com/diginrewards/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div><p>
+<% if @pendingstatus %>
+  <div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  You have <%= @count %> pending transactions.  We will visually inspect and approve soon. <br>
+  <% @user_transactions.each do |item| %>
+  <% if item.status == 'Not Reviewed' %>
+    <%= item.retailer.name %>: <%= number_to_currency(item.amount) %><br>
+    <% end %>
+  <% end %>
+  </div>  
+<% end %>
 
-<hr>
 
+
+
+<!-- Create Transaction Button -->
 <H5>Have you recently made a purchase from one of our partners?</h5>
 <p>If so, create a transaction below.  Fill in the details and take a picture of your receipt.  We'll do the rest for you.<p>
 <p><a class="btn btn-primary btn-lg btn-block" href="/transactions/new" role="button">Create new transaction &raquo;</a></p>
 
-<% cause = Cause.find(current_user.cause_id) %>
-<br>
+
+<%= panel title: 'DESCRIPTION OF PROGRAM' do %>
+<div class='panel-body'>
+<p>Dig In Club Rewards gives you cash back for your purchases while automatically donating to a cause of your choice.  The innovative program is designed to give consumers incentives for their loyalty to businesses, while supporting their favorite cause.<p>
+
+<p>Retailers give a percentage of every transaction as cash back to our member and to our member's cause.<p>
+
+<p>Please take this opportunity to "like" our Facebook Page.  We update all of our program information there.<div class="fb-like" data-href="https://www.facebook.com/diginrewards/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div><p>
+</div>
+<% end %>
+
+
+<%= panel title: 'BUSINESS PARTNER INFORMATION' do %>
+<div class='panel-body'>
+    <p>We have partnered with businesses to bring our members cash back rewards with automatic donations to a cause of your choice.  When our members shop at these businesses, we credit the member's account with a percentage based cash back reward, and then we automatically send donations to our member's associated cause.</p>
+    <p>The process is simple.  Shop at one of our partnering members and then send us your receipt.  We do the rest!</p>
+    <center>
+    <p><a href="/users/retailer_list" class="btn btn-primary" role="button">BUSINESS PARTNERS</a>
+    <a href="http://goo.gl/forms/MXlBGhNCEl" class="btn btn-primary" role="button" target="blank">REQUEST TO ADD A BUSINESS</a>
+    </center>
+<% end %>
+</div>
 
 
 
@@ -61,42 +126,21 @@ Dig In Club Rewards gives you cash back for your purchases while automatically d
 
 
 
-<%= panel title: 'BUSINESS PARTNER INFORMATION' do %>
-<div class='panel-body'>
-    <center>
-    <p><a href="/users/retailer_list" class="btn btn-primary" role="button">LIST ALL BUSINESSES</a>
-    <a href="http://goo.gl/forms/MXlBGhNCEl" class="btn btn-primary" role="button" target="blank">REQUEST TO ADD A BUSINESS</a>
-    <a href="http://rewards.digin.club/index.php/business-directory/?action=search" class="btn btn-primary" role="button">SEARCH FOR BUSINESS INFORMATION</a></p>
-    </center><br>
-<% end %>
-</div>
-
-
-
-
 <%= panel title: 'FEATURED BUSINESS' do %>
 <div class='panel-body'>
 
-  <h3>The Chocolate Therapist</h3>
-  <h4>Offering 3% to Member and 3% to Cause</h4>
-  <h5>2560 W. Main<br>
-    Littleton, CO  80120<br>
-    <a href="http://thechocolatetherapist.com" target="blank">http://thechocolatetherapist.com</a></h5>
-
-      <p>The Chocolate Therapist is a unique chocolate and coffee shop with on-site chocolate production.
-
-      They handcraft small batches of their exclusive chocolate bars, patties and chocolate meltaways with all-natural chocolate and clean ingredients.
-
-      There are no dyes, preservatives or artificial ingredients in anything they make. The dark chocolate is naturally gluten-free and dairy-free, and most of their products are also soy-free.
-
-      Organic flavoring oils, locally roasted nuts and dried berries round out their premium ingredient profile…it’s like no other chocolate!
-
-      Visit the Chocolate Therapist for gifts, books, pairing events and of course chocolate! </p>
-
-      <p>Order online, or visit the store in Littleton, CO and be sure to mention Dig In Rewards at checkout.</p>
-
-    <center><iframe width="480" height="270" src="https://www.youtube.com/embed/tC6xvanv-Mg" frameborder="0" allowfullscreen></iframe>
-    </center>
+  <% @retailers.each do |retailer| %>
+    <% if retailer.featured %>
+      <h3><%= retailer.name %></h3>
+      <h4><%= retailer.headline %></h4>
+      <h5><%= retailer.address %><br>
+          <%= retailer.city %>, <%= retailer.state %>  <%= retailer.zip %> <br>
+          Phone:  <%= number_to_phone (retailer.phone) %><br>
+      <a href="<%= retailer.web_address %>" target="blank"><%= retailer.web_address %></a></h5>
+      <p><%= retailer.description %></P>
+      <p><center><%= raw retailer.video_embed %></a></center></P>
+    <% end %>
+  <% end %>
       
 <% end %>
 </div>

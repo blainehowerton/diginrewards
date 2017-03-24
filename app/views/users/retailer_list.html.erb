@@ -14,20 +14,20 @@
         <thead>
           <tr>
               <th>Name</th>
-              <th>City</th>
-              <th>State</th>
+              <th>Summary</th>
               <th>Cash %</th>
-              <th>Cause %</th><tr>
+              <th>Cause %</th>
+              <th>More Info</th><tr>
           </tr>
         </thead>
         <tbody>
               <% @retailers.each do |retailer| %>
               <tr>
                 <td><%= retailer.name %></td>
-                <td><%= retailer.city %></td>
-                <td><%= retailer.state %></td>
+                <td><%= retailer.headline %></td>
                 <td><%= number_to_percentage(retailer.user_split * 100, precision:0) %></td>
                 <td><%= number_to_percentage(retailer.cause_split * 100, precision:0) %></td>
+                <td><%= link_to 'View', retailer.web_address %></td>
               </tr>
             <% end %>
         </tbody>

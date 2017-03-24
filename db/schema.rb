@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502080545) do
+ActiveRecord::Schema.define(version: 20160926051844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,11 @@ ActiveRecord::Schema.define(version: 20160502080545) do
     t.decimal  "fee_split",                precision: 5, scale: 2
     t.decimal  "cause_split",              precision: 5, scale: 2
     t.decimal  "user_split",               precision: 5, scale: 2
+    t.boolean  "featured"
+    t.string   "headline"
+    t.string   "web_address"
+    t.text     "description"
+    t.string   "video_embed"
   end
 
   create_table "rewards_transactions", force: :cascade do |t|

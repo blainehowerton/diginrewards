@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+<h1>Welcome to Dig In Rewards!</h1>
+
+<h2>We are proud to have you as a member.</h2>
+
+<p>Dig In Rewards is designed to give you cash back for your purchases, while automatically donating to your favorite cause.  To participate, simply send us a copy of your receipt from one of our partnering retailers.  This can be done from your dashboard.</p>
+
+<h4>To login to your dashboard:<br>
+	Go to <a href="http://diginrewards.herokuapp.com/users/sign_in">http://diginrewards.herokuapp.com/users/sign_in</a></h4>
+
+<h3>Retailers</h3>
+<p>New retailers are being added to our program regularly.  All retailers and their associated information can be found on your dashboard's "home" tab under the "Business Partner" section.
+
+<h3>Causes</h3>
+<% cause = Cause.find(@newuser.cause_id) %>
+<p>When you signed up, you selected <%= cause.name %> as your preferred cause.  Donations will be automatically sent to them after we approve the receipts you send to us.</p>
+<p>To change your preferred cause, you can do that in your dashboard by editing your profile under the "profile" tab.</p>
+
+<h3>Thank You!</h3>
+<p>You (as our member) are the most important resource to make this program successful.  We hope you will use the program, redeem your receipts, and support causes in the community.  We are always open to suggestions and feedback to make the program better.  Simply reply to this email to communicate with us directly.</p>
+
+<p>Sincerely,</p>
+<h5><i>The Dig In Rewards team</i></h5>
+
+  </body>
+</html>
