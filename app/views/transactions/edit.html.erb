@@ -71,6 +71,9 @@
   <p>Transaction Amount
   <%= text_field(:transaction, :amount) %></p>
   <br>
+  <p>User Name <%= f.select(:user_id) do %>
+  <%= options_from_collection_for_select(User.all, :id, :username, @transaction.user_id) %></p>
+  <% end %><br><br>
   Cause Name <%= f.select(:cause_id) do %>
   <%= options_from_collection_for_select(Cause.all, :id, :name, @transaction.cause_id) %>
   <% end %><br>
