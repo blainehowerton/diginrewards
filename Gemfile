@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.2.4'
+ruby '2.7.6'
+#ruby '2.2.4'
 
 # # gem 'postmark-rails', '>= 0.10.0'
 # gem 'will_paginate-bootstrap'
@@ -9,8 +10,8 @@ gem 'twitter-typeahead-rails'
 gem 'rails_12factor'
 gem 'pg'
 gem 'puma'
-gem 'heroku'
-gem "paperclip", "~> 4.3"
+#gem 'heroku'
+#gem "paperclip", "~> 4.3.6"
 gem 'aws-sdk-rails'
 gem 'aws-sdk', '< 2.0'
 gem 'bh', '~> 1.3'
